@@ -1,0 +1,506 @@
+[
+  {
+    "slug": "in-the-name-of-allah-most-gracious-most-merciful",
+    "kind": "page",
+    "title": "Understanding Islam: Core Beliefs and Principles",
+    "oldUrl": "https://wisequest.home.blog/",
+    "oldPath": "/",
+    "newPath": "/",
+    "modified": "2025-12-03T23:45:46",
+    "files": {
+      "html": "html/in-the-name-of-allah-most-gracious-most-merciful.html",
+      "markdown": "content/in-the-name-of-allah-most-gracious-most-merciful.md",
+      "screenshot": "screenshots/in-the-name-of-allah-most-gracious-most-merciful.jpg"
+    }
+  },
+  {
+    "slug": "index",
+    "kind": "home",
+    "title": "Home",
+    "oldUrl": "https://wisequest.home.blog/",
+    "oldPath": "/",
+    "newPath": "/",
+    "modified": null,
+    "files": {
+      "html": "html/index.html",
+      "markdown": null,
+      "screenshot": "screenshots/index.jpg"
+    }
+  },
+  {
+    "slug": "prophet-muhammad-peace-be-upon-him",
+    "kind": "post",
+    "title": "Prophet Muhammad (peace be upon him)",
+    "oldUrl": "https://wisequest.home.blog/2025/12/19/prophet-muhammad-peace-be-upon-him/",
+    "oldPath": "/2025/12/19/prophet-muhammad-peace-be-upon-him",
+    "newPath": "/learn/muhammad",
+    "modified": "2025-12-19T00:04:56",
+    "files": {
+      "html": "html/prophet-muhammad-peace-be-upon-him.html",
+      "markdown": "content/prophet-muhammad-peace-be-upon-him.md",
+      "screenshot": "screenshots/prophet-muhammad-peace-be-upon-him.jpg"
+    }
+  },
+  {
+    "slug": "mohammad-peace-blessings-be-upon-him",
+    "kind": "post",
+    "title": "Mohammad peace & blessings be upon him",
+    "oldUrl": "https://wisequest.home.blog/2025/12/24/mohammad-peace-blessings-be-upon-him/",
+    "oldPath": "/2025/12/24/mohammad-peace-blessings-be-upon-him",
+    "newPath": "/learn/muhammad",
+    "modified": "2025-12-24T23:26:48",
+    "files": {
+      "html": "html/mohammad-peace-blessings-be-upon-him.html",
+      "markdown": "content/mohammad-peace-blessings-be-upon-him.md",
+      "screenshot": "screenshots/mohammad-peace-blessings-be-upon-him.jpg"
+    }
+  },
+  {
+    "slug": "answer-to-dr-todd-phillips-why-god-does-not-allow-us-to-see-him-in-this-life",
+    "kind": "post",
+    "title": "Answering Dr. Todd Phillips: Why God does not allow us to see Him (in this life)?",
+    "oldUrl": "https://wisequest.home.blog/2026/10/28/answer-to-dr-todd-phillips-why-god-does-not-allow-us-to-see-him-in-this-life/",
+    "oldPath": "/2026/10/28/answer-to-dr-todd-phillips-why-god-does-not-allow-us-to-see-him-in-this-life",
+    "newPath": "/learn/why-cant-we-see-god",
+    "modified": "2026-10-28T15:02:20",
+    "files": {
+      "html": "html/answer-to-dr-todd-phillips-why-god-does-not-allow-us-to-see-him-in-this-life.html",
+      "markdown": "content/answer-to-dr-todd-phillips-why-god-does-not-allow-us-to-see-him-in-this-life.md",
+      "screenshot": "screenshots/answer-to-dr-todd-phillips-why-god-does-not-allow-us-to-see-him-in-this-life.jpg"
+    }
+  },
+  {
+    "slug": "2742-2",
+    "kind": "page",
+    "title": "Arabic 101",
+    "oldUrl": "https://wisequest.home.blog/2742-2/",
+    "oldPath": "/2742-2",
+    "newPath": "/",
+    "modified": "2026-04-18T13:17:46",
+    "files": {
+      "html": "html/2742-2.html",
+      "markdown": "content/2742-2.md",
+      "screenshot": "screenshots/2742-2.jpg"
+    }
+  },
+  {
+    "slug": "887-2",
+    "kind": "page",
+    "title": "Brief New Muslim Guide – Mobile Phone friendly",
+    "oldUrl": "https://wisequest.home.blog/887-2/",
+    "oldPath": "/887-2",
+    "newPath": "/new-muslims",
+    "modified": "2023-08-05T14:36:06",
+    "files": {
+      "html": "html/887-2.html",
+      "markdown": "content/887-2.md",
+      "screenshot": "screenshots/887-2.jpg"
+    }
+  },
+  {
+    "slug": "ai",
+    "kind": "page",
+    "title": "AI Insights: Unbiased Analysis & Commentary",
+    "oldUrl": "https://wisequest.home.blog/ai/",
+    "oldPath": "/ai",
+    "newPath": "/learn/ai-insights",
+    "modified": "2025-04-09T10:26:30",
+    "files": {
+      "html": "html/ai.html",
+      "markdown": "content/ai.md",
+      "screenshot": "screenshots/ai.jpg"
+    }
+  },
+  {
+    "slug": "answering-dr-todd-phillips-why-god-does-not-allow-us-to-see-him-in-this-life",
+    "kind": "page",
+    "title": "Answering Dr. Todd Phillips: Why God does not allow us to see Him (in this life)?",
+    "oldUrl": "https://wisequest.home.blog/answering-dr-todd-phillips-why-god-does-not-allow-us-to-see-him-in-this-life/",
+    "oldPath": "/answering-dr-todd-phillips-why-god-does-not-allow-us-to-see-him-in-this-life",
+    "newPath": "/learn/why-cant-we-see-god",
+    "modified": "2026-10-28T14:47:06",
+    "files": {
+      "html": "html/answering-dr-todd-phillips-why-god-does-not-allow-us-to-see-him-in-this-life.html",
+      "markdown": "content/answering-dr-todd-phillips-why-god-does-not-allow-us-to-see-him-in-this-life.md",
+      "screenshot": "screenshots/answering-dr-todd-phillips-why-god-does-not-allow-us-to-see-him-in-this-life.jpg"
+    }
+  },
+  {
+    "slug": "area-mosques",
+    "kind": "page",
+    "title": "Mosques",
+    "oldUrl": "https://wisequest.home.blog/area-mosques/",
+    "oldPath": "/area-mosques",
+    "newPath": "/local/mosques",
+    "modified": "2025-08-26T14:32:07",
+    "files": {
+      "html": "html/area-mosques.html",
+      "markdown": "content/area-mosques.md",
+      "screenshot": "screenshots/area-mosques.jpg"
+    }
+  },
+  {
+    "slug": "brief-new-muslim-guide",
+    "kind": "page",
+    "title": "Brief New Muslim Guide",
+    "oldUrl": "https://wisequest.home.blog/brief-new-muslim-guide/",
+    "oldPath": "/brief-new-muslim-guide",
+    "newPath": "/new-muslims",
+    "modified": "2023-08-05T14:49:41",
+    "files": {
+      "html": "html/brief-new-muslim-guide.html",
+      "markdown": "content/brief-new-muslim-guide.md",
+      "screenshot": "screenshots/brief-new-muslim-guide.jpg"
+    }
+  },
+  {
+    "slug": "contact",
+    "kind": "page",
+    "title": "Contact Us",
+    "oldUrl": "https://wisequest.home.blog/contact/",
+    "oldPath": "/contact",
+    "newPath": "/contact",
+    "modified": "2025-11-24T13:11:18",
+    "files": {
+      "html": "html/contact.html",
+      "markdown": "content/contact.md",
+      "screenshot": "screenshots/contact.jpg"
+    }
+  },
+  {
+    "slug": "daees-resources",
+    "kind": "page",
+    "title": "Daees Resources",
+    "oldUrl": "https://wisequest.home.blog/daees-resources/",
+    "oldPath": "/daees-resources",
+    "newPath": "/get-involved/dawah-toolkit",
+    "modified": "2026-07-22T09:36:54",
+    "files": {
+      "html": "html/daees-resources.html",
+      "markdown": "content/daees-resources.md",
+      "screenshot": "screenshots/daees-resources.jpg"
+    }
+  },
+  {
+    "slug": "discover-islam",
+    "kind": "page",
+    "title": "Discover Islam",
+    "oldUrl": "https://wisequest.home.blog/discover-islam/",
+    "oldPath": "/discover-islam",
+    "newPath": "/resources",
+    "modified": "2025-08-26T13:30:01",
+    "files": {
+      "html": "html/discover-islam.html",
+      "markdown": "content/discover-islam.md",
+      "screenshot": "screenshots/discover-islam.jpg"
+    }
+  },
+  {
+    "slug": "espanol",
+    "kind": "page",
+    "title": "Español",
+    "oldUrl": "https://wisequest.home.blog/espanol/",
+    "oldPath": "/espanol",
+    "newPath": "/es",
+    "modified": "2023-03-14T12:43:37",
+    "files": {
+      "html": "html/espanol.html",
+      "markdown": "content/espanol.md",
+      "screenshot": "screenshots/espanol.jpg"
+    }
+  },
+  {
+    "slug": "700-2",
+    "kind": "page",
+    "title": "El Corán: Guía Espiritual y Conocimiento Humano",
+    "oldUrl": "https://wisequest.home.blog/espanol/700-2/",
+    "oldPath": "/espanol/700-2",
+    "newPath": "/es",
+    "modified": "2025-12-03T23:26:50",
+    "files": {
+      "html": "html/700-2.html",
+      "markdown": "content/700-2.md",
+      "screenshot": "screenshots/700-2.jpg"
+    }
+  },
+  {
+    "slug": "handouts-quran-101",
+    "kind": "page",
+    "title": "Handouts Quran 101",
+    "oldUrl": "https://wisequest.home.blog/handouts-quran-101/",
+    "oldPath": "/handouts-quran-101",
+    "newPath": "/local/quran-101/handouts",
+    "modified": "2025-05-24T15:49:04",
+    "files": {
+      "html": "html/handouts-quran-101.html",
+      "markdown": "content/handouts-quran-101.md",
+      "screenshot": "screenshots/handouts-quran-101.jpg"
+    }
+  },
+  {
+    "slug": "history",
+    "kind": "page",
+    "title": "History",
+    "oldUrl": "https://wisequest.home.blog/history/",
+    "oldPath": "/history",
+    "newPath": "/learn/history",
+    "modified": "2025-04-09T12:12:06",
+    "files": {
+      "html": "html/history.html",
+      "markdown": "content/history.md",
+      "screenshot": "screenshots/history.jpg"
+    }
+  },
+  {
+    "slug": "how-to-become-a-muslim",
+    "kind": "page",
+    "title": "Steps to Embrace Islam: A Simple Guide",
+    "oldUrl": "https://wisequest.home.blog/how-to-become-a-muslim/",
+    "oldPath": "/how-to-become-a-muslim",
+    "newPath": "/become-muslim",
+    "modified": "2026-02-23T14:06:18",
+    "files": {
+      "html": "html/how-to-become-a-muslim.html",
+      "markdown": "content/how-to-become-a-muslim.md",
+      "screenshot": "screenshots/how-to-become-a-muslim.jpg"
+    }
+  },
+  {
+    "slug": "jesus",
+    "kind": "page",
+    "title": "Exploring the truth about Jesus in Islam and Christianity",
+    "oldUrl": "https://wisequest.home.blog/jesus/",
+    "oldPath": "/jesus",
+    "newPath": "/learn/jesus",
+    "modified": "2025-06-04T23:30:38",
+    "files": {
+      "html": "html/jesus.html",
+      "markdown": "content/jesus.md",
+      "screenshot": "screenshots/jesus.jpg"
+    }
+  },
+  {
+    "slug": "links-and-resources",
+    "kind": "page",
+    "title": "Links and Resources",
+    "oldUrl": "https://wisequest.home.blog/links-and-resources/",
+    "oldPath": "/links-and-resources",
+    "newPath": "/new-muslims",
+    "modified": "2025-08-26T15:09:44",
+    "files": {
+      "html": "html/links-and-resources.html",
+      "markdown": "content/links-and-resources.md",
+      "screenshot": "screenshots/links-and-resources.jpg"
+    }
+  },
+  {
+    "slug": "local-info",
+    "kind": "page",
+    "title": "Explore the Holy Quran",
+    "oldUrl": "https://wisequest.home.blog/local-info/",
+    "oldPath": "/local-info",
+    "newPath": "/local",
+    "modified": "2025-06-03T21:56:33",
+    "files": {
+      "html": "html/local-info.html",
+      "markdown": "content/local-info.md",
+      "screenshot": "screenshots/local-info.jpg"
+    }
+  },
+  {
+    "slug": "request-quran",
+    "kind": "page",
+    "title": "Get a Free Quran Translation by Mail",
+    "oldUrl": "https://wisequest.home.blog/local-info/request-quran/",
+    "oldPath": "/local-info/request-quran",
+    "newPath": "/resources/free-quran",
+    "modified": "2025-11-24T13:06:36",
+    "files": {
+      "html": "html/request-quran.html",
+      "markdown": "content/request-quran.md",
+      "screenshot": "screenshots/request-quran.jpg"
+    }
+  },
+  {
+    "slug": "media",
+    "kind": "page",
+    "title": "Access / Download The Holy Quran and ebooks in Your Preferred Language",
+    "oldUrl": "https://wisequest.home.blog/media/",
+    "oldPath": "/media",
+    "newPath": "/resources",
+    "modified": "2026-08-07T17:16:14",
+    "files": {
+      "html": "html/media.html",
+      "markdown": "content/media.md",
+      "screenshot": "screenshots/media.jpg"
+    }
+  },
+  {
+    "slug": "muhammad",
+    "kind": "page",
+    "title": "Muhammad",
+    "oldUrl": "https://wisequest.home.blog/muhammad/",
+    "oldPath": "/muhammad",
+    "newPath": "/learn/muhammad",
+    "modified": "2025-10-26T03:15:40",
+    "files": {
+      "html": "html/muhammad.html",
+      "markdown": "content/muhammad.md",
+      "screenshot": "screenshots/muhammad.jpg"
+    }
+  },
+  {
+    "slug": "understanding-the-mercy-of-prophet-muhammad-pbuh",
+    "kind": "page",
+    "title": "Understanding the Mercy of Prophet Muhammad PBUH",
+    "oldUrl": "https://wisequest.home.blog/muhammad/understanding-the-mercy-of-prophet-muhammad-pbuh/",
+    "oldPath": "/muhammad/understanding-the-mercy-of-prophet-muhammad-pbuh",
+    "newPath": "/learn/muhammad/teachings",
+    "modified": "2025-12-03T23:57:33",
+    "files": {
+      "html": "html/understanding-the-mercy-of-prophet-muhammad-pbuh.html",
+      "markdown": "content/understanding-the-mercy-of-prophet-muhammad-pbuh.md",
+      "screenshot": "screenshots/understanding-the-mercy-of-prophet-muhammad-pbuh.jpg"
+    }
+  },
+  {
+    "slug": "new-muslim-guide",
+    "kind": "page",
+    "title": "New Muslim Guide",
+    "oldUrl": "https://wisequest.home.blog/new-muslim-guide/",
+    "oldPath": "/new-muslim-guide",
+    "newPath": "/new-muslims",
+    "modified": "2023-08-05T14:35:28",
+    "files": {
+      "html": "html/new-muslim-guide.html",
+      "markdown": "content/new-muslim-guide.md",
+      "screenshot": "screenshots/new-muslim-guide.jpg"
+    }
+  },
+  {
+    "slug": "new-muslims-stories",
+    "kind": "page",
+    "title": "From Doubt to Faith: Personal Accounts of Discovering Islam",
+    "oldUrl": "https://wisequest.home.blog/new-muslims-stories/",
+    "oldPath": "/new-muslims-stories",
+    "newPath": "/stories",
+    "modified": "2025-04-09T11:18:51",
+    "files": {
+      "html": "html/new-muslims-stories.html",
+      "markdown": "content/new-muslims-stories.md",
+      "screenshot": "screenshots/new-muslims-stories.jpg"
+    }
+  },
+  {
+    "slug": "peace",
+    "kind": "page",
+    "title": "The Facts The Mainstream Media Don’t Want You To Know",
+    "oldUrl": "https://wisequest.home.blog/peace/",
+    "oldPath": "/peace",
+    "newPath": "/learn/palestine",
+    "modified": "2024-06-16T18:41:22",
+    "files": {
+      "html": "html/peace.html",
+      "markdown": "content/peace.md",
+      "screenshot": "screenshots/peace.jpg"
+    }
+  },
+  {
+    "slug": "purpose-of-life",
+    "kind": "page",
+    "title": "Discovering Your Purpose in Life",
+    "oldUrl": "https://wisequest.home.blog/purpose-of-life/",
+    "oldPath": "/purpose-of-life",
+    "newPath": "/purpose-of-life",
+    "modified": "2025-04-09T10:55:38",
+    "files": {
+      "html": "html/purpose-of-life.html",
+      "markdown": "content/purpose-of-life.md",
+      "screenshot": "screenshots/purpose-of-life.jpg"
+    }
+  },
+  {
+    "slug": "qa",
+    "kind": "page",
+    "title": "Q&A",
+    "oldUrl": "https://wisequest.home.blog/qa/",
+    "oldPath": "/qa",
+    "newPath": "/qa",
+    "modified": "2025-08-26T12:38:58",
+    "files": {
+      "html": "html/qa.html",
+      "markdown": "content/qa.md",
+      "screenshot": "screenshots/qa.jpg"
+    }
+  },
+  {
+    "slug": "quran",
+    "kind": "page",
+    "title": "Understanding Quran: Proof of Divine Revelation",
+    "oldUrl": "https://wisequest.home.blog/quran/",
+    "oldPath": "/quran",
+    "newPath": "/learn/quran",
+    "modified": "2025-12-03T23:40:14",
+    "files": {
+      "html": "html/quran.html",
+      "markdown": "content/quran.md",
+      "screenshot": "screenshots/quran.jpg"
+    }
+  },
+  {
+    "slug": "resources-for-new-muslim",
+    "kind": "page",
+    "title": "Welcome to Islam: A New Muslim’s Toolkit",
+    "oldUrl": "https://wisequest.home.blog/resources-for-new-muslim/",
+    "oldPath": "/resources-for-new-muslim",
+    "newPath": "/new-muslims",
+    "modified": "2026-01-20T13:49:14",
+    "files": {
+      "html": "html/resources-for-new-muslim.html",
+      "markdown": "content/resources-for-new-muslim.md",
+      "screenshot": "screenshots/resources-for-new-muslim.jpg"
+    }
+  },
+  {
+    "slug": "salah-prayer-guide",
+    "kind": "page",
+    "title": "How to Pray",
+    "oldUrl": "https://wisequest.home.blog/salah-prayer-guide/",
+    "oldPath": "/salah-prayer-guide",
+    "newPath": "/new-muslims/how-to-pray",
+    "modified": "2025-03-12T11:51:08",
+    "files": {
+      "html": "html/salah-prayer-guide.html",
+      "markdown": "content/salah-prayer-guide.md",
+      "screenshot": "screenshots/salah-prayer-guide.jpg"
+    }
+  },
+  {
+    "slug": "supplications",
+    "kind": "page",
+    "title": "Supplications",
+    "oldUrl": "https://wisequest.home.blog/supplications/",
+    "oldPath": "/supplications",
+    "newPath": "/new-muslims",
+    "modified": "2023-08-05T14:28:27",
+    "files": {
+      "html": "html/supplications.html",
+      "markdown": "content/supplications.md",
+      "screenshot": "screenshots/supplications.jpg"
+    }
+  },
+  {
+    "slug": "women-in-islam",
+    "kind": "page",
+    "title": "Gender Equality in Islam",
+    "oldUrl": "https://wisequest.home.blog/women-in-islam/",
+    "oldPath": "/women-in-islam",
+    "newPath": "/learn/women",
+    "modified": "2025-04-09T11:57:46",
+    "files": {
+      "html": "html/women-in-islam.html",
+      "markdown": "content/women-in-islam.md",
+      "screenshot": "screenshots/women-in-islam.jpg"
+    }
+  }
+]
