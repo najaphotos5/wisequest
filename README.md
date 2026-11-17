@@ -14,6 +14,19 @@ The UX audit and site structure plan are in [docs/AUDIT.md](docs/AUDIT.md).
 | `npm run scrape -- --assets` | Re-pull all pages + images/PDFs from the live WordPress site into `content/_raw` and `public/wp` |
 | `npm run migrate` | Re-convert `content/_raw` → cleaned MDX (skips files marked `curated: true`) |
 
+## Making changes & versions
+
+Follow the `update-site` Claude skill (`.claude/skills/update-site/SKILL.md`); `CLAUDE.md` points Claude to it, including `@claude` on GitHub. Every change is built and link-checked, gets a version bump, is committed, and is pushed.
+
+Versions are **vXX.XX.XXX** in `VERSION` (shown in the site footer), with history in `CHANGELOG.md`:
+
+```bash
+npm run version:bump -- patch "Fixed a typo"      # small fix:   v01.03.000 → v01.03.001
+npm run version:bump -- minor "Added a new page"  # new feature: v01.03.001 → v01.04.000
+npm run version:bump -- major "Redesign"          # big change:  v01.04.000 → v02.00.000
+```
+The deploy workflow tags each released version on GitHub automatically.
+
 ## Where things live
 
 - `content/pages/**.mdx` — every article page (URL = file path). Front matter: `title`, `description`, `section`, `updated`, optional `sources`, `lang`.

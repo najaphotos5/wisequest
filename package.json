@@ -11,7 +11,9 @@
     "migrate": "tsx scripts/migrate.ts",
     "redirects": "tsx scripts/redirects.ts",
     "prebuild": "tsx scripts/redirects.ts",
-    "check-links": "tsx scripts/check-links.ts"
+    "check-links": "tsx scripts/check-links.ts",
+    "version:bump": "tsx scripts/version.ts",
+    "version:show": "tsx scripts/version.ts show"
   },
   "dependencies": {
     "fuse.js": "^7.5.0",
