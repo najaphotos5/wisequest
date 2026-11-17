@@ -1,6 +1,9 @@
+import { readFileSync } from "node:fs";
 import Link from "next/link";
 import { footerNav, site } from "@/lib/site";
 import { Logo } from "./Logo";
+
+const version = readFileSync("VERSION", "utf8").trim();
 
 export function Footer() {
   const { email, phone } = site.contact;
@@ -36,7 +39,10 @@ export function Footer() {
       <div className="border-t border-white/10">
         <p className="mx-auto max-w-6xl px-4 py-5 text-xs text-white/50">
           © {new Date().getFullYear()} {site.name}. Not officially affiliated with WhyIslam. Photos: public domain / CC0 via{" "}
-          <Link href="/about#photo-credits" className="underline">rawpixel &amp; Openverse</Link> and Pexels.
+          <Link href="/about#photo-credits" className="underline">rawpixel &amp; Openverse</Link> and Pexels.{" "}
+          <a href="https://github.com/najaphotos5/wisequest/blob/main/CHANGELOG.md" className="underline" title="What changed">
+            {version}
+          </a>
         </p>
       </div>
     </footer>
