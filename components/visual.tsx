@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { sectionColor } from "@/lib/visuals";
+import { asset } from "@/lib/asset";
 
 export function Tag({ section, className = "" }: { section: string; className?: string }) {
   return (
@@ -28,7 +29,7 @@ export function ImageCard({ href, image, section, title, body, size = "md" }: { 
     <Link href={href} className="group flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-[0_4px_24px_rgba(0,0,0,0.08)] transition hover:-translate-y-1 hover:shadow-[0_10px_32px_rgba(0,0,0,0.14)]">
       <div className="relative overflow-hidden border-b-4" style={{ borderColor: color }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={image} alt="" loading="lazy" className={`w-full object-cover transition duration-500 group-hover:scale-105 ${size === "lg" ? "aspect-[16/9]" : "aspect-[4/3]"}`} />
+        <img src={asset(image)} alt="" loading="lazy" className={`w-full object-cover transition duration-500 group-hover:scale-105 ${size === "lg" ? "aspect-[16/9]" : "aspect-[4/3]"}`} />
         <Tag section={section} className="absolute bottom-0 right-0 rounded-b-none rounded-r-none" />
       </div>
       <div className="flex flex-1 flex-col p-6">
@@ -60,7 +61,7 @@ export function PhotoHero({
   return (
     <div className="relative isolate overflow-hidden bg-ink">
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={image} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover" />
+      <img src={asset(image)} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/80 via-black/45 to-black/15" />
       <div className={`mx-auto flex max-w-6xl flex-col justify-end px-4 ${tall ? "min-h-[78vh] py-20" : "min-h-[46vh] py-14"}`}>
         {crumbs.length > 0 && (

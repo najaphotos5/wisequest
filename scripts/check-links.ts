@@ -3,14 +3,20 @@ import fs from "node:fs";
 import path from "node:path";
 
 const OUT = path.join(process.cwd(), "out");
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const htmlFiles = (fs.readdirSync(OUT, { recursive: true }) as string[]).filter((f) => f.endsWith(".html"));
 const broken = new Map<string, Set<string>>();
 
 for (const file of htmlFiles) {
   const html = fs.readFileSync(path.join(OUT, file), "utf8");
   for (const [, url] of html.matchAll(/(?:href|src)="(\/[^"#?]*)/g)) {
-    if (url.startsWith("/_next/")) continue;
-    const p = decodeURIComponent(url);
+    if (BASE && !url.startsWith(`${BASE}/`) && url !== BASE) {
+      if (!broken.has(url)) broken.set(url, new Set());
+      broken.get(url)!.add(file); // missing base path
+      continue;
+    }
+    const p = decodeURIComponent(url.slice(BASE.length) || "/");
+    if (p.startsWith("/_next/")) continue;
     const candidates = [p, path.join(p, "index.html"), `${p.replace(/\/$/, "")}.html`];
     if (!candidates.some((c) => fs.existsSync(path.join(OUT, c)) && fs.statSync(path.join(OUT, c)).isFile())) {
       if (!broken.has(p)) broken.set(p, new Set());
