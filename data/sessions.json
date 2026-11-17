@@ -1,0 +1,16 @@
+[
+  {
+    "city": "Roseville",
+    "when": "Wednesdays, 7:00–8:00 PM",
+    "address": "10031 Foothills Blvd, Roseville, CA",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=38.8014776,-121.3136182",
+    "note": "Please use the side entrance on Winding Creek.",
+    "status": "weekly"
+  },
+  {
+    "city": "Sacramento",
+    "when": "Schedule to be announced",
+    "note": "New locations and online sessions are coming soon. Sign up and we'll let you know.",
+    "status": "soon"
+  }
+]

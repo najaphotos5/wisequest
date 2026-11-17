@@ -1,0 +1,8 @@
+[
+  { "name": "Muslim Community of Folsom", "city": "Folsom", "address": "391 S Lexington Dr., Suite 120, Folsom, CA 95630", "phone": "916-850-0786", "website": "https://www.mcfolsom.com" },
+  { "name": "MAS Community and Youth Center", "city": "Elk Grove", "address": "3155 Dwight Rd, Elk Grove, CA 95758", "phone": "916-684-6292", "website": "https://massacramento.org/mcyc" },
+  { "name": "Tarbiya House Roseville", "city": "Roseville", "address": "10031 Foothills Blvd, Roseville, CA", "phone": "916-800-4111", "website": "https://www.tarbiya.org", "note": "Home of our Wednesday Quran 101 sessions" },
+  { "name": "SALAM Islamic Center", "city": "Sacramento", "address": "4545 College Oak Dr, Sacramento, CA 95841", "phone": "916-979-1933 ext. 3", "website": "https://www.salamcenter.org" },
+  { "name": "Annur Islamic Center", "city": "Sacramento", "address": "6990 65th St, Sacramento, CA 95823", "phone": "916-392-6687", "website": "https://masjidannur.com" },
+  { "name": "Tarbiya House Natomas", "city": "Natomas", "address": "4027 N Freeway Blvd, Sacramento, CA 95834", "phone": "916-800-4111", "website": "https://www.tarbiya.org" }
+]

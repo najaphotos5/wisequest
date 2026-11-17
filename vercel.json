@@ -1,0 +1,175 @@
+{
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/how-to-become-a-muslim",
+      "destination": "/become-muslim/",
+      "permanent": true
+    },
+    {
+      "source": "/quran",
+      "destination": "/learn/quran/",
+      "permanent": true
+    },
+    {
+      "source": "/the-holy-quran",
+      "destination": "/learn/quran/",
+      "permanent": true
+    },
+    {
+      "source": "/ai",
+      "destination": "/learn/ai-insights/",
+      "permanent": true
+    },
+    {
+      "source": "/muhammad",
+      "destination": "/learn/muhammad/",
+      "permanent": true
+    },
+    {
+      "source": "/muhammad/understanding-the-mercy-of-prophet-muhammad-pbuh",
+      "destination": "/learn/muhammad/teachings/",
+      "permanent": true
+    },
+    {
+      "source": "/discover-islam",
+      "destination": "/resources/",
+      "permanent": true
+    },
+    {
+      "source": "/espanol",
+      "destination": "/es/",
+      "permanent": true
+    },
+    {
+      "source": "/espanol/700-2",
+      "destination": "/es/",
+      "permanent": true
+    },
+    {
+      "source": "/700-2",
+      "destination": "/es/",
+      "permanent": true
+    },
+    {
+      "source": "/jesus",
+      "destination": "/learn/jesus/",
+      "permanent": true
+    },
+    {
+      "source": "/new-muslims-stories",
+      "destination": "/stories/",
+      "permanent": true
+    },
+    {
+      "source": "/media",
+      "destination": "/resources/",
+      "permanent": true
+    },
+    {
+      "source": "/women-in-islam",
+      "destination": "/learn/women/",
+      "permanent": true
+    },
+    {
+      "source": "/history",
+      "destination": "/learn/history/",
+      "permanent": true
+    },
+    {
+      "source": "/peace",
+      "destination": "/learn/palestine/",
+      "permanent": true
+    },
+    {
+      "source": "/resources-for-new-muslim",
+      "destination": "/new-muslims/",
+      "permanent": true
+    },
+    {
+      "source": "/links-and-resources",
+      "destination": "/new-muslims/",
+      "permanent": true
+    },
+    {
+      "source": "/887-2",
+      "destination": "/new-muslims/",
+      "permanent": true
+    },
+    {
+      "source": "/new-muslim-guide",
+      "destination": "/new-muslims/",
+      "permanent": true
+    },
+    {
+      "source": "/brief-new-muslim-guide",
+      "destination": "/new-muslims/",
+      "permanent": true
+    },
+    {
+      "source": "/supplications",
+      "destination": "/new-muslims/",
+      "permanent": true
+    },
+    {
+      "source": "/salah-prayer-guide",
+      "destination": "/new-muslims/how-to-pray/",
+      "permanent": true
+    },
+    {
+      "source": "/area-mosques",
+      "destination": "/local/mosques/",
+      "permanent": true
+    },
+    {
+      "source": "/local-info",
+      "destination": "/local/",
+      "permanent": true
+    },
+    {
+      "source": "/local-info/request-quran",
+      "destination": "/resources/free-quran/",
+      "permanent": true
+    },
+    {
+      "source": "/request-quran",
+      "destination": "/resources/free-quran/",
+      "permanent": true
+    },
+    {
+      "source": "/handouts-quran-101",
+      "destination": "/local/quran-101/handouts/",
+      "permanent": true
+    },
+    {
+      "source": "/daees-resources",
+      "destination": "/get-involved/dawah-toolkit/",
+      "permanent": true
+    },
+    {
+      "source": "/answering-dr-todd-phillips-why-god-does-not-allow-us-to-see-him-in-this-life",
+      "destination": "/learn/why-cant-we-see-god/",
+      "permanent": true
+    },
+    {
+      "source": "/answer-to-dr-todd-phillips-why-god-does-not-allow-us-to-see-him-in-this-life",
+      "destination": "/learn/why-cant-we-see-god/",
+      "permanent": true
+    },
+    {
+      "source": "/prophet-muhammad-peace-be-upon-him",
+      "destination": "/learn/muhammad/",
+      "permanent": true
+    },
+    {
+      "source": "/mohammad-peace-blessings-be-upon-him",
+      "destination": "/learn/muhammad/",
+      "permanent": true
+    },
+    {
+      "source": "/2742-2",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
+}

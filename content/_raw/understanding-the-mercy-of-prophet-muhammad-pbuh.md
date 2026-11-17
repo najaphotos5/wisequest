@@ -1,0 +1,143 @@
+---
+title: "Understanding the Mercy of Prophet Muhammad PBUH"
+kind: page
+wpId: 907
+parent: 213
+oldUrl: "https://wisequest.home.blog/muhammad/understanding-the-mercy-of-prophet-muhammad-pbuh/"
+modified: "2025-12-03T23:57:33"
+---
+##### **Sample teaching of Prophet Mohammad PBUH**
+
+## **_Mercy and compassion_**
+
+“The Merciful One shows mercy to those who are themselves merciful \[to others\]. So show mercy to whatever is on Earth, then He who is in heaven will show mercy to you.”\[1\]
+
+“God is compassionate and loves compassion.”\[2\]
+
+“He is not of us who has no compassion for our little ones and does not honour our old ones.”\[3\]
+
+“May God have mercy on a man who is kind when he buys, when he sells, and when he makes a demand.”\[4\]
+
+## **_Contentment and spirituality_**
+
+“Richness is not having many possessions. Rather, true richness is the richness of the soul.”\[5\]
+
+“Indeed, God does not look towards your bodies nor towards your appearances. But, He looks towards your hearts and your deeds.”\[6\]
+
+“Do not talk too much without remembrance of God. Indeed, excessive talking without remembrance of God hardens the heart. And indeed the furthest of people from God are the harsh-hearted.”\[7\]
+
+“Be mindful of God, you will find Him before you. Get to know God in prosperity and He will know you in adversity. Know that what has passed you by was not going to befall you; and that what has befallen you was not going to pass you by. And know that victory comes with patience, relief with affliction, and ease with hardship.”\[8\]
+
+“Islam has been built on five \[pillars\]: testifying that there is no deity worthy of worship except God and that Muhammad is the Messenger of God, establishing the prayer, paying the obligatory charity, making the pilgrimage to the House, and fasting in Ramadan.”\[9\]
+
+“God, the Exalted, has said: ‘O son of Adam, I forgive you as long as you pray to Me and hope for My forgiveness, whatever sins you have committed. O son of Adam, I do not care if your sins reach the height of the heaven; then you ask for my forgiveness, I would forgive you. O son of Adam, if you come to Me with an Earth load of sins, and meet Me associating nothing with Me, I would match it with an Earth load of forgiveness.’”\[10\]
+
+“God says: ‘I am as My servant thinks I am \[or: as he expects Me to be\]. I am with him when he makes mention of Me. If he makes mention of Me to himself, I make mention of him to Myself. And if he makes mention of Me in an assembly, I make mention of him in an assembly better than it. And if he draws near to Me a hand’s span, I draw near to him an arm’s length. And if he draws near to Me an arm’s length, I draw near to him a fathom’s length. And if he comes to Me walking, I go to him at speed.’”\[11\]
+
+## **_Love_**
+
+“By the one who has my soul in His hand, you will not enter the Garden until you believe, and you will not believe until you love one another. Shall I point out to you something, which will make you love one another if you do it? Make the greeting of peace be widespread among you.”\[12\]
+
+“The servant of God does not reach the reality of faith until he loves for the people what he loves for himself of goodness.”\[13\]
+
+“Love for the people what you love for yourself and you will be a believer. Behave well with your neighbours and you will be a Muslim.”\[14\]
+
+“There have come to you the diseases of the nations before you: envy and hatred, and hatred is the razor. It shaves the religion and it does not shave hair. By the one in whose hand is the soul of Muhammad, you will not believe until you love one another. Shall I tell you something which, if you did it, you would love each other? Spread peace between yourselves.”\[15\]
+
+“None of you has faith until he loves for the people what he loves for himself.”\[16\]
+
+“When a man loves his brother he should tell him that he loves him.”\[17\]
+
+“Love for humanity what you love for yourself.”\[18\]
+
+“The best deed after belief in God is benevolent love towards people.”\[19\]
+
+## **_Community and peace_**
+
+The Prophet Muhammad, peace be upon him, was asked: “What sort of deeds or traits of Islam are good?” The Messenger of God replied: “To feed others, and to greet those whom you know and those whom you do not know.”\[20\]
+
+“He who makes peace between the people by inventing good information or saying good things is not a liar.”\[21\]
+
+“He who does not thank people, does not thank God.”\[22\]
+
+“By God, he does not \[truly\] believe! By God, he does not \[truly\] believe! By God, he does not \[truly\] believe” Someone asked: “Who, O Messenger of God?” He said: “He whose neighbour is not safe from his mischief.”\[23\]
+
+“All mankind is from Adam and Eve, an Arab has no superiority over a non-Arab nor a non-Arab has any superiority over an Arab; also a white has no superiority over a black nor a black has any superiority over a white, except by piety and good action.”\[24\]
+
+“The believer is not he who eats his fill while his neighbour is hungry.”\[25\]
+
+“The best charity is to reconcile people.”
+
+## **_Charity and humanitarianism_**
+
+“God said: ‘Spend \[i.e. on charity\], O son of Adam, and I shall spend on you.’”\[26\]
+
+“Charity does not diminish wealth.”\[27\]
+
+“Visit the sick, feed the hungry and free the captives.”\[28\]
+
+“Make things easy, and do not make them difficult, and give good tidings and do not make people run away.”\[29\]
+
+“Give the labourer his wages before his sweat dries.”\[30\]
+
+“Every act of goodness is charity.”\[31\]
+
+## **_Character and manners_**
+
+“The believers who show the most perfect faith are those who have the best character, and the best of you are those who are best to their wives.”\[32\]
+
+“\[God\] has revealed to me that you should adopt humility so that no one oppresses another.”\[33\]
+
+“Neither nurse grudge nor sever \[the ties of kinship\], nor nurse enmity, and become as fellow brothers and servants of God.”\[34\]
+
+“He who truly believes in God and the last Day should speak good or keep silent.”\[35\]
+
+“The best among you is he who has the best manners.”\[36\]
+
+“Beware of suspicion, for suspicion is the worst of false tales.”\[37\]
+
+“The strong man is not the one who is strong in wrestling, but the one who controls himself in anger.”\[38\]
+
+## **_Environment and animals_**
+
+“If the Hour \[the day of Resurrection\] is about to be established and one of you is holding a palm shoot, let him take advantage of even one second before the Hour is established to plant it.”\[39\]
+
+“If a Muslim plants a tree or sows seeds, and then a bird, or a person or an animal eats from it, it is regarded as a charitable gift (sadaqah) for him.”\[40\]
+
+“Removing harmful things from the road is an act of charity.”\[41\]
+
+The companions asked the Prophet Muhammad ﷺ, “O God’s Messenger! Is there a reward for us in serving the animals?” He replied: “There is a reward for serving any living being.”\[42\]
+
+“Whoever kills a sparrow or anything bigger than that without a just cause, God will hold him accountable on the Day of Judgment.”\[43\]
+
+“A prostitute saw a dog lolling around a well on a hot day and hanging his tongue from thirst. She drew some water for it in her shoe, so God forgave her.”\[44\]
+
+Abdullah ibn Amr ibn al-\`Aas reported that the Prophet ﷺ passed one day by Sa\`d ibn Abi Waqqas while he was performing wudoo’ (ritual ablution). The Prophet ﷺ asked Sa’d, “Why this wastage?” Sa’d replied “Is there wastage in ritual ablution also?” The Prophet ﷺ said, “Yes, even if you are at a flowing river.”\[45\]
+
+## **_Family_**
+
+“The person who perfectly maintains the ties of kinship is not the one who does it because he gets recompensed by his relatives (for being kind and good to them), but the one who truly maintains the bonds of kinship is the one who persists in doing so even though the latter has severed the ties of kinship with him.” \[46\]
+
+“Giving charity to a poor person is charity, and (giving) to a relative is two things, charity and upholding the ties of kinship.” \[47\]
+
+“Be conscious of God and maintain relations with your family members.” \[48\]
+
+“Indeed, God Almighty rewards for gentleness what he does not give for rudeness. If God loves a servant, then he grants him the quality of gentleness. No household is deprived of kindness except that they have been truly deprived.” \[49\]
+
+## **_Parents_**
+
+“Do you have a mother?” He said yes. The Prophet said, “Stay with her, for Paradise is beneath her feet.” \[50\]
+
+“Are your parents alive?” He said yes. The Prophet said, “Then strive in their service.” \[51\]
+
+“The pleasure of the Lord is in the pleasure of the parents, and the displeasure of the Lord is in the displeasure of the parents.” \[52\]
+
+“Be just between your children. Be just between your children.” \[53\]
+
+[30 Hadith](/wp/2023-08-30-hadith.pdf)[Download](/wp/2023-08-30-hadith.pdf)
+
+* * *
+
+[Noor-Book.com 200 حديث ذهبي 2](/wp/2025-10-noor-book.com200d8add8afd98ad8abd8b0d987d8a8d98a2.pdf)[Download](/wp/2025-10-noor-book.com200d8add8afd98ad8abd8b0d987d8a8d98a2.pdf)
+
+* * *
