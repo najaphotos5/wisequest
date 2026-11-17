@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { NextSteps } from "@/components/NextSteps";
-import { PageHeader, Prose } from "@/components/PageShell";
+import { ArticleBody } from "@/components/ArticleBody";
+import { PageHeader } from "@/components/PageShell";
 import { getPage, listSlugs } from "@/lib/content";
 import { renderMdx } from "@/lib/mdx";
 
@@ -26,9 +27,7 @@ export default async function ContentPage({ params }: Props) {
   const { slug } = await params;
   const page = await getPage("pages", slug.join("/"));
   if (!page) notFound();
-  const content = await renderMdx(page.body);
-
-  if (page.meta.bare) return content;
+  if (page.meta.bare) return (await renderMdx(page.body)).content;
 
   const known = new Set([...APP_ROUTES, ...listSlugs("pages")]);
   const crumbs = slug
@@ -40,20 +39,24 @@ export default async function ContentPage({ params }: Props) {
   return (
     <article lang={page.meta.lang}>
       <PageHeader path={`/${page.slug}`} meta={page.meta} crumbs={crumbs.length ? [{ label: "Home", href: "/" }, ...crumbs] : []} />
-      <Prose>
-        {content}
-        {page.meta.sources && page.meta.sources.length > 0 && (
-          <section aria-labelledby="sources">
-            <h2 id="sources">Sources</h2>
-            <ul>{page.meta.sources.map((s) => <li key={s}>{s}</li>)}</ul>
-          </section>
-        )}
-        {page.meta.updated && (
-          <p className="text-sm text-muted">
-            Last updated <time dateTime={page.meta.updated}>{new Date(page.meta.updated).toLocaleDateString("en-US", { dateStyle: "long" })}</time>
-          </p>
-        )}
-      </Prose>
+      <ArticleBody
+        page={page}
+        footer={
+          <>
+            {page.meta.sources && page.meta.sources.length > 0 && (
+              <section aria-labelledby="sources">
+                <h2 id="sources">Sources</h2>
+                <ul>{page.meta.sources.map((s) => <li key={s}>{s}</li>)}</ul>
+              </section>
+            )}
+            {page.meta.updated && (
+              <p className="text-sm text-muted">
+                Last updated <time dateTime={page.meta.updated}>{new Date(page.meta.updated).toLocaleDateString("en-US", { dateStyle: "long" })}</time>
+              </p>
+            )}
+          </>
+        }
+      />
       <NextSteps />
     </article>
   );

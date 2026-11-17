@@ -13,6 +13,10 @@ export type PageMeta = {
   bare?: boolean;
   /** Content language, when not English (e.g. "es"). */
   lang?: string;
+  /** 3–5 key-point bullets shown above long pages. */
+  summary?: string[];
+  /** Force chapter reading mode on (true) or off (false); default is automatic by length. */
+  chapters?: boolean;
 };
 
 export type Page = { slug: string; meta: PageMeta; body: string };
@@ -43,4 +47,19 @@ export async function getPage(kind: keyof typeof DIRS, slug: string): Promise<Pa
 export async function listPages(kind: keyof typeof DIRS) {
   const pages = await Promise.all(listSlugs(kind).map((s) => getPage(kind, s)));
   return pages.filter((p): p is Page => p !== null);
+}
+
+/** Approximate word count of an MDX body, ignoring tags and markup. */
+export function wordCount(body: string) {
+  return body
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\]\([^)]*\)/g, "]")
+    .split(/\s+/)
+    .filter((w) => /[\p{L}\p{N}]/u.test(w)).length;
+}
+
+/** Long, structured pages get chapter mode unless front matter says otherwise. */
+export function wantsChapters(page: Page) {
+  if (page.meta.chapters !== undefined) return page.meta.chapters;
+  return wordCount(page.body) >= 600 && (page.body.match(/^## |^<h2[\s>]/gm)?.length ?? 0) >= 3;
 }
