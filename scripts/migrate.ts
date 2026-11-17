@@ -92,6 +92,7 @@ function clean(md: string) {
   s = s.replace(/(?<!!)\[\]\([^)]*\)/g, ""); // empty links
   s = s.replace(/^\s*•\s*/gm, "- "); // typed bullets
   s = s.replace(/\\\*\\\*/g, "");
+  s = s.replace(/([”"’.!?]\*\*)([A-Za-z])/g, "$1 $2"); // closing ** glued to a word doesn't render as bold
   for (const [re, to] of WORDS) s = s.replace(re, to);
   s = rewriteLinks(s);
   // MDX safety: escape braces and stray "<" that aren't our components.
