@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 import credits from "@/data/image-credits.json";
 import { YouTube } from "./YouTube";
+import { asset } from "@/lib/asset";
 
 function VideoEmbed({ src, title = "Embedded video" }: { src: string; title?: string }) {
   return (
@@ -19,7 +20,7 @@ export function Download({ href, title, note }: { href: string; title: string; n
   const ext = href.split(".").pop()?.toUpperCase() ?? "FILE";
   return (
     <a
-      href={href}
+      href={asset(href)}
       target="_blank"
       rel="noopener"
       className="not-prose my-3 flex items-center gap-4 rounded-xl border border-line bg-surface p-4 no-underline transition hover:border-brand"
@@ -74,19 +75,19 @@ export function ButtonLink({ href, children, variant = "primary" }: { href: stri
 
 function A({ href = "", ...props }: ComponentProps<"a">) {
   if (href.startsWith("/") && !/\.\w{2,4}$/.test(href)) return <Link href={href} {...props} />;
-  return <a href={href} {...props} {...(href.startsWith("http") && { target: "_blank", rel: "noopener noreferrer" })} />;
+  return <a href={asset(href)} {...props} {...(href.startsWith("http") && { target: "_blank", rel: "noopener noreferrer" })} />;
 }
 
 function Img(props: ComponentProps<"img">) {
   // eslint-disable-next-line @next/next/no-img-element
-  return <img loading="lazy" {...props} alt={props.alt ?? ""} />;
+  return <img loading="lazy" {...props} src={typeof props.src === "string" ? asset(props.src) : props.src} alt={props.alt ?? ""} />;
 }
 
 export function Figure({ src, alt, caption, wide }: { src: string; alt: string; caption?: string; wide?: boolean }) {
   return (
     <figure className={`not-prose my-10 ${wide ? "lg:-mx-24" : ""}`}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={src} alt={alt} loading="lazy" className="aspect-[16/9] w-full rounded-xl object-cover shadow-md" />
+      <img src={asset(src)} alt={alt} loading="lazy" className="aspect-[16/9] w-full rounded-xl object-cover shadow-md" />
       {caption && <figcaption className="mt-2 text-sm text-muted">{caption}</figcaption>}
     </figure>
   );

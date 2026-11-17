@@ -4,6 +4,7 @@ import { YouTube } from "@/components/YouTube";
 import sessions from "@/data/sessions.json";
 import { getQaEntries } from "@/lib/qa";
 import { imageFor, sectionColor } from "@/lib/visuals";
+import { asset } from "@/lib/asset";
 
 const essentials = [
   { title: "What is Islam?", body: "Not a new religion, but the one message every prophet brought: worship the One God.", href: "/start", section: "Start Here" },
@@ -87,7 +88,7 @@ export default async function Home() {
                 <p className="px-4 py-4 text-center font-display text-2xl font-semibold" style={{ color }}>{j.label}</p>
                 <div className="relative">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={j.image} alt="" loading="lazy" className="aspect-[16/9] w-full object-cover sm:aspect-[4/3]" />
+                  <img src={asset(j.image)} alt="" loading="lazy" className="aspect-[16/9] w-full object-cover sm:aspect-[4/3]" />
                   <svg viewBox="0 0 100 10" preserveAspectRatio="none" className="absolute -top-px left-0 h-4 w-full" aria-hidden="true"><path d="M0 0h100L50 10Z" fill="#fff" /></svg>
                 </div>
                 <div className="relative flex flex-1 items-center justify-center px-5 pb-8 pt-10 text-center" style={{ background: color }}>
@@ -123,7 +124,7 @@ export default async function Home() {
       {/* Five pillars */}
       <section aria-labelledby="pillars" className="relative isolate overflow-hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/img/prayer.jpg" alt="" loading="lazy" className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <img src={asset("/img/prayer.jpg")} alt="" loading="lazy" className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-[#0b5f4b]/85" />
         <div className="mx-auto max-w-6xl px-4 py-20 text-white">
           <SectionTitle id="pillars" light>The Five Pillars of Islam</SectionTitle>
@@ -172,7 +173,7 @@ export default async function Home() {
         ].map((p) => (
           <Link key={p.href} href={p.href} className="group relative isolate flex min-h-[420px] flex-col justify-end overflow-hidden p-10 text-white">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={p.image} alt="" loading="lazy" className="absolute inset-0 -z-10 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+            <img src={asset(p.image)} alt="" loading="lazy" className="absolute inset-0 -z-10 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
             <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
             <Tag section={p.section} className="self-start" />
             <p className="mt-3 text-sm font-semibold uppercase tracking-wider text-white/80">{p.eyebrow}</p>
