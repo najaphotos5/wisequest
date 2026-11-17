@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.04.001 — 2026-11-17 (patch)
+
+- Added a detailed UX review and improvement plan (docs/UX-IMPROVEMENTS.md)
+
 ## v01.04.000 — 2026-11-17 (minor)
 
 - Safe multi-agent releases: npm run release command, PR version check, separate release tagging, and a detailed update-site guide linked from the README

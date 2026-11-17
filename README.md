@@ -17,7 +17,7 @@ npm run build && npm run check-links && npx serve out         # build, check, pr
 npm run release -- patch "Updated Quran 101 time to 7:30 PM"  # bump version, commit, push
 ```
 
-The UX audit and site structure plan are in [docs/AUDIT.md](docs/AUDIT.md).
+The UX audit and site structure plan are in [docs/AUDIT.md](docs/AUDIT.md). The current list of suggested improvements is in [docs/UX-IMPROVEMENTS.md](docs/UX-IMPROVEMENTS.md).
 
 ## Commands
 
