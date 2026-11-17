@@ -1,0 +1,23 @@
+# Tags every version that lands on main (from the VERSION file). Separate from
+# the deploy workflow so a deploy cancelled by a newer push never skips a tag.
+name: Tag release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          v=$(tr -d '[:space:]' < VERSION)
+          if git ls-remote --exit-code --tags origin "refs/tags/$v" >/dev/null; then
+            echo "Tag $v already exists"
+          else
+            git tag "$v" && git push origin "$v"
+          fi
