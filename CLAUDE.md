@@ -1,9 +1,13 @@
 # WiseQuest website
 
-Static Next.js site for wisequest (The Universal Message of All Prophets), deployed to GitHub Pages: https://najaphotos5.github.io/wisequest/
+Static Next.js site for WiseQuest (The Universal Message of All Prophets), deployed to GitHub Pages: https://najaphotos5.github.io/wisequest/
 
-**For any change to this repository, follow the `update-site` skill (`.claude/skills/update-site/SKILL.md`).** In short: make the change → `npm run build && npm run check-links` → `npm run version:bump -- <patch|minor|major> "summary"` → commit with the version in the message → push. Always commit and push; never leave changes uncommitted.
+**Before making any change to this repository, read and follow the `update-site` skill: [`.claude/skills/update-site/SKILL.md`](.claude/skills/update-site/SKILL.md).** Several agents update this site, so the procedure matters. In short:
 
-Versions are vXX.XX.XXX: patch = small fixes, minor = new pages/features, major = redesigns or broken URLs. See `CHANGELOG.md`.
+1. `git pull --rebase --autostash` before starting.
+2. Make one focused change. Never invent Quran or hadith wording.
+3. `npm run build && npm run check-links`, then preview the changed pages.
+4. `npm run release -- <patch|minor|major> "one-line summary"`. This builds, bumps the vXX.XX.XXX version, commits, and pushes, retrying safely if someone else pushed first.
+5. Report the new version and the live link.
 
-See `README.md` for commands and where content lives.
+Never edit `VERSION`/`CHANGELOG.md` by hand, never create tags, never force-push, and never leave work uncommitted or unpushed.

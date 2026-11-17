@@ -1,6 +1,22 @@
 # WiseQuest — new site
 
-Next.js rebuild of https://wisequest.home.blog. Static export (`out/`), deployable to any static host.
+Next.js rebuild of https://wisequest.home.blog, live at **https://najaphotos5.github.io/wisequest/**.
+Static export (`out/`), deployed to GitHub Pages on every push to `main`.
+
+> **Updating the site? Read the [update-site skill](.claude/skills/update-site/SKILL.md) first.**
+> It's the required procedure for every person and agent: setup, where content lives, best practices, building
+> and previewing, versioning, and releasing safely when several agents work at once.
+
+**Quick start:**
+
+```bash
+npm ci                                                        # once
+git pull --rebase --autostash                                 # before every change
+# …make one focused change…
+npm run build && npm run check-links && npx serve out         # build, check, preview
+npm run release -- patch "Updated Quran 101 time to 7:30 PM"  # bump version, commit, push
+```
+
 The UX audit and site structure plan are in [docs/AUDIT.md](docs/AUDIT.md).
 
 ## Commands
@@ -11,21 +27,27 @@ The UX audit and site structure plan are in [docs/AUDIT.md](docs/AUDIT.md).
 | `npm run build` | Static export to `out/` (also regenerates redirect files) |
 | `npx serve out` | Preview the production build |
 | `npm run check-links` | Verify every internal link/asset in `out/` resolves |
+| `npm run release -- <patch\|minor\|major> "summary"` | Sync, build, check links, bump version, commit, push (retries safely if someone else pushed) |
+| `npm run version:show` | Print the current version |
 | `npm run scrape -- --assets` | Re-pull all pages + images/PDFs from the live WordPress site into `content/_raw` and `public/wp` |
 | `npm run migrate` | Re-convert `content/_raw` → cleaned MDX (skips files marked `curated: true`) |
 
 ## Making changes & versions
 
-Follow the `update-site` Claude skill (`.claude/skills/update-site/SKILL.md`); `CLAUDE.md` points Claude to it, including `@claude` on GitHub. Every change is built and link-checked, gets a version bump, is committed, and is pushed.
+Every change follows the [update-site skill](.claude/skills/update-site/SKILL.md). [`CLAUDE.md`](CLAUDE.md) points Claude to it, including `@claude` on GitHub. Every change is built, link-checked, version-bumped, committed, and pushed with `npm run release`.
 
-Versions are **vXX.XX.XXX** in `VERSION` (shown in the site footer), with history in `CHANGELOG.md`:
+Versions are **vXX.XX.XXX** in `VERSION` (shown in the site footer), with history in [`CHANGELOG.md`](CHANGELOG.md):
 
-```bash
-npm run version:bump -- patch "Fixed a typo"      # small fix:   v01.03.000 → v01.03.001
-npm run version:bump -- minor "Added a new page"  # new feature: v01.03.001 → v01.04.000
-npm run version:bump -- major "Redesign"          # big change:  v01.04.000 → v02.00.000
-```
-The deploy workflow tags each released version on GitHub automatically.
+| Change | Command | Example |
+| --- | --- | --- |
+| Small fix (text, typo, photo, link, time) | `npm run release -- patch "…"` | v01.03.000 → v01.03.001 |
+| New page, section, or feature | `npm run release -- minor "…"` | v01.03.001 → v01.04.000 |
+| Redesign or URL-breaking change | `npm run release -- major "…"` | v01.04.000 → v02.00.000 |
+
+GitHub Actions:
+- **Deploy to GitHub Pages** builds and publishes every push to `main`.
+- **Tag release** tags each version.
+- **Version check** blocks pull requests that don't bump the version or don't build.
 
 ## Where things live
 

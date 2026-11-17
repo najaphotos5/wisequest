@@ -13,7 +13,8 @@
     "prebuild": "tsx scripts/redirects.ts",
     "check-links": "tsx scripts/check-links.ts",
     "version:bump": "tsx scripts/version.ts",
-    "version:show": "tsx scripts/version.ts show"
+    "version:show": "tsx scripts/version.ts show",
+    "release": "tsx scripts/release.ts"
   },
   "dependencies": {
     "fuse.js": "^7.5.0",

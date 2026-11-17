@@ -46,18 +46,3 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@v4
 
-  tag:
-    # Tags each deployed version (from VERSION) so every release is easy to find.
-    needs: deploy
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v4
-      - run: |
-          v=$(tr -d '[:space:]' < VERSION)
-          if git ls-remote --exit-code --tags origin "refs/tags/$v" >/dev/null; then
-            echo "Tag $v already exists"
-          else
-            git tag "$v" && git push origin "$v"
-          fi

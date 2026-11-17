@@ -1,0 +1,31 @@
+# Pull requests must bump VERSION (with a CHANGELOG entry) and still build.
+# See .claude/skills/update-site/SKILL.md.
+name: Version check
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: VERSION is bumped and listed in CHANGELOG.md
+        run: |
+          base=$(git show "origin/${{ github.base_ref }}:VERSION" | tr -d '[:space:]')
+          head=$(tr -d '[:space:]' < VERSION)
+          echo "main: $base  →  this PR: $head"
+          echo "$head" | grep -Eq '^v[0-9]{2}\.[0-9]{2}\.[0-9]{3}$' || { echo "::error::VERSION must look like vXX.XX.XXX"; exit 1; }
+          num() { echo "$1" | tr -d 'v.' ; }
+          [ "$(num "$head")" -gt "$(num "$base")" ] || { echo "::error::Bump VERSION above $base with: npm run version:bump -- <patch|minor|major> \"summary\" (merge main first if it moved)"; exit 1; }
+          grep -q "^## $head " CHANGELOG.md || { echo "::error::CHANGELOG.md has no entry for $head"; exit 1; }
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm run check-links

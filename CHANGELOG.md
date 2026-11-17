@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.04.000 — 2026-11-17 (minor)
+
+- Safe multi-agent releases: npm run release command, PR version check, separate release tagging, and a detailed update-site guide linked from the README
+
 ## v01.03.000 — 2026-11-17 (minor)
 
 - Added the site version system, changelog, automatic release tags, and the `update-site` Claude skill. Version shown in the footer.
