@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.04.002 — 2026-11-22 (patch)
+
+- Updated Welcome New Muslim guide to v15
+
 ## v01.04.001 — 2026-11-17 (patch)
 
 - Added a detailed UX review and improvement plan (docs/UX-IMPROVEMENTS.md)
