@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.14.001 — 2026-11-23 (patch)
+
+- Palestine page: clearer wording, named links, videos grouped by theme, fixed UN link
+
 ## v01.14.000 — 2026-11-23 (minor)
 
 - Dev mode: request fixes straight from the score list (one issue, selected issues, or all), pre-filled with the suggested changes
