@@ -12,7 +12,7 @@ Each run posts **exactly one** improvement idea for https://wisequest.org in the
 ## 1. Gather inputs
 
 1. Read the state branch: `git fetch origin claude/telegram-state`, then read these files from it (any may be missing; treat a missing one as empty):
-   - `suggestions.json`: past suggestions `[{date, theme, page, title, message_id, adopted?, request_id?, reactions?}]`
+   - `suggestions.json`: past suggestions `[{date, theme, page, title, message_id, todo, adopted?, request_id?}]`
    - `feedback.json`: written by the hourly assistant: `{reactions: {<message_id>: {"👍": n, …}}, adoptions: [{suggestion_message_id, request_id, date}], requests: [{date, theme, page, reverted?}]}`
    - `preferences.json`: your own running weights per theme (see step 2)
 2. Build the site and its quality data: `npm ci && npm run build`. Then read `out/dev-data/scores.json` (per-page `textScore`, `pageScore`, `issues`, `fixes`) and `out/dev-data/history.json` (recent changes).
@@ -23,8 +23,8 @@ Each run posts **exactly one** improvement idea for https://wisequest.org in the
 Themes: `clarity` (shorter sentences, plain words) · `photos` (carousel, page header photos, visuals) · `engagement` (calls to action, featured content, homepage sections) · `content` (new or missing useful content) · `navigation` (menus, mobile, finding things) · `accessibility` (alt text, link text, contrast) · `trust` (About page, contact details, local info).
 
 Recompute `preferences.json` = `{weights: {theme: number}, updated: date, notes: [..]}`. Start every theme at 1.0, then:
-- +0.5 for each suggestion in that theme that got 👍 ❤ 🔥 🎉 reactions (count once per suggestion)
-- +1.0 for each suggestion in that theme that was **adopted** (someone sent its /todo)
+- +0.5 for each suggestion in that theme that got ❤ 🔥 🎉 reactions (count once per suggestion; 👍 counts as adoption below)
+- +1.0 for each suggestion in that theme that was **adopted** (someone reacted 👍, which triggers it, or sent its /todo)
 - +0.3 for each `/todo` people sent themselves in that theme in the last 30 days (shows what they care about)
 - −0.5 for each suggestion with 👎 (or more 👎 than 👍)
 - −0.3 for each suggestion ignored for 7+ days (no reactions, not adopted)
@@ -57,9 +57,10 @@ What exactly:
 
 Effort: small | medium
 
-👍 if you like it, 👎 if not.
-To make it happen, send:
-/todo <one clear line that fully describes the change, including the page link>
+👍 = do it: the assistant will make this change within the hour
+👎 = skip this one
+
+(Or send your own version: /todo <one clear line that fully describes the change, including the page link>)
 ```
 
 Writing tips:
@@ -67,12 +68,12 @@ Writing tips:
 - Be concrete. Instead of "improve readability", say: "Split the 3 longest sentences in 'Why is there suffering?'. For example: '…' → '…'".
 - Base before/after examples on real text from the page. Never alter a Quran or hadith quote in an example.
 - If preferences influenced the pick, you may add one short line, e.g. "(You liked the last photo idea, so here's another.)"
-- The `/todo` line must work on its own: include the page link and the exact change.
+- The `/todo` line must work on its own: include the page link and the exact change. A 👍 reaction triggers exactly this text, so it must be complete and safe to do without further questions.
 
 ## 5. Post and log
 
 1. Send it: `sendMessage` to chat `-1004488348585` with `link_preview_options={"is_disabled": true}`. Send exactly **one** message per run. No pinning, no extra messages.
-2. Append `{date, theme, page, title, message_id}` to `suggestions.json`, and write `preferences.json`. Commit both to `claude/telegram-state` (use a separate worktree) and push. Don't touch the other files there; `state.json` and `feedback.json` belong to the hourly assistant.
+2. Append `{date, theme, page, title, message_id, todo}` to `suggestions.json` (`todo` = the full `/todo …` line, without names). The hourly assistant uses it when someone reacts 👍, and write `preferences.json`. Commit both to `claude/telegram-state` (use a separate worktree) and push. Don't touch the other files there; `state.json` and `feedback.json` belong to the hourly assistant.
 3. **Mondays only:** add 2–3 short plain-English lessons to the **Lessons** section below, based on the last 2–4 weeks of feedback, e.g. "Photo ideas get adopted most". Then publish via the normal flow: `npm run release -- patch "Daily suggestion: weekly lessons"`. Don't change any other file in that release.
 
 ## Rules
