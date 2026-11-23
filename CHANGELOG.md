@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.08.000 — 2026-11-23 (minor)
+
+- New logo: The Emblem (navy seal with gold ring, 8-point star and open book), chosen in the Telegram group
+
 ## v01.07.000 — 2026-11-23 (minor)
 
 - Homepage photo now cycles between three bright mosque photos, with lighter shading
