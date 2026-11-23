@@ -65,14 +65,15 @@
     {
       "id": 6,
       "message_id": 38,
-      "status": "needs-info",
+      "status": "seen",
       "bot_message_ids": [
         39
       ],
       "branch": null,
       "pr": null,
-      "summary": "Vague /todo about How to Pray page; asked what to change",
-      "theme": "other"
+      "summary": "Accepted daily idea (message 36): How to Pray page improvements; implement the idea as described, no more questions",
+      "theme": "accessibility",
+      "from_suggestion": 36
     }
   ]
 }

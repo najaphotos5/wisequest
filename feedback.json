@@ -1,11 +1,18 @@
 {
   "reactions": {},
-  "adoptions": [],
+  "adoptions": [
+    {
+      "suggestion_message_id": 36,
+      "request_id": 6,
+      "date": "2026-11-23",
+      "via": "reply"
+    }
+  ],
   "requests": [
     {
       "request_id": 6,
       "date": "2026-11-23",
-      "theme": "other",
+      "theme": "accessibility",
       "page": "/new-muslims/how-to-pray/",
       "reverted": false
     }

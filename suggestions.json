@@ -1,3 +1,10 @@
 [
-  {"date": "2026-11-23", "theme": "accessibility", "page": "/new-muslims/how-to-pray/", "title": "Make How to Pray friendlier for new Muslims", "message_id": 36}
+  {
+    "date": "2026-11-23",
+    "theme": "accessibility",
+    "page": "/new-muslims/how-to-pray/",
+    "title": "Make How to Pray friendlier for new Muslims",
+    "message_id": 36,
+    "todo": "On https://wisequest.org/new-muslims/how-to-pray/ add a short 2-3 sentence introduction, replace the two raw app web addresses with buttons \"Get the Salah app for Android\" and \"Get the Salah app for iPhone\", add alt text to the two app images, and give the prayer booklet download a readable title and one-line description."
+  }
 ]
