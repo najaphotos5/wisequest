@@ -1,0 +1,51 @@
+{
+  "offset": 109084471,
+  "chat_id": -1004488348585,
+  "owner_telegram_id": 5763295123,
+  "next_id": 5,
+  "requests": [
+    {
+      "id": 1,
+      "message_id": 8,
+      "status": "ignored",
+      "bot_message_ids": [],
+      "branch": null,
+      "pr": null,
+      "summary": ""
+    },
+    {
+      "id": 2,
+      "message_id": 9,
+      "status": "done",
+      "bot_message_ids": [
+        10,
+        12,
+        14,
+        18
+      ],
+      "branch": null,
+      "pr": null,
+      "summary": "Logo changed to The Emblem (v01.08.000)"
+    },
+    {
+      "id": 3,
+      "message_id": 16,
+      "status": "ignored",
+      "bot_message_ids": [],
+      "branch": null,
+      "pr": null,
+      "summary": ""
+    },
+    {
+      "id": 4,
+      "message_id": 20,
+      "status": "answered",
+      "bot_message_ids": [
+        22
+      ],
+      "branch": null,
+      "pr": null,
+      "summary": "Suggestions for promo card posted; waiting for requester's reply"
+    }
+  ]
+}
