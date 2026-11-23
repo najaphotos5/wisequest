@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.16.003 — 2026-11-23 (patch)
+
+- Daily idea and weekly report: accept with a 👍 or an 'approve' reply, no /todo line
+
 ## v01.16.002 — 2026-11-23 (patch)
 
 - Daily suggestion: say clearly that a 👍 is enough to accept an idea

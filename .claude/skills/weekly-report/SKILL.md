@@ -16,7 +16,7 @@ Every Monday, post **one** short report about the previous 7 days (Mon–Sun) in
 3. **What was published:** `git log --since="8 days ago" --pretty="%s" origin/main` (subjects look like `vXX.XX.XXX: summary`). Count the releases and pick the 2–3 most visible ones.
 4. **State branch:** `git fetch origin claude/telegram-state`, then read:
    - `reports.json`: past reports `[{week_end, message_id, totals, pages:{path:{views, engagedSec}}, quality:{averageText, averagePage, pages:{path: pageScore}}, action}]`. Last week's entry is the baseline for quality and for anything GA can't compare.
-   - `feedback.json`: reactions on past reports (keyed by message_id), and requests (did last week's action get done? Look for a `/todo` on that page).
+   - `feedback.json`: reactions on past reports (keyed by message_id), adoptions, and requests (did last week's action get done?).
    - `suggestions.json`: avoid choosing the same page as an action that was suggested in the last 3 days.
 
 ## 2. Decide what matters (small-site rules)
@@ -33,7 +33,7 @@ Every Monday, post **one** short report about the previous 7 days (Mon–Sun) in
   - quality scores that dropped
   - weak mobile engagement
 - **Published:** the number of releases this week, plus 2–3 notable ones in plain words.
-- **Action:** exactly ONE, the biggest opportunity: usually the top 📉 item, or a page with high views but low engaged time and a low quality score. Write it as a ready-to-send `/todo` line that names the page and the exact change.
+- **Action:** exactly ONE, the biggest opportunity: usually the top 📉 item, or a page with high views but low engaged time and a low quality score. Describe it in one plain sentence in the message. Save the full change description (page link + exact change) as `action_todo` in `reports.json`; the hourly assistant does it when someone reacts 👍 or replies "approve" / "go ahead". Never put a `/todo` line in the message.
 
 ## 3. Message (plain text, max ~15 lines, no tables)
 
@@ -52,10 +52,8 @@ Every Monday, post **one** short report about the previous 7 days (Mon–Sun) in
 
 🛠 Published this week: N updates, e.g. <short>, <short>
 
-👉 This week's action:
-/todo <one clear line with the page link and the change>
-
-👍 if this report is useful, 👎 if not.
+👉 Suggested action: <one plain sentence naming the page and the change>
+👍 = yes, do it (or reply "approve" / "go ahead") · 👎 = skip
 ```
 
 Rules for the text:
@@ -67,13 +65,13 @@ Rules for the text:
 ## 4. Post and save
 
 1. Send it with `sendMessage` to `-1004488348585`, with `link_preview_options={"is_disabled":true}`. Exactly **one** message, not pinned. **Never call getUpdates.** The hourly assistant is the only reader.
-2. Append this week's entry to `reports.json` on `claude/telegram-state` (separate worktree): `{week_end, message_id, totals, pages:{path:{views, engagedSec}}, quality:{averageText, averagePage, pages}, action}`. If the push is rejected because the branch moved, fetch, re-apply and push again. Write **only** `reports.json`.
+2. Append this week's entry to `reports.json` on `claude/telegram-state` (separate worktree): `{week_end, message_id, totals, pages:{path:{views, engagedSec}}, quality:{averageText, averagePage, pages}, action, action_todo}`. If the push is rejected because the branch moved, fetch, re-apply and push again. Write **only** `reports.json`.
 
 ## 5. Keep improving (monthly)
 
 On the **first Monday of each month**, read the last 4 reports and their feedback:
-- reactions (👍/👎)
-- whether each week's action was done (a `/todo` on that page, or a release touching it)
+- reactions (👍 = action accepted, 👎 = skipped)
+- whether each week's action was done (accepted and published, or a release touching that page)
 - whether the flagged 📉 items improved the following week
 
 Add 2–3 short lessons to the **Lessons** section below, e.g. "Actions about photos get done; long rewrites don't" or "Mobile time keeps dropping". Then release them with `npm run release -- patch "Weekly report: monthly lessons"`, changing only this file.
