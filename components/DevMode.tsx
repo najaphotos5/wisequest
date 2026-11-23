@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { HistoryDialog, RequestDialog, ScoresDialog } from "./DevDialogs";
 
 /**
  * Hidden developer mode.
@@ -23,9 +24,7 @@ const OVERLAYS = [
 type Overlay = (typeof OVERLAYS)[number][0];
 const REPO = "https://github.com/najaphotos5/wisequest";
 
-type PageScore = { textScore: number; pageScore: number; readingEase: number; avgSentence: number; words: number; rank?: number; parts: Record<string, number>; issues: string[] };
-type Scores = { pages: number; averageText: number; averagePage: number; generatedAt: string; byPath: Record<string, PageScore> };
-type Change = { sha: string; date: string; subject: string };
+import type { Change, Scores } from "./DevDialogs";
 type History = { shallow: boolean; site: Change[]; byPath: Record<string, Change[]> };
 
 type PageInfo = { source?: string; words?: number; meta?: Record<string, unknown>; summaryPoints?: number };
@@ -56,6 +55,7 @@ export function DevMode() {
   const [path, setPath] = useState("");
   const [loaded, setLoaded] = useState(false);
   const [scores, setScores] = useState<Scores | null>(null);
+  const [dialog, setDialog] = useState<null | "scores" | "history" | "request">(null);
   const [history, setHistory] = useState<History | null>(null);
 
   // Scores and history are generated at build time (scripts/dev-data.ts) and only downloaded in dev mode.
@@ -230,8 +230,6 @@ export function DevMode() {
   const sc = scores?.byPath[key];
   const pageHistory = history?.byPath[key] ?? [];
   const grade = (n: number, max: number) => (n / max >= 0.85 ? "good" : n / max >= 0.65 ? "ok" : "bad");
-  // Telegram share: the message must START with /todo for the bot, so the whole text goes in the url field.
-  const telegram = `https://t.me/share/url?url=${encodeURIComponent(`/todo (page: ${typeof location !== "undefined" ? location.origin + path : path}) `)}`;
 
   return (
     <>
@@ -242,14 +240,29 @@ export function DevMode() {
           <>
             <span className={`wq-dev-${grade(sc.textScore, 10)}`}>Text {sc.textScore}/10</span>
             <span className={`wq-dev-${grade(sc.pageScore, 100)}`}>Page {sc.pageScore}/100</span>
-            {sc.rank && scores && <span className="wq-dev-muted">#{sc.rank} lowest of {scores.pages}</span>}
+            {sc.rank && scores && (
+              <button type="button" className="wq-dev-chip" onClick={() => setDialog("scores")} title="See all pages sorted by score">
+                #{sc.rank} lowest of {scores.pages} ▸
+              </button>
+            )}
           </>
         )}
-        <a href={telegram} target="_blank" rel="noreferrer" className="wq-dev-btn">✉ Request a change (Telegram)</a>
+        {scores && !sc && (
+          <button type="button" className="wq-dev-chip" onClick={() => setDialog("scores")}>All page scores ▸</button>
+        )}
+        <button type="button" className="wq-dev-btn" onClick={() => setDialog("history")} disabled={!history}>
+          🕘 Version history
+        </button>
+        <button type="button" className="wq-dev-btn" onClick={() => setDialog("request")}>
+          ✉ Request a change
+        </button>
         <button type="button" onClick={() => setMode(false)} className="wq-dev-btn wq-dev-exit" title="Turn off dev mode and return to the normal website">
           ✕ Back to normal mode
         </button>
       </div>
+      {dialog === "scores" && scores && <ScoresDialog scores={scores} current={key} onClose={() => setDialog(null)} />}
+      {dialog === "history" && history && <HistoryDialog site={history.site} shallow={history.shallow} onClose={() => setDialog(null)} />}
+      {dialog === "request" && <RequestDialog pageUrl={location.origin + path} onClose={() => setDialog(null)} />}
       <div className="wq-dev-panel" role="region" aria-label="Developer mode">
       <div className="wq-dev-bar">
         <button type="button" onClick={() => setOpen((o) => !o)} aria-expanded={open}>
