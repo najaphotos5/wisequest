@@ -131,3 +131,23 @@ html.wq-dev-headings :is(h1, h2, h3, h4)::before {
 html.wq-dev-links main a { outline: 2px solid #22c55e; outline-offset: 1px; }
 html.wq-dev-links main a[href^="http"]:not([href*="wisequest.org"]) { outline-color: #f97316; }
 html.wq-dev-boxes main * { outline: 1px solid rgb(239 68 68 / 0.35); }
+
+/* Dev mode banner (always at the very top while dev mode is on). */
+html.wq-dev body { padding-top: 34px; }
+html.wq-dev header.sticky { top: 34px; }
+.wq-dev-banner {
+  position: fixed; top: 0; left: 0; right: 0; height: 34px; z-index: 2147483647; display: flex; align-items: center; gap: 14px;
+  padding: 0 14px; overflow-x: auto; white-space: nowrap; font: 12px ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: #111827; background: repeating-linear-gradient(135deg, #fbbf24 0 14px, #f59e0b 14px 28px);
+  border-bottom: 2px solid #111827;
+}
+.wq-dev-banner > * { background: #fffbeb; padding: 2px 8px; border-radius: 4px; }
+.wq-dev-banner .wq-dev-btn { margin-left: auto; color: #fff; background: #111827; border: 0; font: inherit; cursor: pointer; text-decoration: none; }
+.wq-dev-banner .wq-dev-btn + .wq-dev-btn { margin-left: 0; }
+.wq-dev-good { color: #15803d; } .wq-dev-ok { color: #b45309; } .wq-dev-bad { color: #b91c1c; }
+.wq-dev-panel .wq-dev-good { color: #4ade80; } .wq-dev-panel .wq-dev-ok { color: #fbbf24; } .wq-dev-panel .wq-dev-bad { color: #f87171; }
+.wq-dev-muted { color: #6b7280; }
+.wq-dev-panel .wq-dev-muted { color: #9ca3af; }
+.wq-dev-body ul { margin: 4px 0 4px 16px; list-style: disc; }
+.wq-dev-body p { margin: 4px 0; }
+.wq-dev-body summary { cursor: pointer; color: #93c5fd; }

@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "tsx scripts/redirect-pages.ts",
+    "postbuild": "tsx scripts/redirect-pages.ts && tsx scripts/dev-data.ts",
     "start": "next start",
     "lint": "eslint",
     "scrape": "tsx scripts/scrape.ts",

@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.10.000 — 2026-11-23 (minor)
+
+- Dev mode: top banner, offline text and page quality scores, per-page change history, and a Telegram change-request button
+
 ## v01.09.000 — 2026-11-23 (minor)
 
 - Hidden dev mode: click the footer version 5 times (or ?dev=1) for page details and overlays; dev browsers are not tracked in Analytics
