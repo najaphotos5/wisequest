@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.16.004 — 2026-11-23 (patch)
+
+- Made the How to Pray page friendlier: intro, app buttons, image descriptions, clearer booklet title
+
 ## v01.16.003 — 2026-11-23 (patch)
 
 - Daily idea and weekly report: accept with a 👍 or an 'approve' reply, no /todo line
