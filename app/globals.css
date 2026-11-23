@@ -194,3 +194,7 @@ html.wq-dev header.sticky { top: 34px; }
 .wq-dev-issues-btn { background: #374151; color: #fbbf24; border: 0; border-radius: 4px; padding: 1px 8px; font: inherit; cursor: pointer; }
 .wq-dev-table tr.wq-dev-detail > td { background: #0b1220; padding: 10px 14px; }
 .wq-dev-issue-detail p { margin: 4px 0 8px; }
+.wq-dev-fix-btn { background: #374151; color: #93c5fd; border: 0; border-radius: 4px; padding: 3px 8px; font: inherit; font-size: 12px; cursor: pointer; white-space: nowrap; }
+.wq-dev-fix-btn:hover { background: #1e3a5f; }
+.wq-dev-fix-actions { margin: 10px 0 4px; }
+.wq-dev-table input[type="checkbox"] { cursor: pointer; }

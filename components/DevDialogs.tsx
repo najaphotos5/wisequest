@@ -60,7 +60,19 @@ function value(p: PageScore, c: Col): number {
   return p.parts[c] ?? 0;
 }
 
-export function ScoresDialog({ scores, current, history, onClose }: { scores: Scores; current: string; history?: Record<string, Change[]>; onClose: () => void }) {
+export function ScoresDialog({
+  scores,
+  current,
+  history,
+  onClose,
+  onRequest,
+}: {
+  scores: Scores;
+  current: string;
+  history?: Record<string, Change[]>;
+  onClose: () => void;
+  onRequest?: (pagePath: string, text: string) => void;
+}) {
   const [sort, setSort] = useState<{ col: Col; asc: boolean }>({ col: "pageScore", asc: true });
   const [openRow, setOpenRow] = useState<string | null>(null);
   const rows = useMemo(() => {
@@ -106,7 +118,7 @@ export function ScoresDialog({ scores, current, history, onClose }: { scores: Sc
               {openRow === p.path && (
                 <tr className="wq-dev-detail">
                   <td colSpan={9}>
-                    <IssueDetail page={p} history={history?.[p.path] ?? []} />
+                    <IssueDetail page={p} history={history?.[p.path] ?? []} onRequest={onRequest} />
                   </td>
                 </tr>
               )}
@@ -118,11 +130,22 @@ export function ScoresDialog({ scores, current, history, onClose }: { scores: Sc
   );
 }
 
-/** Issues for one page, the suggested change for each, a one-line summary, and its recent edits. */
-function IssueDetail({ page, history }: { page: PageScore; history: Change[] }) {
+/** Builds the request text for a set of issues on one page. */
+function fixRequestText(page: PageScore, idx: number[]) {
+  const fixes = page.fixes ?? [];
+  const lines = idx.map((i, n) => `${n + 1}. ${page.issues[i]} → ${fixes[i] ?? "Review and fix."}`);
+  return `Fix ${idx.length === 1 ? "this issue" : `these ${idx.length} issues`} on ${page.path}:\n${lines.join("\n")}`;
+}
+
+/** Issues for one page, the suggested change for each, a one-line summary, recent edits, and request buttons. */
+function IssueDetail({ page, history, onRequest }: { page: PageScore; history: Change[]; onRequest?: (pagePath: string, text: string) => void }) {
+  const [picked, setPicked] = useState<number[]>([]);
   if (!page.issues.length) return <p className="wq-dev-good">No issues found on this page ✓</p>;
   const fixes = page.fixes ?? [];
   const weakest = Object.entries(page.parts).sort((a, b) => a[1] - b[1])[0];
+  const all = page.issues.map((_, i) => i);
+  const request = (idx: number[]) => onRequest?.(page.path, fixRequestText(page, idx));
+  const toggle = (i: number) => setPicked((p) => (p.includes(i) ? p.filter((x) => x !== i) : [...p, i].sort((a, b) => a - b)));
   return (
     <div className="wq-dev-issue-detail">
       <p>
@@ -132,21 +155,54 @@ function IssueDetail({ page, history }: { page: PageScore; history: Change[] }) 
       <table className="wq-dev-table">
         <thead>
           <tr>
+            {onRequest && (
+              <th>
+                <input
+                  type="checkbox"
+                  aria-label="Select all issues"
+                  checked={picked.length === all.length}
+                  onChange={(e) => setPicked(e.target.checked ? all : [])}
+                />
+              </th>
+            )}
             <th>#</th>
             <th>Issue</th>
             <th>Suggested change</th>
+            {onRequest && <th />}
           </tr>
         </thead>
         <tbody>
           {page.issues.map((issue, i) => (
             <tr key={issue}>
+              {onRequest && (
+                <td>
+                  <input type="checkbox" aria-label={`Select issue ${i + 1}`} checked={picked.includes(i)} onChange={() => toggle(i)} />
+                </td>
+              )}
               <td>{i + 1}</td>
               <td>{issue}</td>
               <td>{fixes[i] ?? "Review and fix."}</td>
+              {onRequest && (
+                <td>
+                  <button type="button" className="wq-dev-fix-btn" onClick={() => request([i])}>
+                    Request fix
+                  </button>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>
       </table>
+      {onRequest && (
+        <div className="wq-dev-actions wq-dev-fix-actions">
+          <button type="button" className="wq-dev-send" disabled={!picked.length} onClick={() => request(picked)}>
+            Request selected fixes ({picked.length})
+          </button>
+          <button type="button" onClick={() => request(all)}>
+            Request all {page.issues.length} fixes
+          </button>
+        </div>
+      )}
       {history.length > 0 && (
         <p className="wq-dev-muted">
           Recent changes to this page: {history.slice(0, 3).map((c) => `${c.date} ${c.subject}`).join(" · ")}
@@ -215,8 +271,8 @@ async function relay(body: Record<string, unknown>) {
   return (await r.json()) as { ok: boolean; error?: string; warning?: string; message_id?: number; issue?: number };
 }
 
-export function RequestDialog({ pageUrl, onClose }: { pageUrl: string; onClose: () => void }) {
-  const [text, setText] = useState("");
+export function RequestDialog({ pageUrl, initialText = "", onClose }: { pageUrl: string; initialText?: string; onClose: () => void }) {
+  const [text, setText] = useState(initialText);
   const [withPage, setWithPage] = useState(true);
   const [image, setImage] = useState<{ blob: Blob; url: string } | null>(null);
   const [status, setStatus] = useState("");
@@ -287,7 +343,7 @@ export function RequestDialog({ pageUrl, onClose }: { pageUrl: string; onClose: 
         <textarea
           id="wq-dev-req"
           ref={ref}
-          rows={4}
+          rows={initialText ? 8 : 4}
           value={text}
           placeholder={'e.g. "Fix the typo in the second paragraph" (you can start with /todo or not).\nPaste (⌘V) or drop a screenshot here to include it.'}
           onChange={(e) => setText(e.target.value)}
