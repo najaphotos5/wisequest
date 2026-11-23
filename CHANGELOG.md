@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.13.001 — 2026-11-23 (patch)
+
+- Dev mode: one-click 'Send now' posts change requests to the Telegram group through the bot (passcode-protected relay)
+
 ## v01.13.000 — 2026-11-23 (minor)
 
 - Dev mode: click a page's issue count to see each issue with a suggested change; request box ready for one-click sending through the bot
