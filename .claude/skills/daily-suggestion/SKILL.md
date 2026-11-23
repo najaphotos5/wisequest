@@ -5,9 +5,9 @@ description: Pick and post ONE simple, detailed improvement idea for wisequest.o
 
 # Daily suggestion: one improvement idea per day
 
-Each run posts **exactly one** improvement idea for https://wisequest.org in the WiseQuest Telegram group (chat_id `-1004488348585`). It should be easy for a non-technical volunteer to read in 30 seconds, and easy to act on with one `/todo` message.
+Each run posts **exactly one** improvement idea for https://wisequest.org in the WiseQuest Telegram group (chat_id `-1004488348585`). It should be easy for a non-technical volunteer to read in 30 seconds, and accepting it takes just a 👍.
 
-**You only suggest. Never edit the website in this run.** The hourly assistant does the work when someone sends the `/todo` line.
+**You only suggest. Never edit the website in this run.** The hourly assistant does the work when someone reacts 👍 or replies "approve" / "go ahead".
 
 ## 1. Gather inputs
 
@@ -24,7 +24,7 @@ Themes: `clarity` (shorter sentences, plain words) · `photos` (carousel, page h
 
 Recompute `preferences.json` = `{weights: {theme: number}, updated: date, notes: [..]}`. Start every theme at 1.0, then:
 - +0.5 for each suggestion in that theme that got ❤ 🔥 🎉 reactions (count once per suggestion; 👍 counts as adoption below)
-- +1.0 for each suggestion in that theme that was **adopted** (someone reacted 👍, which triggers it, or sent its /todo)
+- +1.0 for each suggestion in that theme that was **adopted** (someone reacted 👍 or replied to approve it)
 - +0.3 for each `/todo` people sent themselves in that theme in the last 30 days (shows what they care about)
 - −0.5 for each suggestion with 👎 (or more 👎 than 👍)
 - −0.3 for each suggestion ignored for 7+ days (no reactions, not adopted)
@@ -41,7 +41,7 @@ Recompute `preferences.json` = `{weights: {theme: number}, updated: date, notes:
    - are political or controversial
    - touch site settings, scripts or deployment
 3. Usually pick the best candidate in the highest-weighted theme, i.e. best impact for little effort. About **1 day in 5**, pick from a lower-weighted, less-used theme instead ("exploring"), so the ideas stay varied.
-4. It must be doable as **one** `/todo` request, and finishable in one focused change.
+4. It must be doable as **one** request, and finishable in one focused change.
 
 ## 4. Write the message (plain text, ~120–180 words, no markdown tables)
 
@@ -57,25 +57,24 @@ What exactly:
 
 Effort: small | medium
 
-✅ Like it? Just react 👍. That's all it takes to accept it; no need to type anything.
-The assistant will make the change within the hour and reply here when it's live.
-👎 = skip this one
-
-(Or send your own version: /todo <one clear line that fully describes the change, including the page link>)
+👍 = yes, do it (or reply "approve" / "go ahead")
+👎 = skip
 ```
+
+Never put a `/todo` line in the message. People accept with 👍 or a short reply; the full change description lives only in `suggestions.json` (`todo` field), where the hourly assistant reads it.
 
 Writing tips:
 - Write for a friendly volunteer, not a developer. No jargon (no "component", "MDX", "PR").
 - Be concrete. Instead of "improve readability", say: "Split the 3 longest sentences in 'Why is there suffering?'. For example: '…' → '…'".
 - Base before/after examples on real text from the page. Never alter a Quran or hadith quote in an example.
-- Always keep the "Just react 👍" lines exactly as in the template, so everyone knows a like is enough to accept the idea.
+- Always end with the two 👍/👎 lines exactly as in the template, so everyone knows a like is enough to accept the idea.
 - If preferences influenced the pick, you may add one short line, e.g. "(You liked the last photo idea, so here's another.)"
-- The `/todo` line must work on its own: include the page link and the exact change. A 👍 reaction triggers exactly this text, so it must be complete and safe to do without further questions.
+- The `todo` text you save must work on its own: include the page link and every exact change. A 👍 triggers exactly this text, so it must be complete and safe to do without further questions. The "What exactly" bullets must describe the same change.
 
 ## 5. Post and log
 
 1. Send it: `sendMessage` to chat `-1004488348585` with `link_preview_options={"is_disabled": true}`. Send exactly **one** message per run. No pinning, no extra messages.
-2. Append `{date, theme, page, title, message_id, todo}` to `suggestions.json` (`todo` = the full `/todo …` line, without names). The hourly assistant uses it when someone reacts 👍, and write `preferences.json`. Commit both to `claude/telegram-state` (use a separate worktree) and push. Don't touch the other files there; `state.json` and `feedback.json` belong to the hourly assistant.
+2. Append `{date, theme, page, title, message_id, todo}` to `suggestions.json` (`todo` = the full change description, starting with the page link, without names). The hourly assistant uses it when someone reacts 👍 or replies to approve, and write `preferences.json`. Commit both to `claude/telegram-state` (use a separate worktree) and push. Don't touch the other files there; `state.json` and `feedback.json` belong to the hourly assistant.
 3. **Mondays only:** add 2–3 short plain-English lessons to the **Lessons** section below, based on the last 2–4 weeks of feedback, e.g. "Photo ideas get adopted most". Then publish via the normal flow: `npm run release -- patch "Daily suggestion: weekly lessons"`. Don't change any other file in that release.
 
 ## Rules
