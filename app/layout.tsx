@@ -3,6 +3,9 @@ import { Kanit, Open_Sans, Source_Serif_4, Amiri } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Analytics } from "@/components/Analytics";
+import { DevMode } from "@/components/DevMode";
+import { readFileSync } from "node:fs";
+import { execSync } from "node:child_process";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -17,6 +20,13 @@ export const metadata: Metadata = {
   description: site.description,
   openGraph: { siteName: site.name, type: "website", locale: "en_US" },
   alternates: { languages: { es: "/es" } },
+};
+
+/** Build stamp for dev mode: version, build time and git commit. */
+const build = {
+  version: readFileSync("VERSION", "utf8").trim(),
+  builtAt: new Date().toISOString(),
+  commit: process.env.GITHUB_SHA ?? (() => { try { return execSync("git rev-parse HEAD").toString().trim(); } catch { return ""; } })(),
 };
 
 const orgJsonLd = {
@@ -41,6 +51,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <main id="main">{children}</main>
         <Footer />
         <Analytics />
+        <DevMode />
+        <script type="application/json" id="wq-build" dangerouslySetInnerHTML={{ __html: JSON.stringify(build) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
       </body>
     </html>

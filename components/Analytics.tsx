@@ -13,7 +13,7 @@ export function Analytics() {
     <>
       <Script src={`https://www.googletagmanager.com/gtag/js?id=${id}`} strategy="afterInteractive" />
       <Script id="ga-init" strategy="afterInteractive">
-        {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${id}',{anonymize_ip:true});`}
+        {`try{var q=new URLSearchParams(location.search).get('dev');if(q==='1'||q==='on')localStorage.setItem('wq-dev','1');if(q==='0'||q==='off')localStorage.removeItem('wq-dev');if(localStorage.getItem('wq-dev')==='1')window['ga-disable-${id}']=true;}catch(e){}window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${id}',{anonymize_ip:true});`}
       </Script>
     </>
   );

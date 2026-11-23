@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.09.000 — 2026-11-23 (minor)
+
+- Hidden dev mode: click the footer version 5 times (or ?dev=1) for page details and overlays; dev browsers are not tracked in Analytics
+
 ## v01.08.000 — 2026-11-23 (minor)
 
 - New logo: The Emblem (navy seal with gold ring, 8-point star and open book), chosen in the Telegram group

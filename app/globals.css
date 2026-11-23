@@ -100,3 +100,34 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .hero-slide { animation: none; display: none; }
 }
+
+/* ---------- Dev mode (components/DevMode.tsx). Only active with ?dev=1 / 5 clicks on the footer version. ---------- */
+.wq-dev-panel {
+  position: fixed; left: 12px; bottom: 12px; z-index: 2147483647; max-width: min(420px, calc(100vw - 24px));
+  font: 12px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; color: #e5e7eb; background: #111827f2;
+  border: 1px solid #374151; border-radius: 10px; box-shadow: 0 8px 30px #0008;
+}
+.wq-dev-bar { display: flex; justify-content: space-between; gap: 8px; padding: 6px 8px; }
+.wq-dev-bar button { font: inherit; font-weight: 700; color: #fbbf24; background: none; border: 0; cursor: pointer; padding: 2px 4px; }
+.wq-dev-bar button + button { color: #9ca3af; font-weight: 400; }
+.wq-dev-body { max-height: 60vh; overflow: auto; padding: 0 10px 10px; border-top: 1px solid #374151; }
+.wq-dev-body table { width: 100%; border-collapse: collapse; margin-top: 6px; }
+.wq-dev-body th { text-align: left; color: #9ca3af; font-weight: 400; padding: 2px 8px 2px 0; vertical-align: top; white-space: nowrap; }
+.wq-dev-body td { padding: 2px 0; word-break: break-word; }
+.wq-dev-body a { color: #93c5fd; text-decoration: underline; }
+.wq-dev-body fieldset { margin-top: 8px; border: 1px solid #374151; border-radius: 6px; padding: 4px 8px 6px; }
+.wq-dev-body legend { color: #fbbf24; padding: 0 4px; }
+.wq-dev-body label { display: block; cursor: pointer; }
+.wq-dev-hint { margin-top: 6px; color: #6b7280; }
+
+html.wq-dev-headings :is(h1, h2, h3, h4) { outline: 2px dashed #a855f7; outline-offset: 2px; }
+html.wq-dev-headings h1::before { content: "H1 "; }
+html.wq-dev-headings h2::before { content: "H2 "; }
+html.wq-dev-headings h3::before { content: "H3 "; }
+html.wq-dev-headings h4::before { content: "H4 "; }
+html.wq-dev-headings :is(h1, h2, h3, h4)::before {
+  font: 700 11px ui-monospace, monospace; color: #fff; background: #a855f7; padding: 1px 4px; border-radius: 3px; margin-right: 6px; vertical-align: middle;
+}
+html.wq-dev-links main a { outline: 2px solid #22c55e; outline-offset: 1px; }
+html.wq-dev-links main a[href^="http"]:not([href*="wisequest.org"]) { outline-color: #f97316; }
+html.wq-dev-boxes main * { outline: 1px solid rgb(239 68 68 / 0.35); }
