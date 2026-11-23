@@ -231,7 +231,7 @@ function main() {
   const shallow = git(["rev-parse", "--is-shallow-repository"]) === "true";
   const history: Record<string, Change[]> = {};
   for (const p of list) if (p.source) history[p.path] = historyFor(p.source);
-  const site = git(["log", "-n", "20", "--date=short", "--format=%h%x09%ad%x09%s"])
+  const site = git(["log", "-n", "500", "--date=short", "--format=%h%x09%ad%x09%s"])
     .split("\n").filter(Boolean).map((l) => { const [sha, date, ...s] = l.split("\t"); return { sha, date, subject: s.join("\t") }; });
   fs.writeFileSync(path.join(DEST, "history.json"), JSON.stringify({ generatedAt: new Date().toISOString(), shallow, site, byPath: history }));
 

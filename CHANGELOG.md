@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.11.000 — 2026-11-23 (minor)
+
+- Dev mode: sortable all-pages score list, site-wide version history, and a request box that prepares the /todo message for Telegram
+
 ## v01.10.001 — 2026-11-23 (patch)
 
 - Dev mode: clear 'Back to normal mode' button; ?dev is removed from the address after switching

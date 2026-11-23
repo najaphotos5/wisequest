@@ -153,3 +153,33 @@ html.wq-dev header.sticky { top: 34px; }
 .wq-dev-body summary { cursor: pointer; color: #93c5fd; }
 .wq-dev-banner .wq-dev-exit { background: #b91c1c; font-weight: 700; }
 .wq-dev-banner .wq-dev-exit:hover { background: #991b1b; }
+
+/* Dev mode dialogs */
+.wq-dev-banner .wq-dev-chip { border: 0; font: inherit; cursor: pointer; color: #1d4ed8; text-decoration: underline; }
+.wq-dev-banner button:disabled { opacity: .5; cursor: default; }
+.wq-dev-overlay { position: fixed; inset: 0; z-index: 2147483647; background: #0009; display: grid; place-items: center; padding: 50px 16px 16px; }
+.wq-dev-dialog { width: min(560px, 100%); max-height: 85vh; display: flex; flex-direction: column; background: #111827; color: #e5e7eb;
+  border: 1px solid #374151; border-radius: 12px; box-shadow: 0 20px 60px #000a; font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; }
+.wq-dev-dialog-wide { width: min(1100px, 100%); }
+.wq-dev-dialog-head { display: flex; justify-content: space-between; gap: 12px; padding: 12px 16px; border-bottom: 1px solid #374151; color: #fbbf24; }
+.wq-dev-dialog-head button { background: none; border: 0; color: #9ca3af; font-size: 16px; cursor: pointer; }
+.wq-dev-dialog-body { padding: 12px 16px 16px; overflow: auto; }
+.wq-dev-dialog a { color: #93c5fd; text-decoration: underline; }
+.wq-dev-dialog .wq-dev-muted { color: #9ca3af; margin: 6px 0; }
+.wq-dev-dialog .wq-dev-good { color: #4ade80; } .wq-dev-dialog .wq-dev-ok { color: #fbbf24; } .wq-dev-dialog .wq-dev-bad { color: #f87171; }
+.wq-dev-table { width: 100%; border-collapse: collapse; margin-top: 6px; }
+.wq-dev-table th, .wq-dev-table td { text-align: left; padding: 5px 8px; border-bottom: 1px solid #1f2937; vertical-align: top; }
+.wq-dev-table th { position: sticky; top: -12px; background: #111827; color: #9ca3af; font-weight: 400; }
+.wq-dev-table th button { background: none; border: 0; color: inherit; font: inherit; cursor: pointer; padding: 0; white-space: nowrap; }
+.wq-dev-table tbody tr:hover { background: #1f2937; }
+.wq-dev-table tr.wq-dev-current { background: #1e3a5f; }
+.wq-dev-nowrap { white-space: nowrap; }
+.wq-dev-dialog textarea, .wq-dev-search { width: 100%; margin: 6px 0; padding: 8px; color: #111827; background: #f9fafb; border-radius: 6px; font: 14px/1.4 -apple-system, sans-serif; }
+.wq-dev-dialog label { display: block; margin-top: 4px; }
+.wq-dev-check { cursor: pointer; }
+.wq-dev-preview { white-space: pre-wrap; background: #030712; border: 1px solid #374151; border-radius: 6px; padding: 8px; margin: 4px 0 10px; }
+.wq-dev-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.wq-dev-actions button { background: #374151; color: #e5e7eb; border: 0; border-radius: 6px; padding: 8px 12px; font: inherit; cursor: pointer; }
+.wq-dev-actions button:disabled { opacity: .5; cursor: default; }
+.wq-dev-dialog .wq-dev-primary { background: #229ed9; color: #fff; text-decoration: none; padding: 8px 14px; border-radius: 6px; font-weight: 700; }
+.wq-dev-dialog .wq-dev-disabled { opacity: .45; cursor: not-allowed; }
