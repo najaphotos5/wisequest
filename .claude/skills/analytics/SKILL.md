@@ -13,12 +13,13 @@ Read-only access to the GA4 property **565414333** ("WiseQuest Website", stream 
 npm run ga -- all 28          # every report for the last 28 days (default)
 npm run ga -- pages 7         # one report, last 7 days
 npm run ga -- overview 28 --json   # JSON for further analysis
+npm run ga -- pages 7 --compare    # this week vs the previous week (any report)
 npm run ga -- realtime        # who is on the site right now
 ```
 
 Reports: `overview` (totals vs the previous period) · `pages` (views, users, avg engagement time per user) · `sources` (Google, direct, social, referrals) · `geo` (country/city) · `devices` · `daily` (trend) · `landing` (first page seen) · `events` (file_download, click, scroll, video plays…) · `realtime`.
 
-Credentials (service account with **Viewer** access on the property), first found wins: `GA_SA_KEY` (JSON text — used by cloud routines), `GA_SA_KEY_FILE` (path), or the macOS Keychain item `ga-service-account` / account `wisequest` (base64 of the JSON). Never print, log, or commit the key. If credentials are missing, say so and stop.
+Credentials (service account with **Viewer** access on the property), first found wins: `GA_SA_KEY_B64` (one-line base64 of the JSON — used by cloud routines), `GA_SA_KEY` (JSON text), `GA_SA_KEY_FILE` (path), or the macOS Keychain item `ga-service-account` / account `wisequest` (base64 of the JSON). Never print, log, or commit the key. If credentials are missing, say so and stop.
 
 Data starts on **2026-11-22** (when tracking began). Standard reports lag 24–48 h; `realtime` is immediate. Dev-mode browsers and the owner's test visits are excluded only when dev mode is on.
 
@@ -59,7 +60,8 @@ Never include personal data (GA4 doesn't give names; don't speculate about indiv
 ## 4. Use elsewhere
 
 - **Daily suggestion** (`.claude/skills/daily-suggestion/SKILL.md`): when credentials are available, prefer ideas for pages that get real traffic but low engagement.
-- **Telegram**: when asked to share a report in the group, post the short format above (one message).
+- **Weekly report** (`.claude/skills/weekly-report/SKILL.md`): the Monday Telegram report — progress vs regression and one action. Use it for any recurring/weekly report so the format stays consistent.
+- **Telegram**: for a one-off report in the group, post the short format above (one message).
 
 ## Lessons
 
