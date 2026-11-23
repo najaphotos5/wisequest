@@ -110,53 +110,117 @@ export function buildTodo(input: string, pageUrl: string | null) {
   return pageUrl ? `${body}\n(page: ${pageUrl})` : body;
 }
 
+/** Re-encode any image as PNG (the only image type browsers can reliably put on the clipboard). */
+function toPng(blob: Blob): Promise<Blob> {
+  if (blob.type === "image/png") return Promise.resolve(blob);
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+      const c = document.createElement("canvas");
+      c.width = img.naturalWidth;
+      c.height = img.naturalHeight;
+      c.getContext("2d")!.drawImage(img, 0, 0);
+      c.toBlob((b) => (b ? resolve(b) : reject(new Error("convert failed"))), "image/png");
+      URL.revokeObjectURL(img.src);
+    };
+    img.onerror = reject;
+    img.src = URL.createObjectURL(blob);
+  });
+}
+
 export function RequestDialog({ pageUrl, onClose }: { pageUrl: string; onClose: () => void }) {
   const [text, setText] = useState("");
   const [withPage, setWithPage] = useState(true);
+  const [image, setImage] = useState<{ blob: Blob; url: string } | null>(null);
+  const [status, setStatus] = useState("");
   const ref = useRef<HTMLTextAreaElement>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
   useEffect(() => ref.current?.focus(), []);
+  useEffect(() => () => { if (image) URL.revokeObjectURL(image.url); }, [image]);
   const message = buildTodo(text, withPage ? pageUrl : null);
   const ready = text.replace(/^\/todo(@\w+)?/i, "").trim().length > 3;
   // Telegram share puts the "url" field first, so the whole message goes there to keep /todo at the start.
   const share = `https://t.me/share/url?url=${encodeURIComponent(message)}`;
+
+  const takeImage = (file: File | Blob | null | undefined) => {
+    if (!file || !file.type.startsWith("image/")) return false;
+    setImage({ blob: file, url: URL.createObjectURL(file) });
+    setStatus("");
+    return true;
+  };
+  const onPaste = (e: React.ClipboardEvent) => {
+    const item = [...e.clipboardData.items].find((i) => i.type.startsWith("image/"));
+    if (item && takeImage(item.getAsFile())) e.preventDefault();
+  };
+  const copyImage = () => {
+    if (!image || !("ClipboardItem" in window)) return false;
+    // Pass a Promise so the copy still counts as part of the click (required by Safari).
+    navigator.clipboard
+      .write([new ClipboardItem({ "image/png": toPng(image.blob) })])
+      .then(() => setStatus("✓ Image copied. In Telegram, choose the Wisequest group, then press ⌘V (Ctrl+V) to attach it before sending."))
+      .catch(() => setStatus("Couldn't copy the image automatically. Use “Copy image” below, or attach the screenshot in Telegram."));
+    return true;
+  };
+
   return (
     <Dialog title="Request a change" onClose={onClose}>
-      <label htmlFor="wq-dev-req">What should change?</label>
-      <textarea
-        id="wq-dev-req"
-        ref={ref}
-        rows={4}
-        value={text}
-        placeholder='e.g. "Fix the typo in the second paragraph" (you can start with /todo or not)'
-        onChange={(e) => setText(e.target.value)}
-      />
-      <label className="wq-dev-check">
-        <input type="checkbox" checked={withPage} onChange={(e) => setWithPage(e.target.checked)} /> Include a link to this page
-      </label>
-      <p className="wq-dev-muted">Message that will be sent:</p>
-      <pre className="wq-dev-preview">{message}</pre>
-      <div className="wq-dev-actions">
-        <a
-          href={ready ? share : undefined}
-          aria-disabled={!ready}
-          target="_blank"
-          rel="noreferrer"
-          className={`wq-dev-primary${ready ? "" : " wq-dev-disabled"}`}
-          onClick={(e) => {
-            if (!ready) e.preventDefault();
-            else setTimeout(onClose, 300);
-          }}
-        >
-          Open Telegram to send →
-        </a>
-        <button type="button" onClick={() => navigator.clipboard?.writeText(message)} disabled={!ready}>
-          Copy message
-        </button>
+      <div onPaste={onPaste} onDragOver={(e) => e.preventDefault()} onDrop={(e) => { e.preventDefault(); takeImage(e.dataTransfer.files[0]); }}>
+        <label htmlFor="wq-dev-req">What should change?</label>
+        <textarea
+          id="wq-dev-req"
+          ref={ref}
+          rows={4}
+          value={text}
+          placeholder={'e.g. "Fix the typo in the second paragraph" (you can start with /todo or not).\nPaste (⌘V) or drop a screenshot here to include it.'}
+          onChange={(e) => setText(e.target.value)}
+        />
+        <div className="wq-dev-image-row">
+          {image ? (
+            <>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={image.url} alt="Screenshot to include with the request" className="wq-dev-thumb" />
+              <button type="button" onClick={() => { setImage(null); setStatus(""); }}>Remove image</button>
+            </>
+          ) : (
+            <button type="button" onClick={() => fileRef.current?.click()}>📎 Add a screenshot</button>
+          )}
+          <input ref={fileRef} type="file" accept="image/*" hidden onChange={(e) => takeImage(e.target.files?.[0])} />
+        </div>
+        <label className="wq-dev-check">
+          <input type="checkbox" checked={withPage} onChange={(e) => setWithPage(e.target.checked)} /> Include a link to this page
+        </label>
+        <p className="wq-dev-muted">Message that will be sent{image ? " (as the image caption)" : ""}:</p>
+        <pre className="wq-dev-preview">{message}</pre>
+        <div className="wq-dev-actions">
+          <a
+            href={ready ? share : undefined}
+            aria-disabled={!ready}
+            target="_blank"
+            rel="noreferrer"
+            className={`wq-dev-primary${ready ? "" : " wq-dev-disabled"}`}
+            onClick={(e) => {
+              if (!ready) return e.preventDefault();
+              if (!copyImage()) setTimeout(onClose, 300);
+            }}
+          >
+            Open Telegram to send →
+          </a>
+          <button type="button" onClick={() => navigator.clipboard?.writeText(message)} disabled={!ready}>
+            Copy message
+          </button>
+          {image && (
+            <button type="button" onClick={copyImage}>
+              Copy image
+            </button>
+          )}
+        </div>
+        {status && <p className="wq-dev-status">{status}</p>}
+        <p className="wq-dev-muted">
+          Telegram opens with the message ready: choose the <b>Wisequest</b> group and press Send{image ? " (after pasting the image with ⌘V)" : ""}. It is sent
+          from your own account, so the hourly assistant picks it up (it ignores messages from bots, and the bot&apos;s secret key can&apos;t be stored in the
+          website).
+        </p>
       </div>
-      <p className="wq-dev-muted">
-        Telegram opens with the message ready: choose the <b>Wisequest</b> group and press Send. It is sent from your own account, so the hourly
-        assistant picks it up (it ignores messages from bots, and the bot&apos;s secret key can&apos;t be stored in the website).
-      </p>
     </Dialog>
   );
 }

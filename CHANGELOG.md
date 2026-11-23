@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.12.000 — 2026-11-23 (minor)
+
+- Dev mode request box: paste, drop or attach a screenshot; it's copied to the clipboard for pasting into Telegram
+
 ## v01.11.000 — 2026-11-23 (minor)
 
 - Dev mode: sortable all-pages score list, site-wide version history, and a request box that prepares the /todo message for Telegram
