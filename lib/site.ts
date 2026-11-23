@@ -8,7 +8,7 @@ export const site = {
   tagline: "Illuminate your soul",
   description:
     "Learn about Islam, the timeless message of all prophets from Adam, Noah, Abraham, Moses, and Jesus to Muhammad ﷺ. Free Quran, local Quran 101 sessions in the Sacramento area, and support for new Muslims.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://wisequest.org", // TODO: confirm final domain
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://wisequest.org",
   region: "Greater Sacramento, California",
   contact: {
     email: "", // TODO: public email, e.g. hello@wisequest.org

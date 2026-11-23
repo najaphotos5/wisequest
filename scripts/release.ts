@@ -96,7 +96,7 @@ function main() {
     const hasUpstream = Boolean(out("git", ["ls-remote", "--heads", "origin", branch]));
     if (run("git", ["push", ...(hasUpstream ? [] : ["-u"]), "origin", branch], { allowFail: true })) {
       console.log(`\n✔ Released ${v} on ${branch}.`);
-      if (branch === "main") console.log("  Live in ~2 minutes: https://najaphotos5.github.io/wisequest/  (check: gh run list --limit 1)");
+      if (branch === "main") console.log("  Live in ~2 minutes: https://wisequest.org/  (check: gh run list --limit 1)");
       else console.log("  Open or update the pull request; it goes live when merged into main.");
       return;
     }

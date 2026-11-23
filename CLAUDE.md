@@ -1,6 +1,6 @@
 # WiseQuest website
 
-Static Next.js site for WiseQuest (The Universal Message of All Prophets), deployed to GitHub Pages: https://najaphotos5.github.io/wisequest/
+Static Next.js site for WiseQuest (The Universal Message of All Prophets), deployed to GitHub Pages: https://wisequest.org/
 
 **Before making any change to this repository, read and follow the `update-site` skill: [`.claude/skills/update-site/SKILL.md`](.claude/skills/update-site/SKILL.md).** Several agents update this site, so the procedure matters. In short:
 

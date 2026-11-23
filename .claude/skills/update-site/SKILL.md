@@ -7,7 +7,7 @@ description: The required procedure for ANY change to the WiseQuest website repo
 
 Several people and agents update this site, sometimes at the same time. Follow these steps exactly so nobody's work is lost and every change is built, versioned, committed, and pushed.
 
-**Live site:** https://najaphotos5.github.io/wisequest/
+**Live site:** https://wisequest.org/
 **Repo:** https://github.com/najaphotos5/wisequest
 
 ## Golden rules
