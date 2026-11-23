@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.10.001 — 2026-11-23 (patch)
+
+- Dev mode: clear 'Back to normal mode' button; ?dev is removed from the address after switching
+
 ## v01.10.000 — 2026-11-23 (minor)
 
 - Dev mode: top banner, offline text and page quality scores, per-page change history, and a Telegram change-request button

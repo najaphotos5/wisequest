@@ -151,3 +151,5 @@ html.wq-dev header.sticky { top: 34px; }
 .wq-dev-body ul { margin: 4px 0 4px 16px; list-style: disc; }
 .wq-dev-body p { margin: 4px 0; }
 .wq-dev-body summary { cursor: pointer; color: #93c5fd; }
+.wq-dev-banner .wq-dev-exit { background: #b91c1c; font-weight: 700; }
+.wq-dev-banner .wq-dev-exit:hover { background: #991b1b; }

@@ -7,7 +7,7 @@ import { useCallback, useEffect, useState } from "react";
  *
  * Turn on:  add ?dev=1 to any URL, click the version number in the footer 5 times quickly,
  *           or press Ctrl+Shift+D (⌃⇧D on Mac).
- * Turn off: ?dev=0, the "Exit" button in the panel, or the same shortcut.
+ * Turn off: "Back to normal mode" in the banner, "Normal mode" in the panel, ?dev=0, or the same shortcut.
  * The setting is stored in this browser only (localStorage "wq-dev"). While it is on,
  * Google Analytics ignores this browser (see components/Analytics.tsx).
  */
@@ -85,6 +85,12 @@ export function DevMode() {
     try {
       if (v) localStorage.setItem(KEY, "1");
       else localStorage.removeItem(KEY);
+      // Drop ?dev=… from the address so a refresh keeps the chosen mode.
+      const url = new URL(location.href);
+      if (url.searchParams.has("dev")) {
+        url.searchParams.delete("dev");
+        window.history.replaceState(window.history.state, "", url.pathname + url.search + url.hash);
+      }
     } catch {}
     setOn(v);
   }, []);
@@ -240,7 +246,9 @@ export function DevMode() {
           </>
         )}
         <a href={telegram} target="_blank" rel="noreferrer" className="wq-dev-btn">✉ Request a change (Telegram)</a>
-        <button type="button" onClick={() => setMode(false)} className="wq-dev-btn">Exit</button>
+        <button type="button" onClick={() => setMode(false)} className="wq-dev-btn wq-dev-exit" title="Turn off dev mode and return to the normal website">
+          ✕ Back to normal mode
+        </button>
       </div>
       <div className="wq-dev-panel" role="region" aria-label="Developer mode">
       <div className="wq-dev-bar">
@@ -248,7 +256,7 @@ export function DevMode() {
           🛠 DEV {open ? "▾" : "▸"}
         </button>
         <button type="button" onClick={() => setMode(false)} title="Turn off dev mode (or add ?dev=0)">
-          Exit
+          ✕ Normal mode
         </button>
       </div>
       {open && (
