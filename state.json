@@ -50,15 +50,17 @@
     {
       "id": 5,
       "message_id": 23,
-      "status": "proposed",
+      "status": "done",
       "bot_message_ids": [
         24,
-        26
+        26,
+        33
       ],
       "branch": "claude/todo-5",
       "pr": 2,
-      "summary": "Palestine page fixes proposed (PR 2, v01.14.001)",
-      "issue": 1
+      "summary": "Palestine page fixes published (PR 2, v01.14.001); approved by owner in Claude Code",
+      "issue": 1,
+      "merge_sha": "82feb66be98a6dc655100b28635f8e3d8b9d6c75"
     }
   ]
 }
