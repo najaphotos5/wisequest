@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.16.001 — 2026-11-23 (patch)
+
+- Daily suggestion: 👍 on an idea now means 'do it'
+
 ## v01.16.000 — 2026-11-23 (minor)
 
 - Weekly report skill (Telegram, every Monday) and week-over-week comparisons in the GA script
