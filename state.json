@@ -1,8 +1,8 @@
 {
-  "offset": 109084474,
+  "offset": 109084476,
   "chat_id": -1004488348585,
   "owner_telegram_id": 5763295123,
-  "next_id": 6,
+  "next_id": 7,
   "requests": [
     {
       "id": 1,
@@ -61,6 +61,18 @@
       "summary": "Palestine page fixes published (PR 2, v01.14.001); approved by owner in Claude Code",
       "issue": 1,
       "merge_sha": "82feb66be98a6dc655100b28635f8e3d8b9d6c75"
+    },
+    {
+      "id": 6,
+      "message_id": 38,
+      "status": "needs-info",
+      "bot_message_ids": [
+        39
+      ],
+      "branch": null,
+      "pr": null,
+      "summary": "Vague /todo about How to Pray page; asked what to change",
+      "theme": "other"
     }
   ]
 }
