@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.14.002 — 2026-11-23 (patch)
+
+- Added the daily-suggestion skill (one improvement idea per day in Telegram)
+
 ## v01.14.001 — 2026-11-23 (patch)
 
 - Palestine page: clearer wording, named links, videos grouped by theme, fixed UN link
