@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.05.000 — 2026-11-23 (minor)
+
+- Moved the site to wisequest.org, with redirects for old WordPress links
+
 ## v01.04.002 — 2026-11-22 (patch)
 
 - Updated Welcome New Muslim guide to v15

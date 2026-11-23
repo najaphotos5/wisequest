@@ -1,6 +1,6 @@
 # WiseQuest — new site
 
-Next.js rebuild of https://wisequest.home.blog, live at **https://najaphotos5.github.io/wisequest/**.
+Next.js rebuild of https://wisequest.home.blog, live at **https://wisequest.org/**.
 Static export (`out/`), deployed to GitHub Pages on every push to `main`.
 
 > **Updating the site? Read the [update-site skill](.claude/skills/update-site/SKILL.md) first.**
