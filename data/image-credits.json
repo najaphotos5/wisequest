@@ -256,5 +256,23 @@
     "creator": "Monstera Production",
     "license": "Pexels License",
     "source": "https://www.pexels.com/photo/happy-multiethnic-family-waving-hands-at-camera-5996919/"
+  },
+  "hero-1": {
+    "title": "Mosque with minarets under a blue sky",
+    "creator": "Muhammed Şahin",
+    "license": "Pexels License",
+    "source": "https://www.pexels.com/photo/34048228/"
+  },
+  "hero-2": {
+    "title": "Historic mosque and green meadow",
+    "creator": "Oktay Köseoğlu",
+    "license": "Pexels License",
+    "source": "https://www.pexels.com/photo/37556338/"
+  },
+  "hero-3": {
+    "title": "Golden-dome mosque and gardens",
+    "creator": "Margo Evardson",
+    "license": "Pexels License",
+    "source": "https://www.pexels.com/photo/37755282/"
   }
 }

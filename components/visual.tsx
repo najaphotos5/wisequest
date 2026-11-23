@@ -49,8 +49,11 @@ export function PhotoHero({
   children,
   tall,
   crumbs = [],
+  slides = [],
 }: {
   image: string;
+  /** Extra photos that cross-fade over `image` in a loop (homepage). Motion is off for reduced-motion users. */
+  slides?: string[];
   section?: string;
   title: string;
   description?: string;
@@ -62,7 +65,16 @@ export function PhotoHero({
     <div className="relative isolate overflow-hidden bg-ink">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={asset(image)} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/80 via-black/45 to-black/15" />
+      {slides.map((s, i) => (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img key={s} src={asset(s)} alt="" decoding="async" className="hero-slide absolute inset-0 -z-10 h-full w-full object-cover" style={{ animationDelay: `${5 + i * 6}s` }} />
+      ))}
+      {slides.length > 0 ? (
+        // Lighter shading: darken only behind the text so bright photos keep their colors.
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/75 via-black/40 to-black/10 sm:bg-[linear-gradient(to_right,rgba(0,0,0,.62)_0%,rgba(0,0,0,.38)_45%,rgba(0,0,0,0)_78%),linear-gradient(to_top,rgba(0,0,0,.35),rgba(0,0,0,0)_45%)]" />
+      ) : (
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/80 via-black/45 to-black/15" />
+      )}
       <div className={`mx-auto flex max-w-6xl flex-col justify-end px-4 ${tall ? "min-h-[78vh] py-20" : "min-h-[46vh] py-14"}`}>
         {crumbs.length > 0 && (
           <nav aria-label="Breadcrumb" className="mb-4 text-sm text-white/80">

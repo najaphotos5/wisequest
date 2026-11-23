@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.07.000 — 2026-11-23 (minor)
+
+- Homepage photo now cycles between three bright mosque photos, with lighter shading
+
 ## v01.06.000 — 2026-11-23 (minor)
 
 - Added Google Analytics to see page views and reading time; updated privacy policy

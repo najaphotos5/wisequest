@@ -51,7 +51,8 @@ export default async function Home() {
   return (
     <>
       <PhotoHero
-        image="/img/hero.jpg"
+        image="/img/hero-1.jpg"
+        slides={["/img/hero-2.jpg", "/img/hero-3.jpg"]}
         title="The universal message of all prophets"
         tall
         description="From Adam and Abraham to Moses, Jesus, and Muhammad ﷺ, every prophet called to the same truth. Explore it for yourself, at your own pace."

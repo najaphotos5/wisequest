@@ -84,3 +84,19 @@ body {
 @utility btn-light {
   @apply btn bg-white text-ink shadow hover:bg-white/90;
 }
+
+/* Homepage hero slideshow: extra photos cross-fade over the first one (18s loop, 6s each). */
+.hero-slide {
+  opacity: 0;
+  animation: hero-fade 18s infinite;
+}
+@keyframes hero-fade {
+  0% { opacity: 0; }
+  8% { opacity: 1; }
+  33% { opacity: 1; }
+  41% { opacity: 0; }
+  100% { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide { animation: none; display: none; }
+}
