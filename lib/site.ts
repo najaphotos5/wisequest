@@ -20,6 +20,8 @@ export const site = {
   formEndpoint: process.env.NEXT_PUBLIC_FORM_ENDPOINT ?? "",
   /** Google Analytics 4 measurement ID (G-XXXXXXXXXX). Empty → no analytics. */
   gaId: process.env.NEXT_PUBLIC_GA_ID ?? "G-NNLSSQ6TYM",
+  /** Dev-mode relay (Google Apps Script) that posts change requests to Telegram as the bot. Passcode-protected. */
+  devRelayUrl: "",
   donateUrl: "https://www.icnasac.org/donate",
   quran101SignupUrl: "https://forms.gle/aRnAffHYuXP8Fei97",
   social: [] as { label: string; href: string }[], // TODO: YouTube, Instagram, etc.

@@ -28,7 +28,48 @@ type Score = {
   pageScore: number;
   parts: Record<string, number>;
   issues: Issue[];
+  fixes: string[]; // suggested change for each issue (same order)
 };
+
+const CORRECTIONS: Record<string, string> = {
+  gramatic: "grammatical", devine: "divine", mathew: "Matthew", farwell: "farewell", ortodox: "Orthodox", saudia: "Saudi Arabia",
+  discivered: "discovered", recieve: "receive", seperate: "separate", occured: "occurred", definately: "definitely", untill: "until",
+  wich: "which", teh: "the", beleive: "believe", existance: "existence", occurence: "occurrence", acheive: "achieve", arguement: "argument",
+  begining: "beginning", embarass: "embarrass", goverment: "government", independant: "independent", neccessary: "necessary",
+  noticable: "noticeable", persue: "pursue", publically: "publicly", tommorow: "tomorrow", truely: "truly", wierd: "weird",
+};
+
+/** Plain-English suggested change for an issue message. */
+function fixFor(issue: string): string {
+  const rules: [RegExp, string | ((m: RegExpMatchArray) => string)][] = [
+    [/^Hard to read|^Fairly hard to read/, "Use shorter sentences (15–20 words) and simpler words."],
+    [/very long sentence/, "Split each sentence over 35 words into two or three."],
+    [/raw web address/, "Replace pasted web addresses with descriptive links or buttons (e.g. \"Read the biography\")."],
+    [/Click here/i, "Use link text that says where it goes instead of \"click here\"."],
+    [/ALL-CAPS/, "Rewrite ALL-CAPS words in normal case (keep real acronyms)."],
+    [/Repeated punctuation/, "Use a single \"!\" or \"?\"."],
+    [/Possible misspellings: (.*)/, (m) => "Correct: " + m[1].split(", ").map((w) => `${w} → ${CORRECTIONS[w.toLowerCase()] ?? "?"}`).join(", ") + "."],
+    [/Repeated words/, "Remove the doubled word."],
+    [/look like file names/, "Give each download a readable title and a one-line description (what it is, page count)."],
+    [/starts mid-sentence/, "Remove or complete the fragment at the top (left over from the old WordPress title)."],
+    [/Very little text/, "Add a short introduction (2–3 paragraphs) explaining what the page offers and why it matters."],
+    [/Broken formatting/, "Rebuild the flattened content as a proper table (cards on phones) or a list."],
+    [/dangling line/, "Remove or finish the last line."],
+    [/H1 headings/, "Keep exactly one H1 (the page title); make other big headings H2."],
+    [/no section headings/, "Break the page into sections with short H2 headings."],
+    [/Sub-headings \(H3\+\) without/, "Change the top-level sub-headings from H3 to H2."],
+    [/with no alt attribute/, "Add alt text describing each image."],
+    [/empty alt text/, "Describe content images in their alt text, or remove leftover decorative images."],
+    [/link\(s\) whose text is a raw URL/, "Replace URL link text with descriptive text."],
+    [/videos on one page/, "Keep the 3 most useful videos (with a one-line reason each); move the rest to a Videos page."],
+    [/Not updated since/, "Review the page for accuracy, then update its \"updated\" date."],
+  ];
+  for (const [re, fix] of rules) {
+    const m = issue.match(re);
+    if (m) return typeof fix === "string" ? fix : fix(m);
+  }
+  return "Review and fix.";
+}
 
 // Common misspellings seen on the site (and in general). Matched as whole words, case-insensitive.
 const MISSPELLINGS = [
@@ -193,6 +234,7 @@ function score(route: string, html: string): Score {
     pageScore,
     parts,
     issues,
+    fixes: issues.map(fixFor),
   };
 }
 

@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Fragment, useEffect, useMemo, useRef, useState } from "react";
+import { site } from "@/lib/site";
 
 /** Pop-up windows used by dev mode (components/DevMode.tsx). Only rendered while dev mode is on. */
 
@@ -14,6 +15,7 @@ export type PageScore = {
   rank?: number;
   parts: Record<string, number>;
   issues: string[];
+  fixes?: string[];
 };
 export type Scores = { pages: number; averageText: number; averagePage: number; generatedAt: string; byPath: Record<string, PageScore> };
 export type Change = { sha: string; date: string; subject: string };
@@ -58,8 +60,9 @@ function value(p: PageScore, c: Col): number {
   return p.parts[c] ?? 0;
 }
 
-export function ScoresDialog({ scores, current, onClose }: { scores: Scores; current: string; onClose: () => void }) {
+export function ScoresDialog({ scores, current, history, onClose }: { scores: Scores; current: string; history?: Record<string, Change[]>; onClose: () => void }) {
   const [sort, setSort] = useState<{ col: Col; asc: boolean }>({ col: "pageScore", asc: true });
+  const [openRow, setOpenRow] = useState<string | null>(null);
   const rows = useMemo(() => {
     const list = Object.values(scores.byPath);
     return list.sort((a, b) => (value(a, sort.col) - value(b, sort.col)) * (sort.asc ? 1 : -1) || a.path.localeCompare(b.path));
@@ -83,22 +86,73 @@ export function ScoresDialog({ scores, current, onClose }: { scores: Scores; cur
         </thead>
         <tbody>
           {rows.map((p) => (
-            <tr key={p.path} className={p.path === current ? "wq-dev-current" : undefined}>
-              <td>
-                <a href={p.path} title={p.issues.join("\n") || "No issues"}>{p.path}</a>
-              </td>
-              <td className={cls(p.pageScore, 100)}>{p.pageScore}</td>
-              <td className={cls(p.textScore, 10)}>{p.textScore}</td>
-              {(["structure", "accessibility", "media", "freshness"] as const).map((k) => (
-                <td key={k} className={cls(p.parts[k] ?? 0, 100)}>{Math.round(p.parts[k] ?? 0)}</td>
-              ))}
-              <td>{p.words}</td>
-              <td title={p.issues.join("\n")}>{p.issues.length}</td>
-            </tr>
+            <Fragment key={p.path}>
+              <tr className={p.path === current ? "wq-dev-current" : undefined}>
+                <td>
+                  <a href={p.path}>{p.path}</a>
+                </td>
+                <td className={cls(p.pageScore, 100)}>{p.pageScore}</td>
+                <td className={cls(p.textScore, 10)}>{p.textScore}</td>
+                {(["structure", "accessibility", "media", "freshness"] as const).map((k) => (
+                  <td key={k} className={cls(p.parts[k] ?? 0, 100)}>{Math.round(p.parts[k] ?? 0)}</td>
+                ))}
+                <td>{p.words}</td>
+                <td>
+                  <button type="button" className="wq-dev-issues-btn" onClick={() => setOpenRow((r) => (r === p.path ? null : p.path))} aria-expanded={openRow === p.path}>
+                    {p.issues.length} {openRow === p.path ? "▾" : "▸"}
+                  </button>
+                </td>
+              </tr>
+              {openRow === p.path && (
+                <tr className="wq-dev-detail">
+                  <td colSpan={9}>
+                    <IssueDetail page={p} history={history?.[p.path] ?? []} />
+                  </td>
+                </tr>
+              )}
+            </Fragment>
           ))}
         </tbody>
       </table>
     </Dialog>
+  );
+}
+
+/** Issues for one page, the suggested change for each, a one-line summary, and its recent edits. */
+function IssueDetail({ page, history }: { page: PageScore; history: Change[] }) {
+  if (!page.issues.length) return <p className="wq-dev-good">No issues found on this page ✓</p>;
+  const fixes = page.fixes ?? [];
+  const weakest = Object.entries(page.parts).sort((a, b) => a[1] - b[1])[0];
+  return (
+    <div className="wq-dev-issue-detail">
+      <p>
+        <b>Summary:</b> {page.issues.length} issue{page.issues.length > 1 ? "s" : ""} found. Weakest area: <b>{weakest[0]}</b> ({Math.round(weakest[1])}/100). Fixing
+        these would mainly improve the {page.textScore < 7 ? "text score" : "page score"}.
+      </p>
+      <table className="wq-dev-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Issue</th>
+            <th>Suggested change</th>
+          </tr>
+        </thead>
+        <tbody>
+          {page.issues.map((issue, i) => (
+            <tr key={issue}>
+              <td>{i + 1}</td>
+              <td>{issue}</td>
+              <td>{fixes[i] ?? "Review and fix."}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {history.length > 0 && (
+        <p className="wq-dev-muted">
+          Recent changes to this page: {history.slice(0, 3).map((c) => `${c.date} ${c.subject}`).join(" · ")}
+        </p>
+      )}
+    </div>
   );
 }
 
@@ -128,11 +182,75 @@ function toPng(blob: Blob): Promise<Blob> {
   });
 }
 
+const PASS_KEY = "wq-dev-relay-pass";
+
+async function blobToBase64(blob: Blob): Promise<string> {
+  const buf = new Uint8Array(await blob.arrayBuffer());
+  let bin = "";
+  for (let i = 0; i < buf.length; i += 0x8000) bin += String.fromCharCode(...buf.subarray(i, i + 0x8000));
+  return btoa(bin);
+}
+
+/** Shrink big screenshots so the upload stays small (max 1600px wide, JPEG). */
+function shrink(blob: Blob): Promise<Blob> {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => {
+      const scale = Math.min(1, 1600 / img.naturalWidth);
+      if (scale === 1 && blob.size < 1_500_000) return resolve(blob);
+      const c = document.createElement("canvas");
+      c.width = Math.round(img.naturalWidth * scale);
+      c.height = Math.round(img.naturalHeight * scale);
+      c.getContext("2d")!.drawImage(img, 0, 0, c.width, c.height);
+      c.toBlob((b) => resolve(b ?? blob), "image/jpeg", 0.85);
+    };
+    img.onerror = () => resolve(blob);
+    img.src = URL.createObjectURL(blob);
+  });
+}
+
+async function relay(body: Record<string, unknown>) {
+  // text/plain avoids a CORS pre-flight, which Apps Script doesn't answer.
+  const r = await fetch(site.devRelayUrl, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(body), redirect: "follow" });
+  return (await r.json()) as { ok: boolean; error?: string; warning?: string; message_id?: number; issue?: number };
+}
+
 export function RequestDialog({ pageUrl, onClose }: { pageUrl: string; onClose: () => void }) {
   const [text, setText] = useState("");
   const [withPage, setWithPage] = useState(true);
   const [image, setImage] = useState<{ blob: Blob; url: string } | null>(null);
   const [status, setStatus] = useState("");
+  const [pass, setPass] = useState(() => (typeof localStorage !== "undefined" ? localStorage.getItem(PASS_KEY) ?? "" : ""));
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState<string | null>(null);
+  const canRelay = Boolean(site.devRelayUrl);
+  const send = async () => {
+    if (!ready || sending) return;
+    if (!pass) return setStatus("Enter the dev passcode first.");
+    setSending(true);
+    setStatus("Sending…");
+    try {
+      const img = image ? await shrink(image.blob) : null;
+      const res = await relay({
+        passcode: pass,
+        text: buildTodo(text, null),
+        page: withPage ? pageUrl : "",
+        ...(img ? { imageBase64: await blobToBase64(img), imageType: img.type || "image/png" } : {}),
+      });
+      if (!res.ok) {
+        if (res.error === "Wrong passcode") localStorage.removeItem(PASS_KEY);
+        setStatus(`✕ ${res.error ?? "Failed to send"}`);
+      } else {
+        localStorage.setItem(PASS_KEY, pass);
+        setSent(`✓ Sent to the Wisequest group${res.issue ? ` (request queued as #${res.issue})` : ""}. The hourly assistant will react 👀 and reply there.${res.warning ? ` Note: ${res.warning}` : ""}`);
+        setStatus("");
+      }
+    } catch {
+      setStatus("✕ Couldn't reach the relay. Use “Open Telegram” instead.");
+    } finally {
+      setSending(false);
+    }
+  };
   const ref = useRef<HTMLTextAreaElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   useEffect(() => ref.current?.focus(), []);
@@ -191,19 +309,31 @@ export function RequestDialog({ pageUrl, onClose }: { pageUrl: string; onClose: 
         </label>
         <p className="wq-dev-muted">Message that will be sent{image ? " (as the image caption)" : ""}:</p>
         <pre className="wq-dev-preview">{message}</pre>
+        {canRelay && !sent && (
+          <label className="wq-dev-pass">
+            Dev passcode{" "}
+            <input type="password" value={pass} onChange={(e) => setPass(e.target.value)} autoComplete="off" placeholder="asked once, then remembered" />
+          </label>
+        )}
+        {sent && <p className="wq-dev-status">{sent}</p>}
         <div className="wq-dev-actions">
+          {canRelay && !sent && (
+            <button type="button" className="wq-dev-send" onClick={send} disabled={!ready || sending}>
+              {sending ? "Sending…" : "Send now ➤"}
+            </button>
+          )}
           <a
             href={ready ? share : undefined}
             aria-disabled={!ready}
             target="_blank"
             rel="noreferrer"
-            className={`wq-dev-primary${ready ? "" : " wq-dev-disabled"}`}
+            className={`wq-dev-primary${canRelay ? " wq-dev-secondary" : ""}${ready ? "" : " wq-dev-disabled"}`}
             onClick={(e) => {
               if (!ready) return e.preventDefault();
               if (!copyImage()) setTimeout(onClose, 300);
             }}
           >
-            Open Telegram to send →
+            {canRelay ? "or open Telegram" : "Open Telegram to send →"}
           </a>
           <button type="button" onClick={() => navigator.clipboard?.writeText(message)} disabled={!ready}>
             Copy message
@@ -216,9 +346,17 @@ export function RequestDialog({ pageUrl, onClose }: { pageUrl: string; onClose: 
         </div>
         {status && <p className="wq-dev-status">{status}</p>}
         <p className="wq-dev-muted">
-          Telegram opens with the message ready: choose the <b>Wisequest</b> group and press Send{image ? " (after pasting the image with ⌘V)" : ""}. It is sent
-          from your own account, so the hourly assistant picks it up (it ignores messages from bots, and the bot&apos;s secret key can&apos;t be stored in the
-          website).
+          {canRelay ? (
+            <>
+              <b>Send now</b> posts it in the Wisequest group as the bot (with the screenshot) and queues it for the hourly assistant. Or open Telegram to send it
+              from your own account.
+            </>
+          ) : (
+            <>
+              Telegram opens with the message ready: choose the <b>Wisequest</b> group and press Send{image ? " (after pasting the image with ⌘V)" : ""}. It is sent
+              from your own account, so the hourly assistant picks it up.
+            </>
+          )}
         </p>
       </div>
     </Dialog>
