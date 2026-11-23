@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.15.000 — 2026-11-23 (minor)
+
+- Analytics skill: read-only Google Analytics reports (npm run ga) with a plain-English analysis guide
+
 ## v01.14.002 — 2026-11-23 (patch)
 
 - Added the daily-suggestion skill (one improvement idea per day in Telegram)
