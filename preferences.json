@@ -1,0 +1,15 @@
+{
+  "weights": {
+    "clarity": 1.0,
+    "photos": 1.0,
+    "engagement": 1.0,
+    "content": 1.0,
+    "navigation": 1.0,
+    "accessibility": 1.0,
+    "trust": 1.0
+  },
+  "updated": "2026-11-23",
+  "notes": [
+    "First run: no feedback yet, all themes at 1.0"
+  ]
+}
