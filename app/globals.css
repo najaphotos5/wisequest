@@ -183,3 +183,7 @@ html.wq-dev header.sticky { top: 34px; }
 .wq-dev-actions button:disabled { opacity: .5; cursor: default; }
 .wq-dev-dialog .wq-dev-primary { background: #229ed9; color: #fff; text-decoration: none; padding: 8px 14px; border-radius: 6px; font-weight: 700; }
 .wq-dev-dialog .wq-dev-disabled { opacity: .45; cursor: not-allowed; }
+.wq-dev-image-row { display: flex; align-items: center; gap: 10px; margin: 4px 0 6px; }
+.wq-dev-image-row button { background: #374151; color: #e5e7eb; border: 0; border-radius: 6px; padding: 6px 10px; font: inherit; cursor: pointer; }
+.wq-dev-thumb { max-height: 90px; max-width: 200px; border-radius: 6px; border: 1px solid #374151; }
+.wq-dev-status { color: #4ade80; margin-top: 8px; }
