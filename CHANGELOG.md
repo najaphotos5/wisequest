@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.13.000 — 2026-11-23 (minor)
+
+- Dev mode: click a page's issue count to see each issue with a suggested change; request box ready for one-click sending through the bot
+
 ## v01.12.000 — 2026-11-23 (minor)
 
 - Dev mode request box: paste, drop or attach a screenshot; it's copied to the clipboard for pasting into Telegram

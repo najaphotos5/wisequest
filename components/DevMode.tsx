@@ -260,7 +260,7 @@ export function DevMode() {
           ✕ Back to normal mode
         </button>
       </div>
-      {dialog === "scores" && scores && <ScoresDialog scores={scores} current={key} onClose={() => setDialog(null)} />}
+      {dialog === "scores" && scores && <ScoresDialog scores={scores} current={key} history={history?.byPath} onClose={() => setDialog(null)} />}
       {dialog === "history" && history && <HistoryDialog site={history.site} shallow={history.shallow} onClose={() => setDialog(null)} />}
       {dialog === "request" && <RequestDialog pageUrl={location.origin + path} onClose={() => setDialog(null)} />}
       <div className="wq-dev-panel" role="region" aria-label="Developer mode">
