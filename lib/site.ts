@@ -18,6 +18,8 @@ export const site = {
   },
   /** Form endpoint (e.g. https://formspree.io/f/xxxx). Empty → forms fall back to email. */
   formEndpoint: process.env.NEXT_PUBLIC_FORM_ENDPOINT ?? "",
+  /** Google Analytics 4 measurement ID (G-XXXXXXXXXX). Empty → no analytics. */
+  gaId: process.env.NEXT_PUBLIC_GA_ID ?? "G-NNLSSQ6TYM",
   donateUrl: "https://www.icnasac.org/donate",
   quran101SignupUrl: "https://forms.gle/aRnAffHYuXP8Fei97",
   social: [] as { label: string; href: string }[], // TODO: YouTube, Instagram, etc.

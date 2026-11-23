@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.06.000 — 2026-11-23 (minor)
+
+- Added Google Analytics to see page views and reading time; updated privacy policy
+
 ## v01.05.000 — 2026-11-23 (minor)
 
 - Moved the site to wisequest.org, with redirects for old WordPress links
