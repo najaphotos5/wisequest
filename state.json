@@ -2,7 +2,7 @@
   "offset": 109084471,
   "chat_id": -1004488348585,
   "owner_telegram_id": 5763295123,
-  "next_id": 5,
+  "next_id": 6,
   "requests": [
     {
       "id": 1,
@@ -46,6 +46,18 @@
       "branch": null,
       "pr": null,
       "summary": "Suggestions for promo card posted; waiting for requester's reply"
+    },
+    {
+      "id": 5,
+      "message_id": 23,
+      "status": "needs-info",
+      "bot_message_ids": [
+        24
+      ],
+      "branch": null,
+      "pr": null,
+      "summary": "Palestine page content/accessibility fixes; asked about videos, wording scope, UN link",
+      "issue": 1
     }
   ]
 }
