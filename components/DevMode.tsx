@@ -23,6 +23,11 @@ const OVERLAYS = [
 type Overlay = (typeof OVERLAYS)[number][0];
 const REPO = "https://github.com/najaphotos5/wisequest";
 
+type PageScore = { textScore: number; pageScore: number; readingEase: number; avgSentence: number; words: number; rank?: number; parts: Record<string, number>; issues: string[] };
+type Scores = { pages: number; averageText: number; averagePage: number; generatedAt: string; byPath: Record<string, PageScore> };
+type Change = { sha: string; date: string; subject: string };
+type History = { shallow: boolean; site: Change[]; byPath: Record<string, Change[]> };
+
 type PageInfo = { source?: string; words?: number; meta?: Record<string, unknown>; summaryPoints?: number };
 type Build = { version?: string; builtAt?: string; commit?: string };
 
@@ -43,13 +48,22 @@ function guessSource(path: string) {
 
 export function DevMode() {
   const [on, setOn] = useState(false);
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false); // banner shows the essentials; click DEV to expand
   const [overlays, setOverlays] = useState<Record<Overlay, boolean>>({ headings: false, alt: false, links: false, boxes: false });
   const [stats, setStats] = useState<Record<string, string | number>>({});
   const [info, setInfo] = useState<PageInfo>({});
   const [build, setBuild] = useState<Build>({});
   const [path, setPath] = useState("");
   const [loaded, setLoaded] = useState(false);
+  const [scores, setScores] = useState<Scores | null>(null);
+  const [history, setHistory] = useState<History | null>(null);
+
+  // Scores and history are generated at build time (scripts/dev-data.ts) and only downloaded in dev mode.
+  useEffect(() => {
+    if (!on || scores) return;
+    fetch("/dev-data/scores.json").then((r) => (r.ok ? r.json() : null)).then(setScores).catch(() => {});
+    fetch("/dev-data/history.json").then((r) => (r.ok ? r.json() : null)).then(setHistory).catch(() => {});
+  }, [on, scores]);
 
   // Restore / remember panel state and overlay choices across pages.
   useEffect(() => {
@@ -206,8 +220,29 @@ export function DevMode() {
     ["Analytics", "off for this browser (dev mode)"],
   ];
 
+  const key = path.endsWith("/") ? path : `${path}/`;
+  const sc = scores?.byPath[key];
+  const pageHistory = history?.byPath[key] ?? [];
+  const grade = (n: number, max: number) => (n / max >= 0.85 ? "good" : n / max >= 0.65 ? "ok" : "bad");
+  // Telegram share: the message must START with /todo for the bot, so the whole text goes in the url field.
+  const telegram = `https://t.me/share/url?url=${encodeURIComponent(`/todo (page: ${typeof location !== "undefined" ? location.origin + path : path}) `)}`;
+
   return (
-    <div className="wq-dev-panel" role="region" aria-label="Developer mode">
+    <>
+      <div className="wq-dev-banner" role="status">
+        <strong>🛠 DEV MODE</strong>
+        <span>{build.version}</span>
+        {sc && (
+          <>
+            <span className={`wq-dev-${grade(sc.textScore, 10)}`}>Text {sc.textScore}/10</span>
+            <span className={`wq-dev-${grade(sc.pageScore, 100)}`}>Page {sc.pageScore}/100</span>
+            {sc.rank && scores && <span className="wq-dev-muted">#{sc.rank} lowest of {scores.pages}</span>}
+          </>
+        )}
+        <a href={telegram} target="_blank" rel="noreferrer" className="wq-dev-btn">✉ Request a change (Telegram)</a>
+        <button type="button" onClick={() => setMode(false)} className="wq-dev-btn">Exit</button>
+      </div>
+      <div className="wq-dev-panel" role="region" aria-label="Developer mode">
       <div className="wq-dev-bar">
         <button type="button" onClick={() => setOpen((o) => !o)} aria-expanded={open}>
           🛠 DEV {open ? "▾" : "▸"}
@@ -229,6 +264,56 @@ export function DevMode() {
             </tbody>
           </table>
           <fieldset>
+            <legend>Quality score</legend>
+            {sc ? (
+              <>
+                <p>
+                  Text <b className={`wq-dev-${grade(sc.textScore, 10)}`}>{sc.textScore}/10</b> · Page{" "}
+                  <b className={`wq-dev-${grade(sc.pageScore, 100)}`}>{sc.pageScore}/100</b>
+                  {scores && <span className="wq-dev-muted"> (site avg {scores.averageText} / {scores.averagePage})</span>}
+                </p>
+                <p className="wq-dev-muted">
+                  Reading ease {sc.readingEase} · {sc.avgSentence} words/sentence · {Object.entries(sc.parts).map(([k, v]) => `${k} ${Math.round(v)}`).join(" · ")}
+                </p>
+                {sc.issues.length ? (
+                  <ul>{sc.issues.map((i) => <li key={i}>{i}</li>)}</ul>
+                ) : (
+                  <p>No issues found ✓</p>
+                )}
+              </>
+            ) : (
+              <p className="wq-dev-muted">{scores ? "Not scored (redirect or special page)." : "Loading…"}</p>
+            )}
+          </fieldset>
+          <fieldset>
+            <legend>Change history</legend>
+            {pageHistory.length ? (
+              <ul>
+                {pageHistory.map((c) => (
+                  <li key={c.sha}>
+                    <span className="wq-dev-muted">{c.date}</span>{" "}
+                    <a href={`${REPO}/commit/${c.sha}`} target="_blank" rel="noreferrer">{c.sha}</a> {c.subject}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="wq-dev-muted">{history ? "No history found for this page's source file." : "Loading…"}</p>
+            )}
+            {history?.shallow && <p className="wq-dev-muted">History may be incomplete (shallow build).</p>}
+            {history && history.site.length > 0 && (
+              <details>
+                <summary>Recent site-wide changes</summary>
+                <ul>
+                  {history.site.slice(0, 10).map((c) => (
+                    <li key={c.sha}>
+                      <span className="wq-dev-muted">{c.date}</span> {c.subject}
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            )}
+          </fieldset>
+          <fieldset>
             <legend>Overlays</legend>
             {OVERLAYS.map(([k, label]) => (
               <label key={k}>
@@ -239,6 +324,7 @@ export function DevMode() {
           <p className="wq-dev-hint">Ctrl+Shift+D toggles · ?dev=0 turns off</p>
         </div>
       )}
-    </div>
+      </div>
+    </>
   );
 }
