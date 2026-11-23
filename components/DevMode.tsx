@@ -56,6 +56,7 @@ export function DevMode() {
   const [loaded, setLoaded] = useState(false);
   const [scores, setScores] = useState<Scores | null>(null);
   const [dialog, setDialog] = useState<null | "scores" | "history" | "request">(null);
+  const [prefill, setPrefill] = useState<{ page: string; text: string } | null>(null);
   const [history, setHistory] = useState<History | null>(null);
 
   // Scores and history are generated at build time (scripts/dev-data.ts) and only downloaded in dev mode.
@@ -253,16 +254,35 @@ export function DevMode() {
         <button type="button" className="wq-dev-btn" onClick={() => setDialog("history")} disabled={!history}>
           🕘 Version history
         </button>
-        <button type="button" className="wq-dev-btn" onClick={() => setDialog("request")}>
+        <button type="button" className="wq-dev-btn" onClick={() => { setPrefill(null); setDialog("request"); }}>
           ✉ Request a change
         </button>
         <button type="button" onClick={() => setMode(false)} className="wq-dev-btn wq-dev-exit" title="Turn off dev mode and return to the normal website">
           ✕ Back to normal mode
         </button>
       </div>
-      {dialog === "scores" && scores && <ScoresDialog scores={scores} current={key} history={history?.byPath} onClose={() => setDialog(null)} />}
+      {dialog === "scores" && scores && <ScoresDialog
+          scores={scores}
+          current={key}
+          history={history?.byPath}
+          onClose={() => setDialog(null)}
+          onRequest={(page, text) => {
+            setPrefill({ page, text });
+            setDialog("request");
+          }}
+        />}
       {dialog === "history" && history && <HistoryDialog site={history.site} shallow={history.shallow} onClose={() => setDialog(null)} />}
-      {dialog === "request" && <RequestDialog pageUrl={location.origin + path} onClose={() => setDialog(null)} />}
+      {dialog === "request" && (
+        <RequestDialog
+          key={prefill?.text ?? "blank"}
+          pageUrl={location.origin + (prefill?.page ?? path)}
+          initialText={prefill?.text}
+          onClose={() => {
+            setDialog(null);
+            setPrefill(null);
+          }}
+        />
+      )}
       <div className="wq-dev-panel" role="region" aria-label="Developer mode">
       <div className="wq-dev-bar">
         <button type="button" onClick={() => setOpen((o) => !o)} aria-expanded={open}>

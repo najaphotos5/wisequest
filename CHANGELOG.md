@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.14.000 — 2026-11-23 (minor)
+
+- Dev mode: request fixes straight from the score list (one issue, selected issues, or all), pre-filled with the suggested changes
+
 ## v01.13.001 — 2026-11-23 (patch)
 
 - Dev mode: one-click 'Send now' posts change requests to the Telegram group through the bot (passcode-protected relay)
