@@ -57,7 +57,8 @@ What exactly:
 
 Effort: small | medium
 
-👍 = do it: the assistant will make this change within the hour
+✅ Like it? Just react 👍. That's all it takes to accept it; no need to type anything.
+The assistant will make the change within the hour and reply here when it's live.
 👎 = skip this one
 
 (Or send your own version: /todo <one clear line that fully describes the change, including the page link>)
@@ -67,6 +68,7 @@ Writing tips:
 - Write for a friendly volunteer, not a developer. No jargon (no "component", "MDX", "PR").
 - Be concrete. Instead of "improve readability", say: "Split the 3 longest sentences in 'Why is there suffering?'. For example: '…' → '…'".
 - Base before/after examples on real text from the page. Never alter a Quran or hadith quote in an example.
+- Always keep the "Just react 👍" lines exactly as in the template, so everyone knows a like is enough to accept the idea.
 - If preferences influenced the pick, you may add one short line, e.g. "(You liked the last photo idea, so here's another.)"
 - The `/todo` line must work on its own: include the page link and the exact change. A 👍 reaction triggers exactly this text, so it must be complete and safe to do without further questions.
 
