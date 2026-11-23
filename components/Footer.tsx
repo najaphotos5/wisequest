@@ -40,9 +40,8 @@ export function Footer() {
         <p className="mx-auto max-w-6xl px-4 py-5 text-xs text-white/50">
           © {new Date().getFullYear()} {site.name}. Not officially affiliated with WhyIslam. Photos: public domain / CC0 via{" "}
           <Link href="/about#photo-credits" className="underline">rawpixel &amp; Openverse</Link> and Pexels.{" "}
-          <a href="https://github.com/najaphotos5/wisequest/blob/main/CHANGELOG.md" className="underline" title="What changed">
-            {version}
-          </a>
+          {/* Clicking the version 5 times quickly turns on dev mode (components/DevMode.tsx). */}
+          <span data-dev-trigger className="cursor-default select-none">{version}</span>
         </p>
       </div>
     </footer>

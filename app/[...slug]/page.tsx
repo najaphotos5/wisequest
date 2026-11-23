@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { NextSteps } from "@/components/NextSteps";
+import { DevPageInfo } from "@/components/DevPageInfo";
 import { ArticleBody } from "@/components/ArticleBody";
 import { PageHeader } from "@/components/PageShell";
 import { getPage, listSlugs } from "@/lib/content";
@@ -58,6 +59,7 @@ export default async function ContentPage({ params }: Props) {
         }
       />
       <NextSteps />
+      <DevPageInfo page={page} kind="pages" />
     </article>
   );
 }
