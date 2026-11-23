@@ -12,9 +12,11 @@
  *   npm run ga -- realtime            people on the site right now
  *   npm run ga -- all [days]          every report above (default 28 days)
  *   add --json for machine-readable output
+ *   add --compare to any report (except realtime) to also get the previous period of the same length
  *
  * Credentials (a Google service account with Viewer access to the GA property), first found wins:
- *   GA_SA_KEY        the service-account JSON itself (cloud routines)
+ *   GA_SA_KEY_B64    base64 of the service-account JSON (one line, for cloud routines)
+ *   GA_SA_KEY        the service-account JSON itself
  *   GA_SA_KEY_FILE   path to the JSON file
  *   macOS Keychain   service "ga-service-account", account "wisequest" (base64 of the JSON)
  * Uses the read-only scope only. Nothing is written to Google Analytics.
@@ -29,6 +31,7 @@ const API = `https://analyticsdata.googleapis.com/v1beta/properties/${PROPERTY}`
 type Key = { client_email: string; private_key: string };
 
 function loadKey(): Key {
+  if (process.env.GA_SA_KEY_B64) return JSON.parse(Buffer.from(process.env.GA_SA_KEY_B64, "base64").toString("utf8"));
   if (process.env.GA_SA_KEY) return JSON.parse(process.env.GA_SA_KEY);
   if (process.env.GA_SA_KEY_FILE) return JSON.parse(readFileSync(process.env.GA_SA_KEY_FILE, "utf8"));
   try {
@@ -141,7 +144,8 @@ function table(rows: Row[]) {
 async function main() {
   const args = process.argv.slice(2);
   const json = args.includes("--json");
-  const rest = args.filter((a) => a !== "--json");
+  const compareAll = args.includes("--compare");
+  const rest = args.filter((a) => a !== "--json" && a !== "--compare");
   const which = rest[0] ?? "overview";
   const days = Number(rest[1] ?? 28);
   const names = which === "all" ? Object.keys(REPORTS) : [which];
@@ -152,11 +156,11 @@ async function main() {
   const tok = await token(loadKey());
   const out: Record<string, unknown> = { property: PROPERTY, days, generatedAt: new Date().toISOString() };
   for (const n of names) {
-    const spec = REPORTS[n];
+    const spec = { ...REPORTS[n], compare: REPORTS[n].compare || (compareAll && !REPORTS[n].realtime) };
     const res = await run(tok, spec, days, spec.realtime);
     if (n === "pages") {
       // Average engagement time per user, the "time on page" people usually want.
-      for (const r of res.rows) r.avgEngagementSec = Number(r.activeUsers) ? Number(r.userEngagementDuration) / Number(r.activeUsers) : 0;
+      for (const r of [...res.rows, ...(res.previous ?? [])]) r.avgEngagementSec = Number(r.activeUsers) ? Number(r.userEngagementDuration) / Number(r.activeUsers) : 0;
     }
     out[n] = res;
     if (!json) {

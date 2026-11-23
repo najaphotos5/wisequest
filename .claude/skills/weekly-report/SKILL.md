@@ -1,0 +1,84 @@
+---
+name: weekly-report
+description: Build and post the weekly wisequest.org report in the WiseQuest Telegram group. It covers visitors and engagement vs last week (Google Analytics), progress and regressions per page, quality-score changes, what was published, and ONE action. Used by the "WiseQuest weekly report" cloud routine every Monday. Edit the Lessons section to steer it.
+---
+
+# Weekly report: simple, actionable, progress vs regression
+
+Every Monday, post **one** short report about the previous 7 days (Mon–Sun) in the WiseQuest Telegram group (chat_id `-1004488348585`). A busy volunteer should understand it in 30 seconds and know the one thing to do next.
+
+**You only report. Never edit the website in this run**, except the monthly Lessons update below.
+
+## 1. Gather data
+
+1. **Google Analytics**, this week vs the previous week: `npm run ga -- all 7 --compare --json > /tmp/ga.json`. The credentials come from the env var `GA_SA_KEY_B64`; see `.claude/skills/analytics/SKILL.md` for how to read the numbers. If GA fails, still post the report without visitor numbers, and say "visitor stats unavailable this week".
+2. **Quality scores:** `npm ci && npm run build`, then read `out/dev-data/scores.json` (site `averageText`/`averagePage`, per-page `pageScore`/`textScore`).
+3. **What was published:** `git log --since="8 days ago" --pretty="%s" origin/main` (subjects look like `vXX.XX.XXX: summary`). Count the releases and pick the 2–3 most visible ones.
+4. **State branch:** `git fetch origin claude/telegram-state`, then read:
+   - `reports.json`: past reports `[{week_end, message_id, totals, pages:{path:{views, engagedSec}}, quality:{averageText, averagePage, pages:{path: pageScore}}, action}]`. Last week's entry is the baseline for quality and for anything GA can't compare.
+   - `feedback.json`: reactions on past reports (keyed by message_id), and requests (did last week's action get done? Look for a `/todo` on that page).
+   - `suggestions.json`: avoid choosing the same page as an action that was suggested in the last 3 days.
+
+## 2. Decide what matters (small-site rules)
+
+- Treat changes as real only with enough volume. For pages, at least ~10 views in one of the two weeks. Otherwise say "too few visits to tell".
+- Percent changes only when both weeks have at least 20 visitors. Otherwise give plain numbers ("12 → 19 visitors").
+- **Progress (📈):** up to 3 of:
+  - pages with clearly more views or longer engaged time
+  - quality scores that went up (e.g. "Palestine page 39 → 72 after this week's fixes")
+  - a working source (e.g. more Google visits)
+- **Needs attention (📉):** up to 3 of:
+  - pages with fewer views or shorter time
+  - pages people leave in under ~15 s (with ≥10 views)
+  - quality scores that dropped
+  - weak mobile engagement
+- **Published:** the number of releases this week, plus 2–3 notable ones in plain words.
+- **Action:** exactly ONE, the biggest opportunity: usually the top 📉 item, or a page with high views but low engaged time and a low quality score. Write it as a ready-to-send `/todo` line that names the page and the exact change.
+
+## 3. Message (plain text, max ~15 lines, no tables)
+
+```
+📊 Weekly report: <Mon d> – <Sun d>
+
+👥 Visitors: N (▲/▼ x% or "A → B") · Views: N · Avg time engaged: Xs
+⭐ Site quality: text X/10, pages Y/100 (▲/▼ vs last week)
+
+📈 Progress
+• <item>
+• <item>
+
+📉 Needs attention
+• <item>
+
+🛠 Published this week: N updates, e.g. <short>, <short>
+
+👉 This week's action:
+/todo <one clear line with the page link and the change>
+
+👍 if this report is useful, 👎 if not.
+```
+
+Rules for the text:
+- Use plain words: "visitors", "time spent reading". Not "sessions", "engagement rate".
+- Round numbers. Show ▲ for better and ▼ for worse.
+- For the first report, or when there's no baseline, say "first week, no comparison yet" instead of inventing changes.
+- Never include names. GA has none; don't guess who visited.
+
+## 4. Post and save
+
+1. Send it with `sendMessage` to `-1004488348585`, with `link_preview_options={"is_disabled":true}`. Exactly **one** message, not pinned. **Never call getUpdates.** The hourly assistant is the only reader.
+2. Append this week's entry to `reports.json` on `claude/telegram-state` (separate worktree): `{week_end, message_id, totals, pages:{path:{views, engagedSec}}, quality:{averageText, averagePage, pages}, action}`. If the push is rejected because the branch moved, fetch, re-apply and push again. Write **only** `reports.json`.
+
+## 5. Keep improving (monthly)
+
+On the **first Monday of each month**, read the last 4 reports and their feedback:
+- reactions (👍/👎)
+- whether each week's action was done (a `/todo` on that page, or a release touching it)
+- whether the flagged 📉 items improved the following week
+
+Add 2–3 short lessons to the **Lessons** section below, e.g. "Actions about photos get done; long rewrites don't" or "Mobile time keeps dropping". Then release them with `npm run release -- patch "Weekly report: monthly lessons"`, changing only this file.
+
+## Lessons
+
+<!-- Owners or the monthly update add lessons here, newest first. -->
+- (none yet; the first report is for the week of 2026-11-23)

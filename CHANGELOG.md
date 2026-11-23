@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.16.000 — 2026-11-23 (minor)
+
+- Weekly report skill (Telegram, every Monday) and week-over-week comparisons in the GA script
+
 ## v01.15.000 — 2026-11-23 (minor)
 
 - Analytics skill: read-only Google Analytics reports (npm run ga) with a plain-English analysis guide
