@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.19.004 — 2026-11-24 (patch)
+
+- Jesus page: added video link under the Shedinger quote
+
 ## v01.19.003 — 2026-11-24 (patch)
 
 - Jesus page: comparison keeps its table layout on phones (swipe sideways, Aspect column pinned)
