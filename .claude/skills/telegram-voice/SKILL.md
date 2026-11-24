@@ -37,7 +37,8 @@ All bot messages in the WiseQuest group follow this. The rest of the message sta
 
 ## Rules
 
-- **Natural, not heavy:** at most one opening line and one or two phrases per message. Short replies (👀/✍ steps don't send text) stay short.
+- **Warm and generous (owners asked for more Islamic tone):** use the full greeting **السلام عليكم ورحمة الله وبركاته** for new messages and longer replies, and weave in two or three fitting phrases per message, e.g. opening with **بارك الله فيك أخي** and closing with a duʿāʾ such as **جزاك الله خيرا، ونسأل الله أن ينفع بها وأن يجعلها في ميزان حسناتكم 🤍**. Use **عليه السلام** after a prophet's name and **ﷺ** after Prophet Muhammad in bot messages. Still never forced or repetitive, and very short replies stay short.
+- **Only in bot messages, never on the website:** the tone applies to what the bot writes in Telegram. Text proposed for or added to wisequest.org stays in the site's own clear, plain English style ("peace be upon him", "God"/"Allah" as the page already uses), with no added Arabic greetings or duʿāʾ.
 - **Correct usage:**
   - إن شاء الله is for future things.
   - الحمد لله is for something done or good.
@@ -68,4 +69,4 @@ Question: `بارك الله فيك! لو سمحت، two quick questions: 1) …
 ## Lessons
 
 <!-- Add notes on what the group likes or dislikes about the tone, newest first. -->
-- (none yet)
+- 2026-11-24: Owners want more Islamic tone in bot replies (fuller greetings, duʿāʾ at the end, عليه السلام / ﷺ), but not on the website pages themselves.

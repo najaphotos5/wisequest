@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.19.006 — 2026-11-24 (patch)
+
+- Telegram voice: richer Islamic tone in bot replies (not on website pages)
+
 ## v01.19.005 — 2026-11-24 (patch)
 
 - Jesus page: added a second related YouTube video
