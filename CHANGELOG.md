@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.18.001 — 2026-11-24 (patch)
+
+- check-videos: warn instead of ✓ when video sites can't be reached
+
 ## v01.18.000 — 2026-11-24 (minor)
 
 - Weekly dead-video check (npm run check-videos) in the daily idea
