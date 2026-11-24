@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.19.003 — 2026-11-24 (patch)
+
+- Jesus page: comparison keeps its table layout on phones (swipe sideways, Aspect column pinned)
+
 ## v01.19.002 — 2026-11-24 (patch)
 
 - Jesus page: comparison table matches the 'Jesus & Islam vs. Church Teachings' chart exactly (text, order, numbering)
