@@ -26,6 +26,9 @@ Every **Thursday** (Pacific time), also run `npm run check-videos -- --json`. It
 - If all videos are fine, post a normal idea. Don't mention the check.
 
 ```
+السلام عليكم ورحمة الله
+أسعد الله صباحكم 🌅
+
 🎬 Videos that no longer exist
 
 These videos show "This video doesn't exist" or "Video unavailable" to visitors:
@@ -64,6 +67,9 @@ Recompute `preferences.json` = `{weights: {theme: number}, updated: date, notes:
 ## 4. Write the message (plain text, ~120–180 words, no markdown tables)
 
 ```
+السلام عليكم ورحمة الله
+أسعد الله صباحكم 🌅
+
 💡 Today's idea: <short title>
 
 Why: <1–2 sentences on the benefit for visitors>
@@ -82,6 +88,7 @@ Effort: small | medium
 Never put a `/todo` line in the message. People accept with 👍 or a short reply; the full change description lives only in `suggestions.json` (`todo` field), where the hourly assistant reads it.
 
 Writing tips:
+- Follow `.claude/skills/telegram-voice/SKILL.md` for greetings and Islamic phrases (e.g. جمعة مباركة on Fridays instead of the morning greeting).
 - Write for a friendly volunteer, not a developer. No jargon (no "component", "MDX", "PR").
 - Be concrete. Instead of "improve readability", say: "Split the 3 longest sentences in 'Why is there suffering?'. For example: '…' → '…'".
 - Base before/after examples on real text from the page. Never alter a Quran or hadith quote in an example.

@@ -38,6 +38,9 @@ Every Monday, post **one** short report about the previous 7 days (Mon–Sun) in
 ## 3. Message (plain text, max ~15 lines, no tables)
 
 ```
+السلام عليكم ورحمة الله
+أسعد الله أوقاتكم
+
 📊 Weekly report: <Mon d> – <Sun d>
 
 👥 Visitors: N (▲/▼ x% or "A → B") · Views: N · Avg time engaged: Xs
@@ -54,9 +57,12 @@ Every Monday, post **one** short report about the previous 7 days (Mon–Sun) in
 
 👉 Suggested action: <one plain sentence naming the page and the change>
 👍 = yes, do it (or reply "approve" / "go ahead") · 👎 = skip
+
+وفقنا الله وإياكم
 ```
 
 Rules for the text:
+- Follow `.claude/skills/telegram-voice/SKILL.md` for greetings and phrases: e.g. ما شاء الله / الحمد لله for progress, لا بأس for regressions.
 - Use plain words: "visitors", "time spent reading". Not "sessions", "engagement rate".
 - Round numbers. Show ▲ for better and ▼ for worse.
 - For the first report, or when there's no baseline, say "first week, no comparison yet" instead of inventing changes.
