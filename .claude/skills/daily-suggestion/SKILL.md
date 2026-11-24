@@ -18,6 +18,24 @@ Each run posts **exactly one** improvement idea for https://wisequest.org in the
 2. Build the site and its quality data: `npm ci && npm run build`. Then read `out/dev-data/scores.json` (per-page `textScore`, `pageScore`, `issues`, `fixes`) and `out/dev-data/history.json` (recent changes).
 3. Skim `docs/UX-IMPROVEMENTS.md` (older review), `app/page.tsx` (homepage, including the photo carousel: `image` + `slides`), `lib/visuals.ts` (page photos), `public/img/`, and `git log --oneline -30` (what changed recently).
 
+## 1b. Weekly dead-video check (Thursdays)
+
+Every **Thursday** (Pacific time), also run `npm run check-videos -- --json`. It lists videos embedded on the site that no longer exist (deleted or private YouTube videos, removed Vimeo or old WordPress/VideoPress videos).
+- If `dead` is not empty: **today's idea is removing them** (skip steps 2–3). Use the message below, theme `content`, and save the `todo` like any idea, e.g. "Remove these videos that no longer exist: on https://wisequest.org/stories/ the YouTube video O4jjf37I8rU (content/pages/stories.mdx line 23); …". List every dead video with its page, file and line.
+- If more than half the videos couldn't be checked (`unknown`), the video sites are probably blocked: say so in your final summary and post a normal idea instead.
+- If all videos are fine, post a normal idea. Don't mention the check.
+
+```
+🎬 Videos that no longer exist
+
+These videos show "This video doesn't exist" or "Video unavailable" to visitors:
+• <page link>: <video title, or "a YouTube video" if no title> (<reason>)
+• ...
+
+👍 = yes, remove them (or reply "approve" / "go ahead")
+👎 = keep them for now
+```
+
 ## 2. Update preferences (learn from people)
 
 Themes: `clarity` (shorter sentences, plain words) · `photos` (carousel, page header photos, visuals) · `engagement` (calls to action, featured content, homepage sections) · `content` (new or missing useful content) · `navigation` (menus, mobile, finding things) · `accessibility` (alt text, link text, contrast) · `trust` (About page, contact details, local info).

@@ -16,7 +16,8 @@
     "ga": "tsx scripts/ga-report.ts",
     "version:bump": "tsx scripts/version.ts",
     "version:show": "tsx scripts/version.ts show",
-    "release": "tsx scripts/release.ts"
+    "release": "tsx scripts/release.ts",
+    "check-videos": "tsx scripts/check-videos.ts"
   },
   "dependencies": {
     "fuse.js": "^7.5.0",
