@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.18.004 — 2026-11-24 (patch)
+
+- Telegram voice: Islamic greetings and responses in all bot messages
+
 ## v01.18.003 — 2026-11-24 (patch)
 
 - Jesus page: added the comparison chart image and a clear text version, with alt text and a spelling fix
