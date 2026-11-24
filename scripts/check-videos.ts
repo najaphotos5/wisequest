@@ -55,11 +55,12 @@ async function get(url: string) {
 async function check(v: Found): Promise<string | null> {
   try {
     if (v.kind === "YouTube") {
-      const { text } = await get(v.url);
-      const s = text.match(/"playabilityStatus":\{"status":"([A-Z_]+)"(?:,"reason":"([^"]*)")?/);
-      if (!s) return null;
-      if (s[1] === "OK" || s[1] === "LOGIN_REQUIRED" || s[1] === "AGE_CHECK_REQUIRED") return "";
-      return s[2] || s[1].toLowerCase();
+      // oEmbed is light and isn't rate-limited like the watch page: 200 ok, 401 embedding turned off, 404 deleted/private.
+      const { status } = await get(`https://www.youtube.com/oembed?format=json&url=${encodeURIComponent(v.url)}`);
+      if (status === 200) return "";
+      if (status === 404 || status === 400) return "This video is unavailable (deleted or private)";
+      if (status === 401 || status === 403) return "The owner no longer allows it to be shown on other websites";
+      return null;
     }
     if (v.kind === "Vimeo") {
       const { status } = await get(`https://vimeo.com/api/oembed.json?url=${encodeURIComponent(v.url)}`);
