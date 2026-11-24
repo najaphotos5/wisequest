@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.17.000 — 2026-11-24 (minor)
+
+- Dev mode: browse older versions of a page (only versions that changed it), going back one step at a time
+
 ## v01.16.004 — 2026-11-23 (patch)
 
 - Made the How to Pray page friendlier: intro, app buttons, image descriptions, clearer booklet title
