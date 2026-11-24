@@ -1,8 +1,8 @@
 {
-  "offset": 109084477,
+  "offset": 109084478,
   "chat_id": -1004488348585,
   "owner_telegram_id": 5763295123,
-  "next_id": 7,
+  "next_id": 8,
   "requests": [
     {
       "id": 1,
@@ -76,6 +76,20 @@
       "theme": "accessibility",
       "from_suggestion": 36,
       "merge_sha": "5e150a9a03e6ee3e8cddafbc72815fe51b27c5ae"
+    },
+    {
+      "id": 7,
+      "message_id": 42,
+      "status": "done",
+      "bot_message_ids": [
+        44
+      ],
+      "branch": "claude/todo-7",
+      "pr": 4,
+      "merge_sha": "0a4491135ac89417cba5d3471ecaf62dc9ee0bed",
+      "summary": "Jesus page chart image + text blocks (v01.18.003)",
+      "from_suggestion": 42,
+      "theme": "clarity"
     }
   ]
 }
