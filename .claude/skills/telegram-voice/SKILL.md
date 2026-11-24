@@ -15,6 +15,11 @@ All bot messages in the WiseQuest group follow this. The rest of the message sta
   - Friday daily idea: **جمعة مباركة** 🤍 (instead of the morning greeting)
   - Ramadan: **رمضان كريم** 🌙 · Eid days: **عيد مبارك، تقبل الله منا ومنكم**
 - **Replies** to a request don't repeat the full greeting every time. Start with a fitting short phrase instead (below).
+- **Fridays (all day, Pacific time):** every bot message gets a Friday touch.
+  - New messages open with **جمعة مباركة** 🤍.
+  - Replies add it naturally, e.g. "الحمد لله، تم ✅ جمعة مباركة 🤍" or "جمعتكم مباركة، بارك الله فيكم".
+  - Friday closings: **جمعة مباركة وتقبل الله منا ومنكم** · **لا تنسونا من صالح دعائكم**.
+  - One gentle reminder per Friday at most (in the daily idea or the weekly report, not in replies): "🤍 Don't forget Surat Al-Kahf and lots of salawat today". Never quote the verses themselves.
 
 ## Responses (pick what fits; vary them, don't repeat the same one every message)
 

@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.18.006 — 2026-11-24 (patch)
+
+- Telegram voice: Friday greetings (جمعة مباركة) in all bot messages
+
 ## v01.18.005 — 2026-11-24 (patch)
 
 - Weekly report moves to Fridays
