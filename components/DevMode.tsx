@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { HistoryDialog, RequestDialog, ScoresDialog } from "./DevDialogs";
 
 /**
@@ -27,6 +27,7 @@ const REPO = "https://github.com/najaphotos5/wisequest";
 import type { Change, Scores } from "./DevDialogs";
 type History = { shallow: boolean; site: Change[]; byPath: Record<string, Change[]> };
 
+type PageVersion = { sha: string; version: string; date: string; subject: string; title: string };
 type PageInfo = { source?: string; words?: number; meta?: Record<string, unknown>; summaryPoints?: number };
 type Build = { version?: string; builtAt?: string; commit?: string };
 
@@ -58,12 +59,16 @@ export function DevMode() {
   const [dialog, setDialog] = useState<null | "scores" | "history" | "request">(null);
   const [prefill, setPrefill] = useState<{ page: string; text: string } | null>(null);
   const [history, setHistory] = useState<History | null>(null);
+  const [versions, setVersions] = useState<Record<string, PageVersion[]> | null>(null);
+  const [viewIdx, setViewIdx] = useState(-1); // -1 = current version; 0.. = older versions of this page (newest first)
+  const [viewError, setViewError] = useState("");
 
   // Scores and history are generated at build time (scripts/dev-data.ts) and only downloaded in dev mode.
   useEffect(() => {
     if (!on || scores) return;
     fetch("/dev-data/scores.json").then((r) => (r.ok ? r.json() : null)).then(setScores).catch(() => {});
     fetch("/dev-data/history.json").then((r) => (r.ok ? r.json() : null)).then(setHistory).catch(() => {});
+    fetch("/dev-data/versions/index.json").then((r) => (r.ok ? r.json() : null)).then(setVersions).catch(() => {});
   }, [on, scores]);
 
   // Restore / remember panel state and overlay choices across pages.
@@ -161,6 +166,47 @@ export function DevMode() {
     return () => window.clearInterval(id);
   }, [on, path]);
 
+  // Older versions of this page: swap the article body ([data-wq-body]) for a snapshot rendered at build time.
+  const pathKey = path.endsWith("/") ? path : `${path}/`;
+  const pageVersions = useMemo(() => versions?.[pathKey] ?? [], [versions, pathKey]);
+  useEffect(() => setViewIdx(-1), [path]);
+  useEffect(() => {
+    const body = document.querySelector<HTMLElement>("[data-wq-body]");
+    const restore = () => {
+      document.getElementById("wq-dev-oldver")?.remove();
+      if (body) body.style.display = "";
+    };
+    const v = on ? pageVersions[viewIdx] : undefined;
+    if (!body || !v) {
+      restore();
+      return;
+    }
+    let cancelled = false;
+    setViewError("");
+    fetch(`/dev-data/versions/${v.sha}/${pathKey.replace(/\//g, "_")}.html`)
+      .then((r) => (r.ok ? r.text() : Promise.reject(new Error(`HTTP ${r.status}`))))
+      .then((html) => {
+        if (cancelled) return;
+        restore();
+        const box = document.createElement("div");
+        box.id = "wq-dev-oldver";
+        box.className = "prose prose-lg mx-auto max-w-3xl px-4 py-12 wq-dev-oldver";
+        const note = document.createElement("p");
+        note.className = "not-prose wq-dev-oldver-note";
+        note.textContent = `🕘 Older version${v.version ? ` v${v.version}` : ""} (${v.date}): ${v.subject}${v.title ? ` · title then: "${v.title}"` : ""}. Only visible in dev mode.`;
+        box.innerHTML = html; // our own repo content, rendered at build time
+        box.prepend(note);
+        body.after(box);
+        body.style.display = "none";
+        window.scrollTo({ top: Math.min(window.scrollY, box.offsetTop - 120) });
+      })
+      .catch((e) => !cancelled && setViewError(String(e.message || e)));
+    return () => {
+      cancelled = true;
+      restore();
+    };
+  }, [on, viewIdx, pathKey, pageVersions]);
+
   // Overlay classes on <html>.
   useEffect(() => {
     const el = document.documentElement;
@@ -237,6 +283,11 @@ export function DevMode() {
       <div className="wq-dev-banner" role="status">
         <strong>🛠 DEV MODE</strong>
         <span>{build.version}</span>
+        {pageVersions.length > 0 && viewIdx < 0 && (
+          <button type="button" className="wq-dev-chip" onClick={() => setViewIdx(0)} title="See how this page looked before its last change">
+            ⏪ Older versions ({pageVersions.length})
+          </button>
+        )}
         {sc && (
           <>
             <span className={`wq-dev-${grade(sc.textScore, 10)}`}>Text {sc.textScore}/10</span>
@@ -261,6 +312,18 @@ export function DevMode() {
           ✕ Back to normal mode
         </button>
       </div>
+      {viewIdx >= 0 && pageVersions[viewIdx] && (
+        <div className="wq-dev-verbar" role="toolbar" aria-label="Page versions">
+          <button type="button" onClick={() => setViewIdx((i) => i + 1)} disabled={viewIdx >= pageVersions.length - 1} title="Go further back">◀ Older</button>
+          <span>
+            🕘 <b>{pageVersions[viewIdx].version ? `v${pageVersions[viewIdx].version}` : "Early version"}</b>
+            {" · "}{pageVersions[viewIdx].date} · {viewIdx + 1} of {pageVersions.length} older
+          </span>
+          <button type="button" onClick={() => setViewIdx((i) => i - 1)} title="Go forward in time">Newer ▶</button>
+          <button type="button" onClick={() => setViewIdx(-1)} title="Show the live version again">✕ Current</button>
+          {viewError && <em className="wq-dev-bad"> {viewError}</em>}
+        </div>
+      )}
       {dialog === "scores" && scores && <ScoresDialog
           scores={scores}
           current={key}
@@ -352,6 +415,29 @@ export function DevMode() {
                   ))}
                 </ul>
               </details>
+            )}
+          </fieldset>
+          <fieldset>
+            <legend>Page versions</legend>
+            {pageVersions.length ? (
+              <ul>
+                <li>
+                  <button type="button" className="wq-dev-link" onClick={() => setViewIdx(-1)}>{viewIdx < 0 ? "▶ " : ""}Current (live)</button>
+                </li>
+                {pageVersions.map((v, i) => (
+                  <li key={v.sha}>
+                    <button type="button" className="wq-dev-link" onClick={() => setViewIdx(i)}>
+                      {viewIdx === i ? "▶ " : ""}
+                      {v.version ? `v${v.version}` : "Early version"}
+                    </button>{" "}
+                    <span className="wq-dev-muted">{v.date}</span> {v.subject}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="wq-dev-muted">
+                {versions ? (info.source ? "No earlier version of this page yet." : "Older versions are available for article and Q&A pages only.") : "Loading…"}
+              </p>
             )}
           </fieldset>
           <fieldset>
