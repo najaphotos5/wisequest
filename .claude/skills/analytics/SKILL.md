@@ -60,7 +60,7 @@ Never include personal data (GA4 doesn't give names; don't speculate about indiv
 ## 4. Use elsewhere
 
 - **Daily suggestion** (`.claude/skills/daily-suggestion/SKILL.md`): when credentials are available, prefer ideas for pages that get real traffic but low engagement.
-- **Weekly report** (`.claude/skills/weekly-report/SKILL.md`): the Monday Telegram report — progress vs regression and one action. Use it for any recurring/weekly report so the format stays consistent.
+- **Weekly report** (`.claude/skills/weekly-report/SKILL.md`): the Friday Telegram report — progress vs regression and one action. Use it for any recurring/weekly report so the format stays consistent.
 - **Telegram**: for a one-off report in the group, post the short format above (one message).
 
 ## Lessons
