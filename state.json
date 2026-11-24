@@ -1,8 +1,8 @@
 {
-  "offset": 109084482,
+  "offset": 109084486,
   "chat_id": -1004488348585,
   "owner_telegram_id": 5763295123,
-  "next_id": 9,
+  "next_id": 10,
   "requests": [
     {
       "id": 1,
@@ -103,6 +103,18 @@
       "merge_sha": "33fa4ac22591fafc099f2255172a94ee0dd58e92",
       "summary": "Jesus page chart rebuilt as styled comparison (v01.19.000)",
       "theme": "clarity"
+    },
+    {
+      "id": 9,
+      "message_id": 51,
+      "status": "needs-info",
+      "bot_message_ids": [
+        52
+      ],
+      "branch": null,
+      "pr": null,
+      "summary": "Jesus page: QR code under Shedinger quote, YouTube video + bullet summary, extra content",
+      "theme": "content"
     }
   ]
 }
