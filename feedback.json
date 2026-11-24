@@ -42,6 +42,13 @@
       "theme": "content",
       "page": "/learn/jesus",
       "reverted": false
+    },
+    {
+      "request_id": 10,
+      "date": "2026-11-24",
+      "theme": "content",
+      "page": "/learn/jesus/",
+      "reverted": false
     }
   ]
 }

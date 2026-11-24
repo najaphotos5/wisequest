@@ -1,8 +1,8 @@
 {
-  "offset": 109084487,
+  "offset": 109084488,
   "chat_id": -1004488348585,
   "owner_telegram_id": 5763295123,
-  "next_id": 10,
+  "next_id": 11,
   "requests": [
     {
       "id": 1,
@@ -122,6 +122,19 @@
         53
       ],
       "todo": "On https://wisequest.org/learn/jesus/ (content/pages/learn/jesus.mdx): directly under the existing \"Watch the related video on YouTube\" button (already added in v01.19.004; do NOT add the video again) and before the comparison table, add this section exactly (Markdown; keep every Quran/hadith quote word for word):\n\n## Jesus in Islam (peace be upon him)\n\nMuslims love and honour Jesus, ʿĪsā ibn Maryam (\"Jesus, son of Mary\"), as one of the greatest messengers of God. A Muslim cannot be a Muslim without believing in him. The Quran mentions him by name 25 times and calls him the Messiah (al-Masīḥ), \"a word from Him\" and \"a soul from Him\" (Quran 3:45, 4:171).\n\n### His mother, Mary\n\n- God chose Mary, purified her and chose her \"above the women of the worlds\" (Quran 3:42).\n- A whole chapter of the Quran, Surah Maryam, is named after her, and another, Āl ʿImrān, after her family.\n\n### A miraculous birth\n\n- Jesus was born to Mary without a father. \"The example of Jesus to Allah is like that of Adam\": God said \"Be,\" and he was (Quran 3:59).\n- As a newborn, he spoke from the cradle to defend his mother: \"Indeed, I am the servant of Allah. He has given me the Scripture and made me a prophet\" (Quran 19:30).\n\n### His message\n\n- He was sent to the Children of Israel, confirming the Torah, and God gave him the Gospel (Injīl), \"guidance and light\" (Quran 3:49, 5:46).\n- He called people to \"worship Allah, my Lord and your Lord\" (Quran 5:117).\n- His disciples answered his call: \"We have believed in Allah and testify that we are Muslims [submitting to Him]\" (Quran 3:52).\n\n### His miracles, by God's permission\n\n- He formed a bird from clay, breathed into it and it became a bird.\n- He healed the blind and the leper, and brought the dead back to life (Quran 3:49, 5:110).\n\n### A human messenger, not God\n\n- \"The Messiah, son of Mary, was not but a messenger.\" He and his mother \"both used to eat food\" (Quran 5:75).\n- On the Day of Judgment, Jesus will say he never told people to worship him or his mother (Quran 5:116–117).\n\n### The cross\n\n- The Quran says: \"They did not kill him, nor did they crucify him; but [another] was made to resemble him to them.\" Rather, \"Allah raised him to Himself\" (Quran 4:157–158).\n\n### His return\n\n- Muslims believe Jesus will come back before the Day of Judgment, as a just ruler who brings peace and justice and defeats the False Messiah (reported in Sahih al-Bukhari and Sahih Muslim).\n\n### Jesus and Muhammad\n\n- Jesus gave good news of \"a messenger to come after me, whose name is Aḥmad\" (Quran 61:6).\n- Prophet Muhammad ﷺ said: \"I am the closest of people to Jesus, son of Mary… the prophets are brothers… their religion is one\" (Sahih al-Bukhari 3442–3443).\n\nThis is why Muslims always say \"peace be upon him\" after his name: to follow Islam is to follow the same message Jesus brought."
+    },
+    {
+      "id": 10,
+      "message_id": 55,
+      "status": "done",
+      "bot_message_ids": [
+        57
+      ],
+      "branch": "claude/todo-10",
+      "pr": 7,
+      "merge_sha": "accde12ad57275a0c8c61a89deb316092425aea4",
+      "summary": "Jesus page: second video added (v01.19.005)",
+      "theme": "content"
     }
   ]
 }
