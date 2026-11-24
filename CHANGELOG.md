@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.17.001 — 2026-11-24 (patch)
+
+- Removed 4 videos that no longer exist (3 on Palestine, 1 on Stories)
+
 ## v01.17.000 — 2026-11-24 (minor)
 
 - Dev mode: browse older versions of a page (only versions that changed it), going back one step at a time
