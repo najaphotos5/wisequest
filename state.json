@@ -1,5 +1,5 @@
 {
-  "offset": 109084486,
+  "offset": 109084487,
   "chat_id": -1004488348585,
   "owner_telegram_id": 5763295123,
   "next_id": 10,
@@ -107,14 +107,16 @@
     {
       "id": 9,
       "message_id": 51,
-      "status": "needs-info",
+      "status": "done",
       "bot_message_ids": [
-        52
+        52,
+        54
       ],
-      "branch": null,
-      "pr": null,
-      "summary": "Jesus page: QR code under Shedinger quote, YouTube video + bullet summary, extra content",
-      "theme": "content"
+      "branch": "claude/todo-9",
+      "pr": 6,
+      "summary": "Jesus page: video link under Shedinger quote (v01.19.004)",
+      "theme": "content",
+      "merge_sha": "3e5fe2c7aa289d1edf4ae6c29479f8eee972a933"
     }
   ]
 }
