@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.19.000 — 2026-11-24 (minor)
+
+- Jesus page: comparison rebuilt as a clear, styled chart (replaces the low-quality image)
+
 ## v01.18.006 — 2026-11-24 (patch)
 
 - Telegram voice: Friday greetings (جمعة مباركة) in all bot messages
