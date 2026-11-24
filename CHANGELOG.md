@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.19.005 — 2026-11-24 (patch)
+
+- Jesus page: added a second related YouTube video
+
 ## v01.19.004 — 2026-11-24 (patch)
 
 - Jesus page: added video link under the Shedinger quote
