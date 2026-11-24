@@ -94,38 +94,48 @@ export function Figure({ src, alt, caption, wide }: { src: string; alt: string; 
 }
 
 const compareKinds = {
-  islam: { label: "Islamic view", mark: "✅", box: "border-brand/30 bg-brand-soft" },
-  jesus: { label: "Jesus’ view", mark: "✅", box: "border-accent/40 bg-surface" },
-  church: { label: "Paul & Church", mark: "❌", box: "border-line bg-surface-2" },
+  islam: { label: "Islamic view", mark: "✅", cell: "bg-brand-soft" },
+  jesus: { label: "Jesus’ view", mark: "✅", cell: "bg-surface" },
+  church: { label: "Paul & Church", mark: "❌", cell: "bg-surface-2" },
 } as const;
 
+const compareCols = "md:grid md:grid-cols-[minmax(7rem,0.6fr)_1fr_1fr_1fr]";
+
+/** A real table on wide screens (header row, grid lines, topic column); stacked rows on phones. */
 export function CompareChart({ children }: { children: ReactNode }) {
   return (
-    <section aria-label="Comparison of the Islamic view, Jesus’ view, and the Paul and Church view" className="not-prose my-8 space-y-5">
-      <div aria-hidden="true" className="hidden grid-cols-3 gap-3 px-[calc(1.25rem+1px)] text-sm font-bold uppercase tracking-wide text-brand md:grid">
-        <span>Islamic view ✅</span>
-        <span>Jesus’ view ✅</span>
-        <span>Paul &amp; Church ❌</span>
+    <div
+      role="table"
+      aria-label="Comparison of the Islamic view, Jesus’ view, and the Paul and Church view"
+      className="not-prose my-8 overflow-hidden rounded-xl border border-line bg-surface shadow-sm lg:-mx-24"
+    >
+      <div role="row" className={`hidden bg-brand text-sm font-bold uppercase tracking-wide text-white md:divide-x md:divide-white/20 ${compareCols}`}>
+        <span role="columnheader" className="px-4 py-3">Topic</span>
+        <span role="columnheader" className="px-4 py-3">Islamic view ✅</span>
+        <span role="columnheader" className="px-4 py-3">Jesus’ view ✅</span>
+        <span role="columnheader" className="px-4 py-3">Paul &amp; Church ❌</span>
       </div>
       {children}
-    </section>
+    </div>
   );
 }
 
 export function CompareTopic({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <article className="rounded-2xl border border-line bg-surface p-4 shadow-sm md:p-5">
-      <h3 className="mb-3 font-serif text-lg font-semibold text-ink">{title}</h3>
-      <div className="grid gap-3 md:grid-cols-3">{children}</div>
-    </article>
+    <div role="row" className={`border-t border-line first:border-t-0 md:divide-x md:divide-line ${compareCols}`}>
+      <div role="rowheader" className="bg-surface-2 px-4 py-3 font-serif text-base font-semibold text-ink md:py-4">
+        {title}
+      </div>
+      {children}
+    </div>
   );
 }
 
 export function CompareView({ kind, children }: { kind: keyof typeof compareKinds; children: ReactNode }) {
   const k = compareKinds[kind];
   return (
-    <div className={`rounded-xl border p-4 text-[0.95rem] leading-relaxed text-ink ${k.box}`}>
-      <p className="mb-1 text-xs font-bold uppercase tracking-wide text-brand md:sr-only">
+    <div role="cell" className={`border-t border-line px-4 py-3 text-[0.95rem] leading-relaxed text-ink md:border-t-0 md:py-4 ${k.cell}`}>
+      <p className="mb-1 text-xs font-bold uppercase tracking-wide text-brand md:hidden">
         {k.label} {k.mark}
       </p>
       <p>{children}</p>

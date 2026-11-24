@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.19.001 — 2026-11-24 (patch)
+
+- Jesus page: comparison shown as a real table (header row, grid lines, topic column)
+
 ## v01.19.000 — 2026-11-24 (minor)
 
 - Jesus page: comparison rebuilt as a clear, styled chart (replaces the low-quality image)
