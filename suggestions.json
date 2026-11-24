@@ -14,5 +14,14 @@
     "title": "Fix the broken comparison chart on the Jesus page",
     "message_id": 42,
     "todo": "On https://wisequest.org/learn/jesus/ rebuild the flattened comparison (the loose lines starting at \"Aspect / Islamic View / Jesus' View / Paul & Church\") as a proper chart with one block per topic: Monotheism, Jesus was sent by God, Miracles, Salvation Through Righteous Deeds, God Alone Has Supreme Authority, Worship, Prophet Muhammad. Each block shows Islamic view, Jesus' view, Paul & Church in that order (cards on phones). Move every Quran and Bible quote exactly as it is now, never reword. Add alt text to the two chart images (e.g. 'Chart comparing the Islamic view, Jesus' view and the Paul and Church view'). Fix the spelling 'Mathew' to 'Matthew' in the Worship reference."
+  },
+  {
+    "date": "2026-11-24",
+    "theme": "content",
+    "page": "/learn/jesus/",
+    "title": "Jesus page: video + 'How Muslims see Jesus' paragraph",
+    "message_id": 56,
+    "todo": "On https://wisequest.org/learn/jesus/ (content/pages/learn/jesus.mdx), directly under the opening Robert F. Shedinger quote: (1) add the YouTube video https://youtu.be/sr1xZcovO28 (\"Was Jesus a Muslim? by Robert F. Shedinger\") as an embed (<YouTube id=\"sr1xZcovO28\" title=\"Was Jesus a Muslim? – Robert F. Shedinger\" />), no QR code and no video summary; (2) under the video, add a short heading \"How Muslims see Jesus\" followed by this paragraph exactly: Muslims love and honour Jesus, ʿĪsā ibn Maryam (\"Jesus, son of Mary\"), as one of the greatest prophets and messengers of God. The Quran mentions him by name about 25 times and calls him al-Masīḥ (the Messiah) and \"a Word from God\" (Quran 3:45). Muslims believe he was born miraculously to the Virgin Mary, who is herself deeply honoured; a whole chapter of the Quran, Surah Maryam, is named after her (19:16–34). He spoke as a baby in the cradle to defend his mother, and by God's permission he healed the blind and the lepers and raised the dead (5:110). Islam teaches that Jesus was a human being, not God or the son of God: like Adam, he was created by God's command \"Be\" (3:59), and he called people to worship the One God alone. Muslims believe he was not killed or crucified, but was raised up by God (4:157–158), and that he will return before the Day of Judgment to restore justice. He also gave good news of a messenger to come after him (61:6). For Muslims, loving and following Jesus is part of their faith, which is why they say \"peace be upon him\" after his name.",
+    "request_id": 9
   }
 ]
