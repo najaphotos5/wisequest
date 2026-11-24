@@ -93,6 +93,46 @@ export function Figure({ src, alt, caption, wide }: { src: string; alt: string; 
   );
 }
 
+const compareKinds = {
+  islam: { label: "Islamic view", mark: "✅", box: "border-brand/30 bg-brand-soft" },
+  jesus: { label: "Jesus’ view", mark: "✅", box: "border-accent/40 bg-surface" },
+  church: { label: "Paul & Church", mark: "❌", box: "border-line bg-surface-2" },
+} as const;
+
+export function CompareChart({ children }: { children: ReactNode }) {
+  return (
+    <section aria-label="Comparison of the Islamic view, Jesus’ view, and the Paul and Church view" className="not-prose my-8 space-y-5">
+      <div aria-hidden="true" className="hidden grid-cols-3 gap-3 px-[calc(1.25rem+1px)] text-sm font-bold uppercase tracking-wide text-brand md:grid">
+        <span>Islamic view ✅</span>
+        <span>Jesus’ view ✅</span>
+        <span>Paul &amp; Church ❌</span>
+      </div>
+      {children}
+    </section>
+  );
+}
+
+export function CompareTopic({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <article className="rounded-2xl border border-line bg-surface p-4 shadow-sm md:p-5">
+      <h3 className="mb-3 font-serif text-lg font-semibold text-ink">{title}</h3>
+      <div className="grid gap-3 md:grid-cols-3">{children}</div>
+    </article>
+  );
+}
+
+export function CompareView({ kind, children }: { kind: keyof typeof compareKinds; children: ReactNode }) {
+  const k = compareKinds[kind];
+  return (
+    <div className={`rounded-xl border p-4 text-[0.95rem] leading-relaxed text-ink ${k.box}`}>
+      <p className="mb-1 text-xs font-bold uppercase tracking-wide text-brand md:sr-only">
+        {k.label} {k.mark}
+      </p>
+      <p>{children}</p>
+    </div>
+  );
+}
+
 function PhotoCredits() {
   return (
     <ul className="text-sm">
@@ -106,4 +146,4 @@ function PhotoCredits() {
   );
 }
 
-export const mdxComponents = { PhotoCredits, Figure, YouTube, VideoEmbed, VideoGrid, Download, Verse, Callout, Steps, Step, ButtonLink, a: A, img: Img };
+export const mdxComponents = { PhotoCredits, Figure, YouTube, VideoEmbed, VideoGrid, Download, Verse, Callout, Steps, Step, ButtonLink, CompareChart, CompareTopic, CompareView, a: A, img: Img };
