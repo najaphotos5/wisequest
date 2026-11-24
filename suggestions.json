@@ -6,5 +6,13 @@
     "title": "Make How to Pray friendlier for new Muslims",
     "message_id": 36,
     "todo": "On https://wisequest.org/new-muslims/how-to-pray/ add a short 2-3 sentence introduction, replace the two raw app web addresses with buttons \"Get the Salah app for Android\" and \"Get the Salah app for iPhone\", add alt text to the two app images, and give the prayer booklet download a readable title and one-line description."
+  },
+  {
+    "date": "2026-11-24",
+    "theme": "clarity",
+    "page": "/learn/jesus/",
+    "title": "Fix the broken comparison chart on the Jesus page",
+    "message_id": 42,
+    "todo": "On https://wisequest.org/learn/jesus/ rebuild the flattened comparison (the loose lines starting at \"Aspect / Islamic View / Jesus' View / Paul & Church\") as a proper chart with one block per topic: Monotheism, Jesus was sent by God, Miracles, Salvation Through Righteous Deeds, God Alone Has Supreme Authority, Worship, Prophet Muhammad. Each block shows Islamic view, Jesus' view, Paul & Church in that order (cards on phones). Move every Quran and Bible quote exactly as it is now, never reword. Add alt text to the two chart images (e.g. 'Chart comparing the Islamic view, Jesus' view and the Paul and Church view'). Fix the spelling 'Mathew' to 'Matthew' in the Worship reference."
   }
 ]
