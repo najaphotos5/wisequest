@@ -97,7 +97,8 @@ async function main() {
     return;
   }
   console.log(`Checked ${unique.size} videos (${unknown} couldn't be checked).`);
-  if (!dead.length) console.log("All videos still exist ✓");
+  if (unknown > unique.size / 2) console.log("⚠ Most videos couldn't be checked: the video sites are probably blocked from this network.");
+  else if (!dead.length) console.log(unknown ? "No dead videos found among those checked ✓" : "All videos still exist ✓");
   for (const d of dead) console.log(`✖ ${d.page}  ${d.kind} ${d.id}${d.title ? ` "${d.title}"` : ""}: ${d.reason}  (${d.file}:${d.line})`);
 }
 
