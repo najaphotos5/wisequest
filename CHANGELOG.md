@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.18.002 — 2026-11-24 (patch)
+
+- check-videos: use YouTube oEmbed (not rate-limited)
+
 ## v01.18.001 — 2026-11-24 (patch)
 
 - check-videos: warn instead of ✓ when video sites can't be reached
