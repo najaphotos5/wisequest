@@ -99,28 +99,29 @@ const compareKinds = {
   church: { label: "Church Teachings", mark: "❌", cell: "bg-rose-50" },
 } as const;
 
-const compareCols = "md:grid md:grid-cols-[2.5rem_minmax(7rem,0.7fr)_1fr_1fr_1fr]";
+// Same table on every screen: on phones it keeps its columns and scrolls sideways, with # and Aspect pinned on the left.
+const compareCols = "grid grid-cols-[2rem_6.25rem_12.5rem_12.5rem_12.5rem] md:grid-cols-[2.5rem_minmax(7rem,0.7fr)_1fr_1fr_1fr]";
+const pinNum = "sticky left-0 z-10 md:static";
+const pinAspect = "sticky left-8 z-10 shadow-[3px_0_6px_-3px_rgba(0,0,0,0.25)] md:static md:shadow-none";
 
-/** A real table on wide screens (header row, grid lines, # and Aspect columns); stacked rows on phones. */
 export function CompareChart({ title, children }: { title?: string; children: ReactNode }) {
   return (
     <div className="not-prose my-8 lg:-mx-24">
       {title && <h2 className="mb-4 text-center font-serif text-2xl font-semibold text-ink md:text-3xl">{title}</h2>}
-      <div
-        role="table"
-        aria-label={title ?? "Comparison of the Islamic view, Jesus’ view, and Church teachings"}
-        className="overflow-hidden rounded-xl border border-line bg-surface shadow-sm"
-      >
-        <div role="row" className={`hidden bg-brand text-sm font-bold text-white md:divide-x md:divide-white/20 ${compareCols}`}>
-          <span role="columnheader" className="px-2 py-3 text-center">#</span>
-          <span role="columnheader" className="px-4 py-3">Aspect</span>
-          {Object.values(compareKinds).map((k) => (
-            <span key={k.label} role="columnheader" className="px-4 py-3">
-              {k.label} {k.mark}
-            </span>
-          ))}
+      <p className="mb-2 text-center text-xs text-muted md:hidden">Swipe sideways to see all columns →</p>
+      <div className="overflow-x-auto overscroll-x-contain rounded-xl border border-line bg-surface shadow-sm">
+        <div role="table" aria-label={title ?? "Comparison of the Islamic view, Jesus’ view, and Church teachings"} className="min-w-[46rem] md:min-w-0">
+          <div role="row" className={`divide-x divide-white/20 bg-brand text-xs font-bold text-white md:text-sm ${compareCols}`}>
+            <span role="columnheader" className={`bg-brand px-1 py-3 text-center ${pinNum}`}>#</span>
+            <span role="columnheader" className={`bg-brand px-3 py-3 md:px-4 ${pinAspect}`}>Aspect</span>
+            {Object.values(compareKinds).map((k) => (
+              <span key={k.label} role="columnheader" className="px-3 py-3 md:px-4">
+                {k.label} {k.mark}
+              </span>
+            ))}
+          </div>
+          {children}
         </div>
-        {children}
       </div>
     </div>
   );
@@ -128,12 +129,11 @@ export function CompareChart({ title, children }: { title?: string; children: Re
 
 export function CompareTopic({ num, title, children }: { num?: number | string; title: string; children: ReactNode }) {
   return (
-    <div role="row" className={`border-t border-line first:border-t-0 md:divide-x md:divide-line ${compareCols}`}>
-      <div role="cell" className="hidden px-2 py-3 text-center text-sm font-semibold text-muted md:block md:py-4">
+    <div role="row" className={`divide-x divide-line border-t border-line ${compareCols}`}>
+      <div role="cell" className={`bg-surface px-1 py-3 text-center text-xs font-semibold text-muted md:py-4 md:text-sm ${pinNum}`}>
         {num}
       </div>
-      <div role="rowheader" className="bg-surface-2 px-4 py-3 font-serif text-base font-semibold text-ink md:py-4">
-        {num !== undefined && <span className="mr-2 text-muted md:hidden">{num}.</span>}
+      <div role="rowheader" className={`bg-surface-2 px-3 py-3 font-serif text-sm font-semibold leading-snug text-ink md:px-4 md:py-4 md:text-base ${pinAspect}`}>
         {title}
       </div>
       {children}
@@ -142,13 +142,9 @@ export function CompareTopic({ num, title, children }: { num?: number | string; 
 }
 
 export function CompareView({ kind, children }: { kind: keyof typeof compareKinds; children: ReactNode }) {
-  const k = compareKinds[kind];
   return (
-    <div role="cell" className={`border-t border-line px-4 py-3 text-[0.95rem] leading-relaxed text-ink md:border-t-0 md:py-4 ${k.cell}`}>
-      <p className="mb-1 text-xs font-bold uppercase tracking-wide text-brand md:hidden">
-        {k.label} {k.mark}
-      </p>
-      <p>{children}</p>
+    <div role="cell" className={`px-3 py-3 text-sm leading-relaxed text-ink md:px-4 md:py-4 md:text-[0.95rem] ${compareKinds[kind].cell}`}>
+      {children}
     </div>
   );
 }
