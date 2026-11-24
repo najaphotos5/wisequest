@@ -1,11 +1,11 @@
 ---
 name: weekly-report
-description: Build and post the weekly wisequest.org report in the WiseQuest Telegram group. It covers visitors and engagement vs last week (Google Analytics), progress and regressions per page, quality-score changes, what was published, and ONE action. Used by the "WiseQuest weekly report" cloud routine every Monday. Edit the Lessons section to steer it.
+description: Build and post the weekly wisequest.org report in the WiseQuest Telegram group. It covers visitors and engagement vs last week (Google Analytics), progress and regressions per page, quality-score changes, what was published, and ONE action. Used by the "WiseQuest weekly report" cloud routine every Friday (9 AM Pacific). Edit the Lessons section to steer it.
 ---
 
 # Weekly report: simple, actionable, progress vs regression
 
-Every Monday, post **one** short report about the previous 7 days (Mon–Sun) in the WiseQuest Telegram group (chat_id `-1004488348585`). A busy volunteer should understand it in 30 seconds and know the one thing to do next.
+Every Friday, post **one** short report about the previous 7 days (last Friday – Thursday) in the WiseQuest Telegram group (chat_id `-1004488348585`). A busy volunteer should understand it in 30 seconds and know the one thing to do next.
 
 **You only report. Never edit the website in this run**, except the monthly Lessons update below.
 
@@ -39,9 +39,9 @@ Every Monday, post **one** short report about the previous 7 days (Mon–Sun) in
 
 ```
 السلام عليكم ورحمة الله
-أسعد الله أوقاتكم
+جمعة مباركة 🤍
 
-📊 Weekly report: <Mon d> – <Sun d>
+📊 Weekly report: <Fri d> – <Thu d>
 
 👥 Visitors: N (▲/▼ x% or "A → B") · Views: N · Avg time engaged: Xs
 ⭐ Site quality: text X/10, pages Y/100 (▲/▼ vs last week)
@@ -75,7 +75,7 @@ Rules for the text:
 
 ## 5. Keep improving (monthly)
 
-On the **first Monday of each month**, read the last 4 reports and their feedback:
+On the **first Friday of each month**, read the last 4 reports and their feedback:
 - reactions (👍 = action accepted, 👎 = skipped)
 - whether each week's action was done (accepted and published, or a release touching that page)
 - whether the flagged 📉 items improved the following week
@@ -85,4 +85,4 @@ Add 2–3 short lessons to the **Lessons** section below, e.g. "Actions about ph
 ## Lessons
 
 <!-- Owners or the monthly update add lessons here, newest first. -->
-- (none yet; the first report is for the week of 2026-11-23)
+- (none yet; the first report is on Friday 2026-11-27)

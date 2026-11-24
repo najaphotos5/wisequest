@@ -11,8 +11,8 @@ All bot messages in the WiseQuest group follow this. The rest of the message sta
 
 - **New messages** (daily idea, weekly report) start with **السلام عليكم ورحمة الله** on its own line, then a short greeting that fits the time:
   - morning (daily idea): **أسعد الله صباحكم** 🌅 or **صباح الخير**
-  - Monday report: **أسعد الله أوقاتكم**
-  - Friday: **جمعة مباركة** 🤍 (instead of the time greeting)
+  - Friday weekly report: **جمعة مباركة** 🤍
+  - Friday daily idea: **جمعة مباركة** 🤍 (instead of the morning greeting)
   - Ramadan: **رمضان كريم** 🌙 · Eid days: **عيد مبارك، تقبل الله منا ومنكم**
 - **Replies** to a request don't repeat the full greeting every time. Start with a fitting short phrase instead (below).
 
