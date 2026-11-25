@@ -139,5 +139,12 @@
       "theme": "content"
     }
   ],
-  "awaiting": []
+  "awaiting": [
+    {
+      "key": "m60",
+      "message_id": 60,
+      "sent_at": 1795616006,
+      "reminders": 0
+    }
+  ]
 }
