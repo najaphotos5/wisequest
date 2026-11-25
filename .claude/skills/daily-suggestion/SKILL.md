@@ -85,6 +85,8 @@ Effort: small | medium
 👎 = skip
 ```
 
+The Arabic greeting and closing lines in the templates here are only examples: pick fresh ones from the phrase bank in `.claude/skills/telegram-voice/SKILL.md` each time (rotate; don't repeat yesterday's or last week's).
+
 Never put a `/todo` line in the message. People accept with 👍 or a short reply; the full change description lives only in `suggestions.json` (`todo` field), where the hourly assistant reads it.
 
 Writing tips:

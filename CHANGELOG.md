@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.19.008 — 2026-11-25 (patch)
+
+- Daily idea and weekly report: rotate Islamic greetings from the phrase bank
+
 ## v01.19.007 — 2026-11-25 (patch)
 
 - Telegram voice: wide Islamic phrase bank, rotate phrases instead of repeating the same few
