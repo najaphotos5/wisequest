@@ -1,6 +1,6 @@
 ---
 name: update-site
-description: The required procedure for ANY change to the WiseQuest website repo (content, pages, Q&A, photos, design, settings, scripts) by any person or agent. Covers setup, building and previewing, where content lives, best practices, versioning (vXX.XX.XXX), and safely committing and pushing when several agents work at once. Use for every edit, e.g. "fix a typo", "add a Q&A", "change a photo", "update the Quran 101 time".
+description: The required procedure for ANY change to the WiseQuest website repo (content, pages, Q&A, photos, design, settings, scripts) by any person or agent. Covers setup, building and previewing, where content lives, best practices, versioning (vXX.XX.XX), and safely committing and pushing when several agents work at once. Use for every edit, e.g. "fix a typo", "add a Q&A", "change a photo", "update the Quran 101 time".
 ---
 
 # Updating the WiseQuest site
@@ -81,13 +81,13 @@ Open the pages you changed and check them on desktop and at phone width. `npm ru
 
 ### 4. Choose the version bump
 
-Versions are **vXX.XX.XXX** = major.minor.patch (in `VERSION`, shown in the site footer, history in `CHANGELOG.md`).
+Versions are **vXX.XX.XX** = major.minor.patch (in `VERSION`, shown in the site footer, history in `CHANGELOG.md`). Each part has two digits; patch goes up to 99, then bump `minor`. (Versions up to v01.20.009 used three patch digits.)
 
 | Change | Part | Example |
 | --- | --- | --- |
-| Small: typo or text edit, swap a photo, fix a link, update a time/address, small style tweak | `patch` (last number) | v01.03.000 → v01.03.001 |
-| New page, section, feature, or noticeable design change | `minor` (middle number; resets last) | v01.03.001 → v01.04.000 |
-| Redesign, new site structure, or changes that break existing URLs | `major` (first number; resets the others) | v01.04.000 → v02.00.000 |
+| Small: typo or text edit, swap a photo, fix a link, update a time/address, small style tweak | `patch` (last number) | v01.03.00 → v01.03.01 |
+| New page, section, feature, or noticeable design change | `minor` (middle number; resets last) | v01.03.01 → v01.04.00 |
+| Redesign, new site structure, or changes that break existing URLs | `major` (first number; resets the others) | v01.04.00 → v02.00.00 |
 
 One release with several changes takes the largest part that applies. The summary is one plain-English line a non-technical reader understands, e.g. `"Updated Quran 101 time to 7:30 PM"`.
 
@@ -102,7 +102,7 @@ What it does, in order:
 2. Syncs with `origin` (rebase, keeping your uncommitted work).
 3. Runs `npm run build` and `npm run check-links` and stops on any failure.
 4. Bumps the version and adds the changelog entry.
-5. Commits everything as `vXX.XX.XXX: summary` and pushes.
+5. Commits everything as `vXX.XX.XX: summary` and pushes.
 6. If the push is rejected because someone pushed first, it undoes its own commit (keeping your work), syncs, re-checks, re-bumps on top of the newer version, and retries (up to 5 times).
 
 Use `--dry-run` to check everything without committing. Avoid `--skip-checks`.
@@ -112,7 +112,7 @@ It stages **all** changes (`git add -A`), so run `git status` first and make sur
 ### 6. Confirm and report
 
 - On `main`: the push publishes the site. GitHub Actions builds and deploys it (~2 minutes) and tags the version. Check it with `gh run list --limit 3` and open the changed page on the live site.
-- Tell the user what changed, the new version (e.g. `v01.03.001`), and the live link to the changed page.
+- Tell the user what changed, the new version (e.g. `v01.03.01`), and the live link to the changed page.
 
 ## Working on a branch / from GitHub (`@claude`)
 

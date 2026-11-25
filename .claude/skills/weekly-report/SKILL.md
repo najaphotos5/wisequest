@@ -13,7 +13,7 @@ Every Friday, post **one** short report about the previous 7 days (last Friday �
 
 1. **Google Analytics**, this week vs the previous week: `npm run ga -- all 7 --compare --json > /tmp/ga.json`. The credentials come from the env var `GA_SA_KEY_B64`; see `.claude/skills/analytics/SKILL.md` for how to read the numbers. If GA fails, still post the report without visitor numbers, and say "visitor stats unavailable this week".
 2. **Quality scores:** `npm ci && npm run build`, then read `out/dev-data/scores.json` (site `averageText`/`averagePage`, per-page `pageScore`/`textScore`).
-3. **What was published:** `git log --since="8 days ago" --pretty="%s" origin/main` (subjects look like `vXX.XX.XXX: summary`). Count the releases and pick the 2–3 most visible ones.
+3. **What was published:** `git log --since="8 days ago" --pretty="%s" origin/main` (subjects look like `vXX.XX.XX: summary`). Count the releases and pick the 2–3 most visible ones.
 4. **State branch:** `git fetch origin claude/telegram-state`, then read:
    - `reports.json`: past reports `[{week_end, message_id, totals, pages:{path:{views, engagedSec}}, quality:{averageText, averagePage, pages:{path: pageScore}}, action}]`. Last week's entry is the baseline for quality and for anything GA can't compare.
    - `feedback.json`: reactions on past reports (keyed by message_id), adoptions, and requests (did last week's action get done?).

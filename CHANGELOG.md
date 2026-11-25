@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.20.10 — 2026-11-25 (patch)
+
+- Version format is now vXX.XX.XX (two-digit patch)
+
 ## v01.20.009 — 2026-11-25 (patch)
 
 - Jesus page chart: Islamic View column now shows the teaching summary and its Quran reference separately

@@ -7,7 +7,7 @@
  *   npm run release -- major "Redesigned the site"
  *
  * Steps: sync with the remote (rebase, keeping your uncommitted work) →
- * build + link check → bump VERSION/CHANGELOG → commit "vXX.XX.XXX: summary"
+ * build + link check → bump VERSION/CHANGELOG → commit "vXX.XX.XX: summary"
  * → push. If the push is rejected because someone else pushed first, it
  * re-syncs, takes their version, re-bumps on top of it, re-checks, and retries.
  *

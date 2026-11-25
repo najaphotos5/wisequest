@@ -1,5 +1,6 @@
 /**
- * Site version in the form vXX.XX.XXX (major.minor.patch, zero-padded).
+ * Site version in the form vXX.XX.XX (major.minor.patch, each two digits, zero-padded).
+ * Older versions (up to v01.20.009) used a three-digit patch; they still parse.
  *
  *   npm run version:bump -- patch "Fixed a typo on the Quran page"
  *   npm run version:bump -- minor "Added a Ramadan Q&A page"
@@ -12,16 +13,16 @@
 import { readFileSync, writeFileSync } from "node:fs";
 
 type Part = "major" | "minor" | "patch";
-const LIMITS: Record<Part, number> = { major: 99, minor: 99, patch: 999 };
+const LIMITS: Record<Part, number> = { major: 99, minor: 99, patch: 99 };
 
 export function parse(v: string) {
-  const m = v.trim().match(/^v(\d{2})\.(\d{2})\.(\d{3})$/);
-  if (!m) throw new Error(`Invalid version "${v.trim()}" (expected vXX.XX.XXX)`);
+  const m = v.trim().match(/^v(\d{2})\.(\d{2})\.(\d{2,3})$/);
+  if (!m) throw new Error(`Invalid version "${v.trim()}" (expected vXX.XX.XX)`);
   return { major: +m[1], minor: +m[2], patch: +m[3] };
 }
 
 export function format({ major, minor, patch }: Record<Part, number>) {
-  return `v${String(major).padStart(2, "0")}.${String(minor).padStart(2, "0")}.${String(patch).padStart(3, "0")}`;
+  return `v${String(major).padStart(2, "0")}.${String(minor).padStart(2, "0")}.${String(patch).padStart(2, "0")}`;
 }
 
 export function bump(v: string, part: Part) {

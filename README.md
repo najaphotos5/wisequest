@@ -58,13 +58,13 @@ The UX audit and site structure plan are in [docs/AUDIT.md](docs/AUDIT.md). The 
 
 Every change follows the [update-site skill](.claude/skills/update-site/SKILL.md). [`CLAUDE.md`](CLAUDE.md) points Claude to it, including `@claude` on GitHub. Every change is built, link-checked, version-bumped, committed, and pushed with `npm run release`.
 
-Versions are **vXX.XX.XXX** in `VERSION` (shown in the site footer), with history in [`CHANGELOG.md`](CHANGELOG.md):
+Versions are **vXX.XX.XX** in `VERSION` (shown in the site footer), with history in [`CHANGELOG.md`](CHANGELOG.md):
 
 | Change | Command | Example |
 | --- | --- | --- |
-| Small fix (text, typo, photo, link, time) | `npm run release -- patch "…"` | v01.03.000 → v01.03.001 |
-| New page, section, or feature | `npm run release -- minor "…"` | v01.03.001 → v01.04.000 |
-| Redesign or URL-breaking change | `npm run release -- major "…"` | v01.04.000 → v02.00.000 |
+| Small fix (text, typo, photo, link, time) | `npm run release -- patch "…"` | v01.03.00 → v01.03.01 |
+| New page, section, or feature | `npm run release -- minor "…"` | v01.03.01 → v01.04.00 |
+| Redesign or URL-breaking change | `npm run release -- major "…"` | v01.04.00 → v02.00.00 |
 
 GitHub Actions:
 - **Deploy to GitHub Pages** builds and publishes every push to `main`.
