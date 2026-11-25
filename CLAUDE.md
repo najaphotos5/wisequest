@@ -7,7 +7,7 @@ Static Next.js site for WiseQuest (The Universal Message of All Prophets), deplo
 1. `git pull --rebase --autostash` before starting.
 2. Make one focused change. Never invent Quran or hadith wording.
 3. `npm run build && npm run check-links`, then preview the changed pages.
-4. `npm run release -- <patch|minor|major> "one-line summary"`. This builds, bumps the vXX.XX.XXX version, commits, and pushes, retrying safely if someone else pushed first.
+4. `npm run release -- <patch|minor|major> "one-line summary"`. This builds, bumps the vXX.XX.XX version, commits, and pushes, retrying safely if someone else pushed first.
 5. Report the new version and the live link.
 
 Never edit `VERSION`/`CHANGELOG.md` by hand, never create tags, never force-push, and never leave work uncommitted or unpushed.
