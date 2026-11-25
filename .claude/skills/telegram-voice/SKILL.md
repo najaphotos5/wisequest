@@ -77,11 +77,11 @@ Done reply: `الحمد لله، تم ✅ جزاكم الله خيرا على ا
 
 Question: `بارك الله فيك! لو سمحت، two quick questions: 1) … 2) …`
 
-Reminder (one only, 3+ hours without an answer, 8 AM–9 PM Pacific; never after a 👎 or "stop" on any recent bot message): `أحسن الله إليكم 🌿 Just a gentle reminder about the idea above: a 👍 is enough to go ahead, or 👎 to skip. No rush at all. يسر الله أمركم`
+Reminders (at most two per message: the first 3+ hours without an answer, the second 3+ hours after the first and worded differently, saying it is the last one; 8 AM–9 PM Pacific; never after a 👎 or "stop" on any recent bot message): `أحسن الله إليكم 🌿 Just a gentle reminder about the idea above: a 👍 is enough to go ahead, or 👎 to skip. No rush at all. يسر الله أمركم`
 
 ## Lessons
 
 <!-- Add notes on what the group likes or dislikes about the tone, newest first. -->
-- 2026-11-24: If nobody answers a bot question or idea within 3 hours, send one kind reminder. Any dislike (👎, "no", "stop") on a recent bot message stops reminders.
+- 2026-11-24: If nobody answers a bot question or idea within 3 hours, send a kind reminder (two at most per message, 3+ hours apart). Any dislike (👎, "no", "stop") on a recent bot message stops reminders.
 - 2026-11-24: The phrases are only examples. Use the whole bank and rotate, don't repeat the same few.
 - 2026-11-24: Owners want more Islamic tone in bot replies (fuller greetings, duʿāʾ at the end, عليه السلام / ﷺ), but not on the website pages themselves.

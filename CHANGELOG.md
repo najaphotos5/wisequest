@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.19.010 — 2026-11-25 (patch)
+
+- Telegram bot: up to two kind reminders per message
+
 ## v01.19.009 — 2026-11-25 (patch)
 
 - Telegram bot: one kind reminder after 3 hours without an answer
