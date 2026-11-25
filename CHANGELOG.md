@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.20.12 — 2026-11-25 (patch)
+
+- Telegram bot: many more closings and feedback-thanks phrases; stricter no-repeat rule
+
 ## v01.20.11 — 2026-11-25 (patch)
 
 - Telegram bot: many more Arabic phrases for 'done and live' replies
