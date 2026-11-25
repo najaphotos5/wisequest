@@ -11,7 +11,7 @@ The WiseQuest Telegram group (chat_id `-1004488348585`) has one pinned message f
 
 Update it in the same piece of work whenever you change **how Telegram messages are processed or what users can do**. That includes changes to:
 - commands: `/todo`, `/revert`, `/queue` and any new ones
-- how requests are accepted (👍, replies), the task queue or its order, reminders, reactions
+- how requests are accepted (👍, replies), the task queue or its order, reminders, check-ins, reactions
 - the hourly schedule, the daily idea or the weekly report
 - any routine prompt or skill that changes the above: the hourly assistant, `task-queue`, `daily-suggestion`, `weekly-report`
 
@@ -77,7 +77,7 @@ The bot checks the group every hour, 7 AM to midnight Pacific.
 It is undone within the hour.
 
 6️⃣ Reminders
-If a question or idea receives no answer, the bot sends a gentle reminder after 3 hours, at most two per message, between 8 AM and 9 PM Pacific. A 👎 on any bot message, or a reply of "stop", pauses reminders for 7 days.
+If a question or idea receives no answer, the bot sends a gentle reminder after 3 hours, at most two per message, between 8 AM and 9 PM Pacific. On quiet days, the bot may post one friendly check-in in the afternoon. A 👎 on any bot message, or a reply of "stop", pauses reminders and check-ins for 7 days.
 
 Changes are published automatically, without an approval step. The bot asks only when a request is unclear.
 
