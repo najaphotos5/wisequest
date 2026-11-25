@@ -9,6 +9,12 @@ The hourly assistant runs this **every run**, even when nothing else happened. A
 
 State lives in `state.json` on branch `claude/telegram-state`, as ids, times and counts only. Never store names or message text.
 
+## Shared: when is "3 hours" reached? (round down)
+
+The bot only runs once an hour, so "after 3 hours" means **the run closest to the 3-hour mark, rounding down**: a 3-hour timer is due when **at least 2 h 30 min** have passed (`now − start ≥ 9000 seconds`).
+
+For example, a message sent at 3:11 PM is due at the run around 5:50 PM, not the one around 6:50 PM. The same applies to every 3-hour timer in this file: the first and second reminders, and the follow-up after publishing.
+
 ## Shared: dislikes pause all nudges
 
 A **dislike** is any of these:
@@ -45,10 +51,10 @@ While paused, send **no reminders and no check-ins**.
 - the person it waits on has not used `/mute` (their key in `state.muted` is missing or expired; see telegram-commands). Ideas waiting on the whole group are not affected by one person's mute.
 - the local time is between 8:00 and 21:00 America/Los_Angeles
 - the entry is open and has fewer than 2 reminders
-- at least 3 hours have passed since the later of `sent_at` and `reminded_at`
+- the 3-hour timer since the later of `sent_at` and `reminded_at` is due (rounded down, see above)
 
 Then send **one** gentle reminder as a reply to its `message_id`, add 1 to `reminders` and set `reminded_at`.
-- At most **two** reminders per message, and the second comes at least 3 hours after the first.
+- At most **two** reminders per message, and the second is due 3 hours after the first, rounded down.
 - At most 2 reminders per run.
 - Record the reminder's id in the request's `bot_message_ids`, if there is a request.
 
@@ -72,7 +78,7 @@ When a request's task is published (the "done" reply), the bot waits for the **r
   - nudges are not paused
   - the requester hasn't used `/mute`
   - the time is 8:00–21:00 America/Los_Angeles
-  - at least 3 hours have passed since `sent_at`
+  - the 3-hour timer since `sent_at` is due (rounded down, see above)
   
   Only **one** follow-up per published task (never a second one). It counts toward the "at most 2 reminders per run" limit.
 - **Text:** a reply to the done message, addressed to the requester (singular, or plural for the group).
