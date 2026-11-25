@@ -1,6 +1,6 @@
 ---
 name: telegram-commands
-description: Every command members can send to the WiseQuest bot in the Telegram group (/todo, /status, /undo, /revert, /queue, /help, /idea, /report, /page, /check, /history, /mute, and the owner-only /pause, /resume, /priority), plus requests written without /todo and requests in Arabic. Used by the hourly assistant when reading messages (Step 1). If you add or change a command, also update telegram-pinned and the Telegram command menu.
+description: Every command members can send to the WiseQuest bot in the Telegram group (/todo, /status, /undo, /revert, /queue, /help, /idea, /report, /page, /check, /history, /mute, statistics commands /stats /top /live /sources /where /devices /downloads /trend /compare /journey, and the owner-only /pause, /resume, /priority), plus requests written without /todo and requests in Arabic. Used by the hourly assistant when reading messages (Step 1). If you add or change a command, also update telegram-pinned and the Telegram command menu.
 ---
 
 # Telegram commands
@@ -41,6 +41,30 @@ These are heavier, so answer at most 3 of them per run. Reply "I will answer thi
 | `/page <name>` | Find the page by URL, path or a word in its title (e.g. `/page jesus` → /learn/jesus/). If several match, list them and ask which one. Reply with: • views, visitors and average engaged time for the last 28 days (`npm run ga -- pages 28 --json`, filtered to that path) • the quality scores from `out/dev-data/scores.json` after `npm run build` (`textScore`, `pageScore`, top issues) • the single most useful improvement, with "👍 = yes, please proceed". Log that suggestion in `suggestions.json` (with `todo`), so a 👍 queues it. |
 | `/check` | Run `npm run build && npm run check-links` (internal links), `npm run check-videos -- --json` (dead videos) and `npm run check-external -- --json` (dead outside links). Also list the 5 heaviest pages: total size of each `out/**/index.html` plus the images it references, flagging anything over 2 MB as slow on phones. Reply with a short summary: what is fine, what is broken (page, item) and the slow pages. Offer the fixes as one idea message (logged in `suggestions.json` with a full `todo`) so a 👍 queues them. If a checker couldn't reach most sites, say so instead of reporting false problems. |
 
+## Website statistics (Google Analytics)
+
+All of these are read-only. Use `npm run ga -- <report> <days> --json` and follow the `analytics` skill. Use plain numbers, round them, and say when a sample is small ("only a handful of visits": below ~30 views, never give percentages without saying so). Never mention or guess at individual people.
+- **Period argument:** where shown as `[days]`, accept 7, 28 or 90 (also "week", "month", "3 months"). Default is 7.
+- **Format:** an Arabic opening, then a compact list (• lines, no tables), then **one** short "What this means" line in formal English, and an Arabic closing.
+- **Humour:** on a record day or a big jump, a light Arabic line is welcome (telegram-voice section 5).
+- **If credentials are missing or Google fails:** say that statistics are unavailable right now.
+- **Limit:** at most 5 statistics commands per run. Answer extra ones in the next run, and say so.
+
+| Command | Report | Reply with |
+|---|---|---|
+| `/stats [days]` | `overview` | Visitors, new visitors, page views, average engaged time and engagement rate, each with ▲/▼ vs the previous period of the same length. |
+| `/top [days]` | `pages` | The 10 most viewed pages: "1. /learn/jesus/: 120 views · 45 s engaged". Mark pages people leave quickly (under 15 s). |
+| `/live` | `realtime` | How many people are on the site right now (last 30 minutes) and which pages. If none: "No one is on the site at the moment." |
+| `/sources [days]` | `sources` | Where visitors come from: Google search, direct, social (which networks), other websites (top 5 referrers), with shares. |
+| `/where [days]` | `geo` | Top 10 countries and top 5 cities, plus the share from the Sacramento area / California (important for Quran 101 and local pages). |
+| `/devices [days]` | `devices` | Mobile, desktop and tablet shares, with engaged time for each. If most are mobile, say so. |
+| `/downloads [days]` | `downloads` (default 28) | The most downloaded files (PDFs), with counts. If none: say no downloads were recorded in that period. |
+| `/trend [days]` | `daily` (default 14) | Visitors per day as a simple text bar chart, one line per day, e.g. "Nov 24 ▇▇▇▇▇ 12". Then the best day and the overall direction (up, down, steady). |
+| `/compare` | `pages 7 --compare` | This week vs last week: the 3 pages that grew most and the 3 that dropped most (views), plus total visitors ▲/▼. |
+| `/journey [days]` | `pages` + `landing` (default 28) | How many visitors reached the key pages: /become-muslim/, /new-muslims/, /contact/, /resources/free-quran/, /local/. Also the top 5 landing pages (where visits start), and one idea to guide more people to those pages. |
+
+`/report` stays the all-in-one weekly summary (analytics skill section 3). `/page <name>` gives the statistics for one page.
+
 ## Undo
 
 | Command | What to do |
@@ -76,6 +100,6 @@ If a member's message (not from a bot, and not a reply to an existing request or
 ## Telegram command menu
 
 Keep the bot's command menu (Telegram `setMyCommands`, scope: all group chats) in sync with this file. Whenever a command is added, removed or renamed, call `setMyCommands` with:
-`todo` Request a change · `status` What the bot is doing · `queue` Show the queue · `history` Last 10 changes · `undo` Undo the last change · `revert` Undo a specific change · `idea` Suggest an improvement now · `report` Website statistics · `page` Statistics and ideas for one page · `check` Check the site for problems · `mute` Stop my reminders for 7 days · `help` How to use the bot · `pause` Pause publishing (owners) · `resume` Resume publishing (owners) · `priority` Move a request first (owners)
+`todo` Request a change · `status` What the bot is doing · `queue` Show the queue · `history` Last 10 changes · `undo` Undo the last change · `revert` Undo a specific change · `idea` Suggest an improvement now · `report` Website statistics · `page` Statistics and ideas for one page · `check` Check the site for problems · `mute` Stop my reminders for 7 days · `stats` Visitors and views · `top` Most viewed pages · `live` Visitors right now · `sources` Where visitors come from · `where` Visitors by country and city · `devices` Mobile vs desktop · `downloads` Most downloaded files · `trend` Daily visitors chart · `compare` This week vs last week · `journey` Visits to key pages · `help` How to use the bot · `pause` Pause publishing (owners) · `resume` Resume publishing (owners) · `priority` Move a request first (owners)
 
 Then update the pinned message as described in `telegram-pinned`.

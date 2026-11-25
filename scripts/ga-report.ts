@@ -9,6 +9,7 @@
  *   npm run ga -- daily [days]        visits per day (trend)
  *   npm run ga -- landing [days]      first page people see
  *   npm run ga -- events [days]       downloads, clicks, scrolls, video plays
+ *   npm run ga -- downloads 28        which files (PDFs) were downloaded
  *   npm run ga -- realtime            people on the site right now
  *   npm run ga -- all [days]          every report above (default 28 days)
  *   add --json for machine-readable output
@@ -64,7 +65,7 @@ async function token(key: Key): Promise<string> {
 }
 
 type Row = Record<string, string | number>;
-type Spec = { dimensions?: string[]; metrics: string[]; orderBy?: string; desc?: boolean; limit?: number; compare?: boolean };
+type Spec = { dimensions?: string[]; metrics: string[]; orderBy?: string; desc?: boolean; limit?: number; compare?: boolean; eventName?: string };
 
 const range = (days: number, offset = 0) => ({ startDate: `${days + offset}daysAgo`, endDate: offset ? `${offset + 1}daysAgo` : "yesterday" });
 
@@ -75,6 +76,7 @@ async function run(tok: string, spec: Spec, days: number, realtime = false): Pro
     limit: spec.limit ?? 25,
   };
   if (spec.orderBy) body.orderBys = [{ desc: spec.desc ?? true, [spec.metrics.includes(spec.orderBy) ? "metric" : "dimension"]: spec.metrics.includes(spec.orderBy) ? { metricName: spec.orderBy } : { dimensionName: spec.orderBy } }];
+  if (spec.eventName) body.dimensionFilter = { filter: { fieldName: "eventName", stringFilter: { value: spec.eventName } } };
   if (!realtime) body.dateRanges = spec.compare ? [range(days), range(days, days)] : [range(days)];
   const r = await fetch(`${API}:${realtime ? "runRealtimeReport" : "runReport"}`, {
     method: "POST",
@@ -121,6 +123,7 @@ const REPORTS: Record<string, Spec & { realtime?: boolean; title: string }> = {
   daily: { title: "Daily trend", dimensions: ["date"], metrics: ["activeUsers", "sessions", "screenPageViews"], orderBy: "date", desc: false, limit: 120 },
   landing: { title: "Landing pages", dimensions: ["landingPage"], metrics: ["sessions", "engagementRate", "averageSessionDuration"], orderBy: "sessions" },
   events: { title: "Events", dimensions: ["eventName"], metrics: ["eventCount", "totalUsers"], orderBy: "eventCount" },
+  downloads: { title: "Downloads (files)", dimensions: ["fileName", "linkUrl"], metrics: ["eventCount", "totalUsers"], orderBy: "eventCount", eventName: "file_download" },
   realtime: { title: "Right now (last 30 minutes)", dimensions: ["unifiedScreenName"], metrics: ["activeUsers"], orderBy: "activeUsers", realtime: true },
 };
 

@@ -70,19 +70,31 @@ Reply "move 3 to 1" = change the order (your own tasks; owners can move any task
 /undo = undo the last published change
 /revert 7 = undo request 7 · /revert 7.2 = undo only task 2 of request 7
 /idea = suggest an improvement now
-/report = website statistics for the last 7 days
+/report = a weekly summary of website statistics
 /page jesus = statistics and ideas for one page
 /check = check the site for broken links, missing videos and heavy pages
 /mute = no reminders about your requests for 7 days
 /help = a short version of this message
 Owners only: /pause and /resume publishing · /priority 12 = move request 12 to the front
 
+📊 Website statistics (add 7, 28 or 90 for the number of days, e.g. /top 28)
+/stats = visitors and views vs the previous period
+/top = most viewed pages
+/live = people on the site right now
+/sources = where visitors come from
+/where = visitors by country and city
+/devices = mobile vs desktop
+/downloads = most downloaded files
+/trend = daily visitors chart
+/compare = this week vs last week
+/journey = how many visitors reach the key pages
+
 5️⃣ What the bot's reactions mean
 The bot checks the group every hour, day and night, and answers commands at the next check.
 👀 Seen · ✍ Working on it · 💯 Done and live · 🤔 More information needed (please reply) · 🙏 Cannot be done (with the reason)
 
 6️⃣ Reminders and check-ins
-If a question or idea receives no answer, the bot sends a gentle reminder after 3 hours, at most two per message, between 8 AM and 9 PM Pacific. On quiet days, the bot may post one friendly check-in in the afternoon. A 👎 on any bot message, or a reply of "stop", pauses reminders and check-ins for 7 days.
+If a question or idea receives no answer, the bot sends a gentle reminder after 3 hours, at most two per message, between 8 AM and 9 PM Pacific. After publishing your change, if you have not responded within 3 hours, the bot sends one friendly note asking you to have a look. On quiet days, the bot may post one friendly check-in in the afternoon. A 👎 on any bot message, or a reply of "stop", pauses reminders and check-ins for 7 days.
 
 7️⃣ If something goes wrong
 The owners are alerted automatically if the bot stops working. If you sent a request and received no reply within two hours, please send it again.
@@ -103,6 +115,7 @@ For questions not about the website, please use wisequest.org/contact
 /status · /queue · /history
 /undo = undo the last change · /revert 7 = undo request 7
 /idea · /report · /page <name> · /check
+📊 /stats · /top · /live · /sources · /where · /devices · /downloads · /trend · /compare · /journey
 /mute = no reminders for 7 days
 The full guide is in the pinned message.
 ```
