@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.19.007 — 2026-11-25 (patch)
+
+- Telegram voice: wide Islamic phrase bank, rotate phrases instead of repeating the same few
+
 ## v01.19.006 — 2026-11-24 (patch)
 
 - Telegram voice: richer Islamic tone in bot replies (not on website pages)
