@@ -1,8 +1,8 @@
 {
-  "offset": 109084490,
+  "offset": 109084499,
   "chat_id": -1004488348585,
   "owner_telegram_id": 5763295123,
-  "next_id": 11,
+  "next_id": 12,
   "requests": [
     {
       "id": 1,
@@ -137,6 +137,20 @@
       "merge_sha": "accde12ad57275a0c8c61a89deb316092425aea4",
       "summary": "Jesus page: second video added (v01.19.005)",
       "theme": "content"
+    },
+    {
+      "id": 11,
+      "message_id": 60,
+      "status": "done",
+      "bot_message_ids": [
+        61
+      ],
+      "branch": "claude/todo-11",
+      "pr": 9,
+      "merge_sha": "ddf44eebd822fab977ff4db293903ce13ac48d6e",
+      "summary": "Get Involved: welcome, jump links, contact button (v01.20.001)",
+      "from_suggestion": 60,
+      "theme": "engagement"
     }
   ],
   "awaiting": [
@@ -144,7 +158,8 @@
       "key": "m60",
       "message_id": 60,
       "sent_at": 1795616006,
-      "reminders": 0
+      "reminders": 0,
+      "closed": true
     }
   ]
 }

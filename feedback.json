@@ -1,6 +1,9 @@
 {
   "reactions": {
-    "58": {}
+    "58": {},
+    "60": {
+      "\ud83d\udc4d": 1
+    }
   },
   "adoptions": [
     {
@@ -14,6 +17,12 @@
       "request_id": 7,
       "date": "2026-11-24",
       "via": "reply"
+    },
+    {
+      "suggestion_message_id": 60,
+      "request_id": 11,
+      "date": "2026-11-25",
+      "via": "reaction"
     }
   ],
   "requests": [
@@ -50,6 +59,13 @@
       "date": "2026-11-24",
       "theme": "content",
       "page": "/learn/jesus/",
+      "reverted": false
+    },
+    {
+      "request_id": 11,
+      "date": "2026-11-25",
+      "theme": "engagement",
+      "page": "/get-involved/",
       "reverted": false
     }
   ]
