@@ -67,17 +67,17 @@ Do this for every new request: a `/todo`, an accepted idea or a website request.
 
 ## 3. Messages (Telegram, following telegram-voice)
 
-- **After splitting**, reply under the request with: a warm opening, then "I've split this into N small tasks and will do one each hour:" with a numbered list of the task titles. Then "Want a different order? Just reply, e.g. 'do task 3 first'."
+- **After splitting**, reply under the request with: an Arabic opening from telegram-voice, then "I have divided this into N tasks and will complete one each hour, so that each is done carefully:" with a numbered list of the task titles. Then "If you would prefer a different order, please reply, for example: do task 3 first."
 - **When something is already waiting in the queue**, a new request is added to the back. The reply then also shows the **whole queue order**, marking the new tasks and the one in progress:
   ```
   📋 Queue order (one task per hour):
   1. ✍ Add 'Jesus in Islam' section (request 9), now in progress
   2. Fix photo captions on Stories (request 11)
   3. 🆕 Add Friday times to the Local page (your request)
-  Want yours sooner, or a different order? Reply e.g. "move 3 to 1".
+  If you would prefer a different order, please reply, for example: move 3 to 1.
   ```
   Keep each line short. If more than 8 tasks are waiting, show the first 8 and "…and N more".
-- **After each task is done:** the usual "done" reply under the request, starting with "Task n of N done". Include what changed, the version, the live link and "Not happy with it? Reply /revert <id>.<n> to undo." Add "Next up: <next task title>" if this request still has tasks left, or the closing duʿāʾ when it was the last one.
+- **After each task is done:** the usual "done" reply under the request, starting with "Task n of N done". Include what changed, the version, the live link and "If you would like this task undone, please reply /revert <id>.<n>." Add "Next up: <next task title>" if this request still has tasks left, or the closing duʿāʾ when it was the last one.
 - Never post more than one queue message per request per run.
 
 ## 4. Changing the order

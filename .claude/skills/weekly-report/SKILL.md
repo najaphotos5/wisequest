@@ -58,13 +58,13 @@ The Arabic greeting and closing lines in the templates here are only examples: p
 🛠 Published this week: N updates, e.g. <short>, <short>
 
 👉 Suggested action: <one plain sentence naming the page and the change>
-👍 = yes, do it (or reply "approve" / "go ahead") · 👎 = skip
+👍 = yes, please proceed (or reply "approve") · 👎 = skip
 
 وفقنا الله وإياكم
 ```
 
 Rules for the text:
-- Follow `.claude/skills/telegram-voice/SKILL.md` for greetings and phrases: e.g. ما شاء الله / الحمد لله for progress, لا بأس for regressions.
+- Follow `.claude/skills/telegram-voice/SKILL.md` for greetings and phrases: e.g. ما شاء الله / الحمد لله for progress, لا بأس for regressions. All English in the report is formal; no humour.
 - Use plain words: "visitors", "time spent reading". Not "sessions", "engagement rate".
 - Round numbers. Show ▲ for better and ▼ for worse.
 - For the first report, or when there's no baseline, say "first week, no comparison yet" instead of inventing changes.
