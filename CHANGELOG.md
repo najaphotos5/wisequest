@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.21.04 — 2026-11-25 (patch)
+
+- Telegram bot: firm rule, no humour about religious or sensitive matters
+
 ## v01.21.03 — 2026-11-25 (patch)
 
 - Telegram bot: 💯 done reaction, proactive Arabic humour (1 in 3 to 1 in 2), quota and complex-request humour
