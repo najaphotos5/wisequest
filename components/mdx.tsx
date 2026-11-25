@@ -94,9 +94,9 @@ export function Figure({ src, alt, caption, wide }: { src: string; alt: string; 
 }
 
 const compareKinds = {
-  islam: { label: "Islamic View", mark: "🕌", cell: "bg-brand-soft" },
-  jesus: { label: "Jesus’ View", mark: "✝️", cell: "bg-brand-soft" },
-  church: { label: "Church Teachings", mark: "❌", cell: "bg-rose-50" },
+  islam: { label: "Islamic View", mark: "🕌", cell: "bg-brand-soft", note: "A summary of the teaching, with its Quran reference" },
+  jesus: { label: "Jesus’ View", mark: "✝️", cell: "bg-brand-soft", note: undefined },
+  church: { label: "Church Teachings", mark: "❌", cell: "bg-rose-50", note: undefined },
 } as const;
 
 // Same table on every screen: on phones it keeps its columns and scrolls sideways, with # and Aspect pinned on the left.
@@ -117,6 +117,7 @@ export function CompareChart({ title, children }: { title?: string; children: Re
             {Object.values(compareKinds).map((k) => (
               <span key={k.label} role="columnheader" className="px-3 py-3 md:px-4">
                 {k.label} {k.mark}
+                {k.note && <span className="block text-[0.7rem] font-normal opacity-90 md:text-xs">{k.note}</span>}
               </span>
             ))}
           </div>
@@ -141,10 +142,15 @@ export function CompareTopic({ num, title, children }: { num?: number | string; 
   );
 }
 
-export function CompareView({ kind, children }: { kind: keyof typeof compareKinds; children: ReactNode }) {
+export function CompareView({ kind, source, children }: { kind: keyof typeof compareKinds; source?: string; children: ReactNode }) {
   return (
     <div role="cell" className={`px-3 py-3 text-sm leading-relaxed text-ink md:px-4 md:py-4 md:text-[0.95rem] ${compareKinds[kind].cell}`}>
       {children}
+      {source && (
+        <p className="mt-2 border-t border-line pt-2 text-xs text-muted md:text-sm">
+          <span className="font-semibold">Quran reference:</span> {source.replace(/^Quran\s*/, "")}
+        </p>
+      )}
     </div>
   );
 }
