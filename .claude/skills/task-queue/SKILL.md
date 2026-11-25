@@ -53,6 +53,11 @@ Do this for every new request: a `/todo`, an accepted idea or a website request.
     - one step is too big to do well in one run: split it further (e.g. "3a", "3b")
     - a step is unclear: that task goes to `needs-info`, and the others continue
   - This can mean more than 6 tasks. Their numbering wins over the 2–6 guideline below.
+- **Several messages with different asks:** every ask becomes its own task, queued in the order the messages were sent:
+  - several `/todo` messages: each is its own request, as usual
+  - a follow-up from the same person that asks for something **different**, without `/todo`, also becomes a new task at the back of the queue (linked to their request), with no "Shall I add this?" step. That covers a reply to their request or to the bot's reply about it, or a message within 2 hours of their last request, while it isn't finished yet (e.g. "also change the photo on the homepage").
+  - if the follow-up only corrects or adds detail to a task that hasn't started yet (same page, same change), update that task instead of adding a new one
+  - one reply covers everything that arrived in the same run, with the new task list and the queue order
 - **Simple request** (one focused change on one page): 1 task.
 - **Complex request or several asks** (e.g. "add a video, fix the table and write a new section", changes on several pages, or an idea with 3+ separate steps): split it into **2–6 tasks**.
   - Each task is one focused change that can be published on its own and makes sense on its own.
