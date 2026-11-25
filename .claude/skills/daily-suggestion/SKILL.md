@@ -101,7 +101,7 @@ Writing tips:
 ## 5. Post and log
 
 1. Send it: `sendMessage` to chat `-1004488348585` with `link_preview_options={"is_disabled": true}`. Send exactly **one** message per run. No pinning, no extra messages.
-2. Append `{date, theme, page, title, message_id, todo}` to `suggestions.json` (`todo` = the full change description, starting with the page link, without names). The hourly assistant uses it when someone reacts 👍 or replies to approve, and write `preferences.json`. Commit both to `claude/telegram-state` (use a separate worktree) and push. Don't touch the other files there; `state.json` and `feedback.json` belong to the hourly assistant.
+2. Append `{date, theme, page, title, message_id, sent_at, todo}` to `suggestions.json` (`sent_at` = the `date` field of the sendMessage response, so the hourly assistant can send one gentle reminder if nobody answers within 3 hours) (`todo` = the full change description, starting with the page link, without names). The hourly assistant uses it when someone reacts 👍 or replies to approve, and write `preferences.json`. Commit both to `claude/telegram-state` (use a separate worktree) and push. Don't touch the other files there; `state.json` and `feedback.json` belong to the hourly assistant.
 3. **Mondays only:** add 2–3 short plain-English lessons to the **Lessons** section below, based on the last 2–4 weeks of feedback, e.g. "Photo ideas get adopted most". Then publish via the normal flow: `npm run release -- patch "Daily suggestion: weekly lessons"`. Don't change any other file in that release.
 
 ## Rules

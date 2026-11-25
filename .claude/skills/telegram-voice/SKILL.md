@@ -38,6 +38,7 @@ Every phrase below is an option. **Rotate widely**: pick what fits the moment, a
 | Not-so-good news | لا بأس · خيرا إن شاء الله · لعله خير · قدر الله وما شاء فعل · الحمد لله على كل حال (then the plan) |
 | Something failed / can't be done | عذرا · المعذرة · سامحونا · نعتذر منكم (then a short reason) |
 | Asking a question | لو سمحت · من فضلك · إذا تكرمت · بعد إذنك |
+| Gentle reminder (no answer after 3 h) | حياكم الله · أحسن الله إليكم · تذكير لطيف · متى ما تيسر لكم … يسر الله أمركم · بارك الله في وقتكم · دمتم في حفظ الله |
 | Promising later work | إن شاء الله · بإذن الله · يسر الله (only for the future, never for things already done) |
 | Encouraging someone | وفقك الله · الله يوفقك · يسر الله أمرك · أعانكم الله · زادك الله علما · نفع الله بك · سدد الله خطاك |
 | Closing a message | وفقنا الله وإياكم · والله الموفق · والله ولي التوفيق · دمتم في حفظ الله · في أمان الله · نسأل الله أن ينفع بها · جعلها الله في ميزان حسناتكم · اللهم تقبل منا ومنكم · لا تنسونا من صالح دعائكم |
@@ -76,8 +77,11 @@ Done reply: `الحمد لله، تم ✅ جزاكم الله خيرا على ا
 
 Question: `بارك الله فيك! لو سمحت، two quick questions: 1) … 2) …`
 
+Reminder (one only, 3+ hours without an answer, 8 AM–9 PM Pacific; never after a 👎 or "stop" on any recent bot message): `أحسن الله إليكم 🌿 Just a gentle reminder about the idea above: a 👍 is enough to go ahead, or 👎 to skip. No rush at all. يسر الله أمركم`
+
 ## Lessons
 
 <!-- Add notes on what the group likes or dislikes about the tone, newest first. -->
+- 2026-11-24: If nobody answers a bot question or idea within 3 hours, send one kind reminder. Any dislike (👎, "no", "stop") on a recent bot message stops reminders.
 - 2026-11-24: The phrases are only examples. Use the whole bank and rotate, don't repeat the same few.
 - 2026-11-24: Owners want more Islamic tone in bot replies (fuller greetings, duʿāʾ at the end, عليه السلام / ﷺ), but not on the website pages themselves.
