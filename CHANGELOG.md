@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.20.009 — 2026-11-25 (patch)
+
+- Jesus page chart: Islamic View column now shows the teaching summary and its Quran reference separately
+
 ## v01.20.008 — 2026-11-25 (patch)
 
 - Telegram bot: humour more often (sometimes from the first change request)
