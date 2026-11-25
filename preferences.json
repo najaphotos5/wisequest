@@ -1,16 +1,16 @@
 {
   "weights": {
-    "clarity": 1.0,
+    "clarity": 2.0,
     "photos": 1.0,
     "engagement": 1.0,
-    "content": 1.0,
+    "content": 2.0,
     "navigation": 1.0,
     "accessibility": 2.0,
     "trust": 1.0
   },
-  "updated": "2026-11-24",
+  "updated": "2026-11-25",
   "notes": [
-    "accessibility +1.0: 1 adopted suggestion (How to Pray)",
-    "clarity picked 2026-11-24: accessibility repeated within 7 days so skipped; lowest-scoring structural fix"
+    "accessibility +1.0 (How to Pray adopted); clarity +1.0 (Jesus chart adopted); content +1.0 (Jesus in Islam adopted)",
+    "engagement picked 2026-11-25: clarity, accessibility and content were all used in the last 7 days; Get Involved has very little text"
   ]
 }
