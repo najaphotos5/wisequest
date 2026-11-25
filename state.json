@@ -171,5 +171,15 @@
     }
   ],
   "queue": [],
-  "recent_phrases": []
+  "recent_phrases": [
+    "شبيك لبيك، كلود بين إيديكم",
+    "دمتم في حفظ الله"
+  ],
+  "last_checkin_date": "2026-11-25",
+  "checkins": [
+    {
+      "date": "2026-11-25",
+      "message_id": 62
+    }
+  ]
 }
