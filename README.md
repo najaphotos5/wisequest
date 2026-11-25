@@ -17,12 +17,13 @@ All rules live in **skills** under [`.claude/skills/`](.claude/skills/). Any age
 | [telegram-voice](.claude/skills/telegram-voice/SKILL.md) | Any message written as the WiseQuest bot (Telegram, GitHub issue comments): Arabic Islamic phrases plus formal English, never on the website |
 | [task-queue](.claude/skills/task-queue/SKILL.md) | Handling change requests from the group: split into tasks, one high-quality task per hour, queue order |
 | [telegram-pinned](.claude/skills/telegram-pinned/SKILL.md) | Required after any change to how Telegram messages are processed or what users can do: update the pinned help message |
+| [telegram-nudges](.claude/skills/telegram-nudges/SKILL.md) | Reminders when nobody answers, and the once-a-day quiet-day check-in |
 | [daily-suggestion](.claude/skills/daily-suggestion/SKILL.md) | The daily improvement idea |
 | [weekly-report](.claude/skills/weekly-report/SKILL.md) | The Friday weekly report |
 | [analytics](.claude/skills/analytics/SKILL.md) | Reading Google Analytics |
 
 **Automations** (Claude cloud routines; their prompts defer to the skills above):
-- hourly Telegram assistant: requests, queue, publishing, reminders
+- hourly Telegram assistant: requests, queue, publishing, reminders, quiet-day check-in
 - daily suggestion: 8 AM Pacific
 - weekly report: Fridays
 

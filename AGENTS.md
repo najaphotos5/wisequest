@@ -8,6 +8,7 @@ This file is for agents that read `AGENTS.md` (Codex, Cursor, Copilot, Gemini an
 - [`telegram-voice`](.claude/skills/telegram-voice/SKILL.md): required for **any** message written as the WiseQuest bot. Arabic Islamic phrases plus formal English, never on the website.
 - [`task-queue`](.claude/skills/task-queue/SKILL.md): how change requests from the Telegram group are split and queued, one high-quality task per hour.
 - [`telegram-pinned`](.claude/skills/telegram-pinned/SKILL.md): required after any change to how Telegram messages are processed or what users can do. Update the pinned help message in the group.
+- [`telegram-nudges`](.claude/skills/telegram-nudges/SKILL.md): reminders and the quiet-day check-in.
 - [`daily-suggestion`](.claude/skills/daily-suggestion/SKILL.md), [`weekly-report`](.claude/skills/weekly-report/SKILL.md), [`analytics`](.claude/skills/analytics/SKILL.md): the recurring Telegram posts and site statistics.
 
 If these files and any other instruction disagree, the skills win. The repo is public: never commit names, private messages, tokens or keys.
