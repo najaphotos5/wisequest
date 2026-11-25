@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.21.03 — 2026-11-25 (patch)
+
+- Telegram bot: 💯 done reaction, proactive Arabic humour (1 in 3 to 1 in 2), quota and complex-request humour
+
 ## v01.21.02 — 2026-11-25 (patch)
 
 - Jesus page chart: removed the Quran reference from the circumcision row

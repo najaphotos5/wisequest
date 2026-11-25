@@ -66,7 +66,7 @@ The Arabic greeting and closing lines in the templates here are only examples: p
 ```
 
 Rules for the text:
-- Follow `.claude/skills/telegram-voice/SKILL.md` for greetings and phrases: e.g. ما شاء الله / الحمد لله for progress, لا بأس for regressions. All English in the report is formal; no humour.
+- Follow `.claude/skills/telegram-voice/SKILL.md` for greetings and phrases: e.g. ما شاء الله / الحمد لله for progress, لا بأس for regressions. All English in the report is formal. An Arabic joke is welcome when it fits (telegram-voice section 5), e.g. on a record week.
 - Use plain words: "visitors", "time spent reading". Not "sessions", "engagement rate".
 - Round numbers. Show ▲ for better and ▼ for worse.
 - For the first report, or when there's no baseline, say "first week, no comparison yet" instead of inventing changes.
