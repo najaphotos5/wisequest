@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.21.02 — 2026-11-25 (patch)
+
+- Jesus page chart: removed the Quran reference from the circumcision row
+
 ## v01.21.01 — 2026-11-25 (patch)
 
 - Telegram bot: tested screenshot recipe, pinned help + /help text, command menu, daylight-saving guards
