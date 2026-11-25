@@ -17,7 +17,7 @@ npm run ga -- pages 7 --compare    # this week vs the previous week (any report)
 npm run ga -- realtime        # who is on the site right now
 ```
 
-Reports: `overview` (totals vs the previous period) · `pages` (views, users, avg engagement time per user) · `sources` (Google, direct, social, referrals) · `geo` (country/city) · `devices` · `daily` (trend) · `landing` (first page seen) · `events` (file_download, click, scroll, video plays…) · `realtime`.
+Reports: `overview` (totals vs the previous period) · `downloads` (which files were downloaded) · `pages` (views, users, avg engagement time per user) · `sources` (Google, direct, social, referrals) · `geo` (country/city) · `devices` · `daily` (trend) · `landing` (first page seen) · `events` (file_download, click, scroll, video plays…) · `realtime`.
 
 Credentials (service account with **Viewer** access on the property), first found wins: `GA_SA_KEY_B64` (one-line base64 of the JSON — used by cloud routines), `GA_SA_KEY` (JSON text), `GA_SA_KEY_FILE` (path), or the macOS Keychain item `ga-service-account` / account `wisequest` (base64 of the JSON). Never print, log, or commit the key. If credentials are missing, say so and stop.
 
@@ -62,6 +62,7 @@ Never include personal data (GA4 doesn't give names; don't speculate about indiv
 - **Daily suggestion** (`.claude/skills/daily-suggestion/SKILL.md`): when credentials are available, prefer ideas for pages that get real traffic but low engagement.
 - **Weekly report** (`.claude/skills/weekly-report/SKILL.md`): the Friday Telegram report — progress vs regression and one action. Use it for any recurring/weekly report so the format stays consistent.
 - **Telegram**: for a one-off report in the group, post the short format above (one message).
+- **Telegram commands:** members can ask the hourly assistant directly with `/stats`, `/top`, `/live`, `/sources`, `/where`, `/devices`, `/downloads`, `/trend`, `/compare`, `/journey`, `/report` and `/page <name>` (see `.claude/skills/telegram-commands/SKILL.md`). Reports: `overview`, `pages`, `realtime`, `sources`, `geo`, `devices`, `downloads` (file_download events by file), `daily`, `landing`.
 
 ## Lessons
 

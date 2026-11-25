@@ -1,6 +1,6 @@
 ---
 name: telegram-nudges
-description: When and how the WiseQuest bot sends unprompted messages in the Telegram group. (A) gentle reminders when a question or idea gets no answer for 3 hours (at most two per message). (B) one playful Arabic check-in in the afternoon on quiet days. Includes dislike/pause rules. Used every run by the hourly assistant (its Step 4).
+description: When and how the WiseQuest bot sends unprompted messages in the Telegram group. (A) gentle reminders when a question or idea gets no answer for 3 hours (at most two per message). (A2) one friendly "did you see it?" follow-up 3 hours after a change is published, if the requester has not responded. (B) one playful Arabic check-in in the afternoon on quiet days. Includes dislike/pause rules. Used every run by the hourly assistant (its Step 4).
 ---
 
 # Nudges: reminders and the quiet-day check-in
@@ -59,6 +59,32 @@ Then send **one** gentle reminder as a reply to its `message_id`, add 1 to `remi
 - The second reminder uses different phrases and politely says it is the last one, e.g. "This is my final reminder about this; I will leave it with you."
 - Use the singular when the message waits on one person (the requester) and the plural for the group.
 - Never mention the 3 hours.
+
+## A2. After a change is published: "did you see it?" follow-up
+
+When a request's task is published (the "done" reply), the bot waits for the **requester** to react to it. If they don't respond within 3 hours, the bot sends **one** friendly follow-up asking them to check the result.
+
+- **Add** `{key: "d<id>.<n>", kind: "done", message_id: <the done reply>, request_id, sent_at}` to `state.awaiting` when posting a done reply.
+  - Skip it for ideas nobody personally asked for, i.e. daily or weekly ideas accepted by a 👍 from someone other than the requester. In that case the person who accepted counts as the requester.
+  - Skip it for reverts.
+- **Close** it when the requester or an owner replies to it or reacts to it (any reaction), sends `/revert`/`/undo` for it, or asks for a further change.
+- **Send** it when all of these hold:
+  - nudges are not paused
+  - the requester hasn't used `/mute`
+  - the time is 8:00–21:00 America/Los_Angeles
+  - at least 3 hours have passed since `sent_at`
+  
+  Only **one** follow-up per published task (never a second one). It counts toward the "at most 2 reminders per run" limit.
+- **Text:** a reply to the done message, addressed to the requester (singular, or plural for the group).
+  - Start with an Arabic line with light humour (telegram-voice section 5). This is one of the moments where humour is expected, e.g.:
+    - شفت الشغل ولا لسا؟ 😄
+    - الموقع عم يستنى رأيك 😅
+    - خلصناها وقاعدين نستنى التصفيق 👏😄
+    - طبخنا الطبخة، دوقها وقلنا رأيك 😋
+    - عم نطّلع عالتلفون كل شوي ناطرين ردك 😅
+  - Then formal English: "Please take a look at the change when you have a moment: <live link>. If anything should be adjusted, simply reply here."
+  - End with an Arabic closing.
+  - **No humour** if the change involved religious or sensitive content (telegram-voice section 5, "Never joke…"). Use a warm, serious Arabic opening instead, e.g. أحسن الله إليك.
 
 ## B. Quiet-day check-in (once a day, ~3 PM Pacific)
 
