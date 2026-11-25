@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.20.002 — 2026-11-25 (patch)
+
+- Telegram bot: task queue (one high-quality task per hour) + larger Islamic phrase bank
+
 ## v01.20.001 — 2026-11-25 (patch)
 
 - Get Involved: welcome intro, jump links and contact button
