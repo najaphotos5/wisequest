@@ -29,7 +29,7 @@ Telegram keeps unread updates for only 24 hours.
 ## 3. Health alerts
 
 The hourly run keeps `state.health = {failures, last_error_kind, alerted_at}`.
-- `last_error_kind` is one short label: `telegram`, `build`, `deploy`, `merge`, `push`, `github` or `other`. No error text.
+- `last_error_kind` is one short label: `telegram`, `build`, `deploy`, `merge`, `push`, `github`, `quota` or `other`. No error text. Use `quota` when the run hit a usage or rate limit, or ran out of time before finishing.
 - **A failed run** is one that could not finish its main work: the build or check-links failed on main itself, merging or deploying failed, the state push failed after retries, or GitHub was unreachable. Then add 1 to `failures` and set `last_error_kind`.
 - **A successful run** sets `failures = 0`.
 - **Alert** when `failures ≥ 2` and there has been no alert in the last 12 hours (`alerted_at`). Post one short message to the group:
@@ -38,6 +38,14 @@ The hourly run keeps `state.health = {failures, last_error_kind, alerted_at}`.
   - then set `alerted_at`
   - If Telegram itself is the problem, you cannot post. The health-check routine (section 4) covers that case.
 - When things work again after an alert, post one short line saying it has recovered, and clear `alerted_at`.
+
+## 3b. Running out of quota (usage limits)
+
+When a run can't finish because of usage or rate limits, there is usually nothing it can post at that moment.
+- Before stopping, if possible, record `last_error_kind: "quota"` and `quota_hit_at` in state, and release the lock.
+- **The next run that works** should mention the delay in its first message to the group, or in its first reply to whoever was waiting, with Arabic humour from the telegram-voice "Out of quota" row, e.g. "كلود خلّص بطاريته اليوم 🪫😅". Then explain in formal English: "Some requests were delayed because the assistant reached its usage limit. Everything is back to normal, and I am working through the queue now."
+- Do this once per incident, then clear `quota_hit_at`.
+- The same applies when a run notices it is starting much later than expected (more than 2 hours since `last_run_at`).
 
 ## 4. Health-check routine (separate, every 3 hours)
 

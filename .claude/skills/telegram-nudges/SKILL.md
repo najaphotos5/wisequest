@@ -52,7 +52,7 @@ Then send **one** gentle reminder as a reply to its `message_id`, add 1 to `remi
 - At most 2 reminders per run.
 - Record the reminder's id in the request's `bot_message_ids`, if there is a request.
 
-**Reminder text:** formal English, no humour, short, kind and never pushy.
+**Reminder text:** formal English, short, kind and never pushy. The Arabic opening may sometimes be playful (telegram-voice section 5), e.g. "صحّيت الموضوع من النوم 😄"; never in the second, final reminder.
 - Use a warm Arabic opening and closing, chosen fresh from the telegram-voice bank.
 - Add one line saying what is waiting, e.g. "This is a gentle reminder about the idea above: a 👍 is enough to proceed, or 👎 to skip." or "When convenient, please reply to the questions above (or react 👍 to the proposal), and I will take care of the rest."
 - End with "Please take your time."
