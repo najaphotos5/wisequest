@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.21.08 — 2026-11-25 (patch)
+
+- Telegram bot: numbered steps in a request become separate queued tasks
+
 ## v01.21.07 — 2026-11-25 (patch)
 
 - Telegram bot: 3-hour reminder timers round down to the nearest hourly run

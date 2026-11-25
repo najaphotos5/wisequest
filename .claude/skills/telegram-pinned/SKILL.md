@@ -56,7 +56,7 @@ Every morning (8 AM Pacific) the bot suggests one improvement. On Thursdays it i
 To adjust an idea, reply with the change.
 
 3️⃣ The queue: one task per hour
-Large requests are divided into small tasks. The bot completes one task each hour, checks it on computer and phone, and replies with before and after screenshots.
+Large requests are divided into small tasks. If you number your steps (1) … 2) …), each step becomes its own task, in your order. The bot completes one task each hour, checks it on computer and phone, and replies with before and after screenshots.
 Big changes (homepage, menu, Palestine page, removing pages, long religious texts) get a preview first: 👍 publishes it at once; otherwise it is published after 2 hours unless someone asks for changes.
 New requests join the end of the queue.
 Reply "move 3 to 1" = change the order (your own tasks; owners can move any task)

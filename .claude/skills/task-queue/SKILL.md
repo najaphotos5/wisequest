@@ -46,6 +46,13 @@ In the "done" reply, describe exactly what changed, so people can check it thems
 
 Do this for every new request: a `/todo`, an accepted idea or a website request. Also do it for a needs-info request once it has been answered.
 
+- **The person numbered or listed the steps themselves** ("1) … 2) …", "1. … 2. …", bullets, or "first … then …"): **each step becomes its own task**, in their order and with their wording.
+  - This applies as long as the steps can be done one after another, each one published on its own without breaking the site.
+  - Only deviate in these cases, and say so in the reply:
+    - two steps can't go live separately (e.g. "rename the page" and "update every link to it"): combine them into one task
+    - one step is too big to do well in one run: split it further (e.g. "3a", "3b")
+    - a step is unclear: that task goes to `needs-info`, and the others continue
+  - This can mean more than 6 tasks. Their numbering wins over the 2–6 guideline below.
 - **Simple request** (one focused change on one page): 1 task.
 - **Complex request or several asks** (e.g. "add a video, fix the table and write a new section", changes on several pages, or an idea with 3+ separate steps): split it into **2–6 tasks**.
   - Each task is one focused change that can be published on its own and makes sense on its own.
