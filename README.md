@@ -23,7 +23,7 @@ All rules live in **skills** under [`.claude/skills/`](.claude/skills/). Any age
 | [analytics](.claude/skills/analytics/SKILL.md) | Reading Google Analytics |
 
 **Automations** (Claude cloud routines; their prompts defer to the skills above):
-- hourly Telegram assistant: requests, queue, publishing, reminders, quiet-day check-in
+- hourly Telegram assistant (every hour, around the clock): requests, queue, publishing, reminders, quiet-day check-in
 - daily suggestion: 8 AM Pacific
 - weekly report: Fridays
 
