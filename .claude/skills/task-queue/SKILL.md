@@ -37,7 +37,8 @@ In the "done" reply, describe exactly what changed, so people can check it thems
 - `queue`: ordered list of task keys waiting, e.g. `["9.1", "11.1", "11.2", "12.1"]`. The front is worked on first.
 - On each request: `tasks: [{n, title, status, pr?, merge_sha?, version?}]`.
   - `title` is a short plain description of the change, e.g. "Add 'Jesus in Islam' section under the videos". Never put names in it.
-  - `status`: `queued` · `working` · `needs-info` · `done` · `declined` · `reverted`.
+  - `status`: `queued` · `working` · `preview` · `needs-info` · `done` · `declined` · `reverted`.
+  - Preview tasks also have `preview_message_id` and `preview_at` (unix seconds).
 - The request's own status is `queued` while it has tasks left, and `done` when every task is done or declined.
 - Old fields (`branch`, `pr`, `merge_sha` on the request) still work for requests made before the queue existed.
 
@@ -57,13 +58,53 @@ Do this for every new request: a `/todo`, an accepted idea or a website request.
 
 ## 2. Each hourly run: one task
 
-1. First handle reverts, `/queue` commands and reorder requests (sections 4–5). Answering questions doesn't count as the run's task.
+1. First handle reverts, commands and reorder requests (sections 4–5 and the telegram-commands skill). Answering questions doesn't count as the run's task.
+   - **If publishing is paused** (`state.paused`, set by an owner with `/pause`): stop here. Keep recording, splitting and queueing new requests, and mention in replies that publishing is paused, but don't work on or publish tasks.
+   - **Previews first:** for every task in `preview` (section 2b), publish it if it was approved, or if 2 hours have passed with no 👎 and no change request. Publishing a preview counts as this run's one publish.
 2. Take the **first task in `queue` whose status is `queued`**.
    - Skip tasks that are `needs-info`: they keep their place, and the next ready task goes ahead.
    - If the queue is empty, finish quietly.
 3. Work on it exactly as the main prompt describes. That means its own branch (`claude/todo-<id>-<n>`, also used as the PR `head`), its own version bump, its own PR, published and checked live. Meet every point of the **Quality bar** before publishing, and take the time you need: this is the only task this run. Then remove it from `queue` and set it to `done` with its `pr`, `merge_sha` and `version`.
 4. If the task turns out to need information: ask (🤔 + numbered questions), set the task to `needs-info` and leave it in the queue. If time is left, you may start the next ready task, but **never publish more than one task per run**.
 5. If the task isn't allowed: decline that task only (🙏 + reason), set it to `declined`, remove it from the queue. The other tasks of the request carry on.
+
+## 2b. Preview before publishing (big or sensitive changes only)
+
+Most tasks publish straight away. These need a **preview first**:
+- the homepage, the main menu/navigation, the footer or anything shown on every page (site-wide layout, colours, fonts, `app/layout.tsx`, `lib/site.ts`, `app/globals.css`)
+- the Palestine page
+- deleting, renaming or moving a page (anything that changes a URL)
+- adding or replacing more than ~300 words of religious content
+- a change that touches 5 or more pages
+
+How it works:
+1. Do the work on the task's branch and open the PR as usual, meeting the Quality bar, but **don't merge**.
+2. Take screenshots of the changed page(s) from the **local build** (section 2c), at phone width and desktop width.
+3. Reply under the request with:
+   - an Arabic opening, then: "This is a larger change, so here is a preview before it goes live:"
+   - the screenshots (a media group)
+   - 2–4 bullets saying exactly what changes
+   - "👍 = publish it now · Reply with any changes you would like. If there is no reply within 2 hours, I will publish it."
+4. Set the task status to `preview`, with `preview_message_id` (the text message) and `preview_at`. It leaves the queue's working slot, so later runs may work on the next task meanwhile.
+5. In later runs:
+   - **👍 or an approving reply** from the requester or an owner: publish it.
+   - **A reply asking for changes:** make them on the same branch (this counts as the run's task) and post a new preview. The 2 hours restart.
+   - **👎** with no explanation: set it to `needs-info` and ask what they would like changed.
+   - **2 hours with none of these:** publish it.
+6. If screenshots can't be taken, the preview is the bullets plus a short quote of the new text (up to ~500 characters).
+
+## 2c. Screenshots (previews and "done" replies)
+
+**After every published task**, send a phone-width **before** and **after** screenshot of the main changed page as a media group, replying to the "done" message. Captions: "Before" and "After". For a brand-new page there is only "After". This lets people check the result without opening the site.
+
+How:
+- **Before:** take it from the live site just before merging.
+- **After:** take it from the live site after the deploy is confirmed. Add `?t=<time>` to bypass the cache.
+- **Previews:** take them from the local build (`npx -y serve out -l 4321` in the background, then http://localhost:4321/<path>/).
+- **Viewport:** phone 390×844 at deviceScaleFactor 2; desktop 1280×800. Capture the top of the page plus the changed section (scroll to it), not the whole page.
+- **Tool:** use Playwright with Chromium, installed in a scratch folder **outside the repo**. Never add it to the project's package.json. For example: `mkdir -p /tmp/shot && cd /tmp/shot && npm init -y && npm i playwright@1 && npx playwright install --with-deps chromium`, once per run.
+- **Sending:** `sendMediaGroup` with `multipart/form-data` (attach://before, attach://after) and `reply_parameters` to the done or preview message.
+- **If anything fails** (no browser, blocked download, timeout): skip the screenshots silently and mention it only in the run summary. **Never** let screenshots delay or block publishing.
 
 ## 3. Messages (Telegram, following telegram-voice)
 
