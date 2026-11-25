@@ -35,7 +35,7 @@ These videos show "This video doesn't exist" or "Video unavailable" to visitors:
 • <page link>: <video title, or "a YouTube video" if no title> (<reason>)
 • ...
 
-👍 = yes, remove them (or reply "approve" / "go ahead")
+👍 = yes, please remove them (or reply "approve")
 👎 = keep them for now
 ```
 
@@ -81,7 +81,7 @@ What exactly:
 
 Effort: small | medium
 
-👍 = yes, do it (or reply "approve" / "go ahead")
+👍 = yes, please proceed (or reply "approve")
 👎 = skip
 ```
 
@@ -90,7 +90,7 @@ The Arabic greeting and closing lines in the templates here are only examples: p
 Never put a `/todo` line in the message. People accept with 👍 or a short reply; the full change description lives only in `suggestions.json` (`todo` field), where the hourly assistant reads it.
 
 Writing tips:
-- Follow `.claude/skills/telegram-voice/SKILL.md` for greetings and Islamic phrases (e.g. جمعة مباركة on Fridays instead of the morning greeting).
+- Follow `.claude/skills/telegram-voice/SKILL.md` for everything about wording: Arabic greetings and Islamic phrases (e.g. جمعة مباركة on Fridays), and **formal English** for all the information. No humour in the daily idea.
 - Write for a friendly volunteer, not a developer. No jargon (no "component", "MDX", "PR").
 - Be concrete. Instead of "improve readability", say: "Split the 3 longest sentences in 'Why is there suffering?'. For example: '…' → '…'".
 - Base before/after examples on real text from the page. Never alter a Quran or hadith quote in an example.

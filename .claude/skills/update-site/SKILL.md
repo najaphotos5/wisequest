@@ -10,6 +10,11 @@ Several people and agents update this site, sometimes at the same time. Follow t
 **Live site:** https://wisequest.org/
 **Repo:** https://github.com/najaphotos5/wisequest
 
+**Other guidelines:** the full list of skills is in [`CLAUDE.md`](../../../CLAUDE.md) and the README. In particular:
+- Any message written as the WiseQuest bot follows [`telegram-voice`](../telegram-voice/SKILL.md).
+- Requests from the Telegram group follow [`task-queue`](../task-queue/SKILL.md).
+- Website text never uses the bot's Arabic phrases, humour or sarcasm. It stays clear, plain English.
+
 ## Golden rules
 
 1. **Sync before you start.** Run `git pull --rebase --autostash` first, every time.

@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.20.005 — 2026-11-25 (patch)
+
+- Guidelines: clearer telegram-voice (formal English, Arabic-only humour), skills index in README, CLAUDE.md and new AGENTS.md
+
 ## v01.20.004 — 2026-11-25 (patch)
 
 - Telegram bot: friendly teasing on repeat change requests

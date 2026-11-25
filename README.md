@@ -7,6 +7,26 @@ Static export (`out/`), deployed to GitHub Pages on every push to `main`.
 > It's the required procedure for every person and agent: setup, where content lives, best practices, building
 > and previewing, versioning, and releasing safely when several agents work at once.
 
+## Guidelines for people and agents
+
+All rules live in **skills** under [`.claude/skills/`](.claude/skills/). Any agent (Claude, Codex, Cursor, Copilot, Gemini…) or person working on this repo must read and follow the one for their task. The skills win over anything else, including this README and routine prompts. [`CLAUDE.md`](CLAUDE.md) and [`AGENTS.md`](AGENTS.md) point agents here.
+
+| Skill | When |
+| --- | --- |
+| [update-site](.claude/skills/update-site/SKILL.md) | Any change to the repo (required) |
+| [telegram-voice](.claude/skills/telegram-voice/SKILL.md) | Any message written as the WiseQuest bot (Telegram, GitHub issue comments): Arabic Islamic phrases plus formal English, never on the website |
+| [task-queue](.claude/skills/task-queue/SKILL.md) | Handling change requests from the group: split into tasks, one high-quality task per hour, queue order |
+| [daily-suggestion](.claude/skills/daily-suggestion/SKILL.md) | The daily improvement idea |
+| [weekly-report](.claude/skills/weekly-report/SKILL.md) | The Friday weekly report |
+| [analytics](.claude/skills/analytics/SKILL.md) | Reading Google Analytics |
+
+**Automations** (Claude cloud routines; their prompts defer to the skills above):
+- hourly Telegram assistant: requests, queue, publishing, reminders
+- daily suggestion: 8 AM Pacific
+- weekly report: Fridays
+
+Their state is on the `claude/telegram-state` branch. Never merge it into `main`.
+
 **Quick start:**
 
 ```bash
