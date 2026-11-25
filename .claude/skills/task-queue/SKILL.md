@@ -102,7 +102,25 @@ How:
 - **After:** take it from the live site after the deploy is confirmed. Add `?t=<time>` to bypass the cache.
 - **Previews:** take them from the local build (`npx -y serve out -l 4321` in the background, then http://localhost:4321/<path>/).
 - **Viewport:** phone 390×844 at deviceScaleFactor 2; desktop 1280×800. Capture the top of the page plus the changed section (scroll to it), not the whole page.
-- **Tool:** use Playwright with Chromium, installed in a scratch folder **outside the repo**. Never add it to the project's package.json. For example: `mkdir -p /tmp/shot && cd /tmp/shot && npm init -y && npm i playwright@1 && npx playwright install --with-deps chromium`, once per run.
+- **Tool (tested in the cloud environment, 2026-11-25):** the Playwright browser download is blocked there, but Chrome is preinstalled. Use the `playwright` npm package in a scratch folder **outside the repo**, never in the project's package.json, and launch the preinstalled Chrome:
+  ```bash
+  mkdir -p /tmp/shot && cd /tmp/shot && [ -d node_modules/playwright ] || (npm init -y >/dev/null && npm i playwright@1 >/dev/null)
+  cat > shot.js <<'JS'
+  const { chromium } = require('playwright');
+  const [url, out, w = '390', h = '844'] = process.argv.slice(2);
+  (async () => {
+    const exe = ['/usr/bin/google-chrome', '/opt/pw-browsers/chromium'].find((p) => require('fs').existsSync(p));
+    const b = await chromium.launch({ executablePath: exe, args: ['--no-sandbox'] });
+    const p = await (await b.newContext({ viewport: { width: +w, height: +h }, deviceScaleFactor: 2 })).newPage();
+    await p.goto(url, { waitUntil: 'networkidle', timeout: 45000 });
+    await p.screenshot({ path: out });
+    await b.close();
+  })();
+  JS
+  node shot.js "https://wisequest.org/<path>/?t=$(date +%s)" after.png        # phone
+  node shot.js "http://localhost:4321/<path>/" preview-desktop.png 1280 800   # desktop
+  ```
+  To show a section further down the page, scroll to it first (`await p.locator('text=<heading>').first().scrollIntoViewIfNeeded()`) before taking the screenshot.
 - **Sending:** `sendMediaGroup` with `multipart/form-data` (attach://before, attach://after) and `reply_parameters` to the done or preview message.
 - **If anything fails** (no browser, blocked download, timeout): skip the screenshots silently and mention it only in the run summary. **Never** let screenshots delay or block publishing.
 
