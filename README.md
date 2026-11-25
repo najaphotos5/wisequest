@@ -16,6 +16,7 @@ All rules live in **skills** under [`.claude/skills/`](.claude/skills/). Any age
 | [update-site](.claude/skills/update-site/SKILL.md) | Any change to the repo (required) |
 | [telegram-voice](.claude/skills/telegram-voice/SKILL.md) | Any message written as the WiseQuest bot (Telegram, GitHub issue comments): Arabic Islamic phrases plus formal English, never on the website |
 | [task-queue](.claude/skills/task-queue/SKILL.md) | Handling change requests from the group: split into tasks, one high-quality task per hour, queue order |
+| [telegram-pinned](.claude/skills/telegram-pinned/SKILL.md) | Required after any change to how Telegram messages are processed or what users can do: update the pinned help message |
 | [daily-suggestion](.claude/skills/daily-suggestion/SKILL.md) | The daily improvement idea |
 | [weekly-report](.claude/skills/weekly-report/SKILL.md) | The Friday weekly report |
 | [analytics](.claude/skills/analytics/SKILL.md) | Reading Google Analytics |
