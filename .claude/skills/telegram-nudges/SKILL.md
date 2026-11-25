@@ -107,7 +107,7 @@ Vary the English line too, always formally. For example:
 **Rules:**
 - **Once a day at most.** Never a second check-in on the same Pacific date, whatever happens.
 - **If ignored:** if the last 3 check-ins got no reaction and no reply, skip the next 3 days. It should never become noise.
-- **Humour:** the playful line is allowed even though nobody asked for a change; this is the one exception to telegram-voice section 5's "2nd change request" condition. All its other limits still apply: Arabic only, never والله or any religious phrase in the joke, never on a day someone was upset.
+- **Humour:** the playful line is always allowed in a check-in, even though nobody asked for a change. All of telegram-voice section 5's other limits still apply: Arabic only, never والله or any religious phrase in the joke, never on a day someone was upset.
 - **Replies:** a reply or reaction to the check-in counts as engagement, and a 👎 is a dislike (see above). A request in reply is handled like any `/todo`.
 
 ## Lessons
