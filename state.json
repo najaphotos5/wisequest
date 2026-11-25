@@ -1,8 +1,8 @@
 {
-  "offset": 109084499,
+  "offset": 109084500,
   "chat_id": -1004488348585,
   "owner_telegram_id": 5763295123,
-  "next_id": 12,
+  "next_id": 13,
   "requests": [
     {
       "id": 1,
@@ -159,6 +159,19 @@
       "summary": "Get Involved: welcome, jump links, contact button (v01.20.001)",
       "from_suggestion": 60,
       "theme": "engagement"
+    },
+    {
+      "id": 12,
+      "message_id": 63,
+      "status": "done",
+      "bot_message_ids": [
+        64
+      ],
+      "branch": "claude/todo-12-1",
+      "pr": 10,
+      "merge_sha": "3726b2e056b425798028d700f00edadc6595b68e",
+      "summary": "Jesus chart: Islamic View column separates summary from Quran reference (v01.20.009)",
+      "theme": "clarity"
     }
   ],
   "awaiting": [
@@ -173,7 +186,9 @@
   "queue": [],
   "recent_phrases": [
     "شبيك لبيك، كلود بين إيديكم",
-    "دمتم في حفظ الله"
+    "دمتم في حفظ الله",
+    "وعليكم السلام، جزاكم الله خيرا على الملاحظة",
+    "جعلها الله في ميزان حسناتكم"
   ],
   "last_checkin_date": "2026-11-25",
   "checkins": [
@@ -181,5 +196,9 @@
       "date": "2026-11-25",
       "message_id": 62
     }
-  ]
+  ],
+  "activity": {
+    "date": "2026-11-25",
+    "human_events": 1
+  }
 }
