@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.20.001 — 2026-11-25 (patch)
+
+- Get Involved: welcome intro, jump links and contact button
+
 ## v01.20.000 — 2026-11-25 (minor)
 
 - Jesus page: added a 'Jesus in Islam' section
