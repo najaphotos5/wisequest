@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.20.11 — 2026-11-25 (patch)
+
+- Telegram bot: many more Arabic phrases for 'done and live' replies
+
 ## v01.20.10 — 2026-11-25 (patch)
 
 - Version format is now vXX.XX.XX (two-digit patch)
