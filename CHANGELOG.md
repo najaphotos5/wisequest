@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.19.011 — 2026-11-25 (patch)
+
+- Jesus page: both related videos shown as thumbnails side by side
+
 ## v01.19.010 — 2026-11-25 (patch)
 
 - Telegram bot: up to two kind reminders per message
