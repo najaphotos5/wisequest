@@ -10,7 +10,7 @@ The WiseQuest Telegram group (chat_id `-1004488348585`) has one pinned message f
 ## When you must update it
 
 Update it in the same piece of work whenever you change **how Telegram messages are processed or what users can do**. That includes changes to:
-- commands: `/todo`, `/revert`, `/queue` and any new ones
+- commands: anything in `telegram-commands` (also keep the Telegram command menu in sync, see there)
 - how requests are accepted (👍, replies), the task queue or its order, reminders, check-ins, reactions
 - the hourly schedule, the daily idea or the weekly report
 - any routine prompt or skill that changes the above: the hourly assistant, `task-queue`, `daily-suggestion`, `weekly-report`

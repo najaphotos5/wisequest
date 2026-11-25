@@ -7,6 +7,8 @@ description: Build and post the weekly wisequest.org report in the WiseQuest Tel
 
 Every Friday, post **one** short report about the previous 7 days (last Friday – Thursday) in the WiseQuest Telegram group (chat_id `-1004488348585`). A busy volunteer should understand it in 30 seconds and know the one thing to do next.
 
+**Time guard (daylight saving):** this routine is scheduled at two UTC times on Fridays. First check the time: if it is not between 9:00 and 9:59 AM in America/Los_Angeles, stop immediately and do nothing (see `bot-operations` section 5).
+
 **You only report. Never edit the website in this run**, except the monthly Lessons update below.
 
 ## 1. Gather data

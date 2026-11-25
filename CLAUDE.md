@@ -22,6 +22,8 @@ Every person and agent working on this repo, Claude or not, must follow these fi
 | [`telegram-voice`](.claude/skills/telegram-voice/SKILL.md) | write **any** message as the WiseQuest bot (Telegram group or GitHub issue comments). Arabic Islamic phrases plus formal English. Never used for website text. |
 | [`task-queue`](.claude/skills/task-queue/SKILL.md) | handle change requests from the group: split them into tasks, keep the queue, do one high-quality task per hourly run. |
 | [`telegram-pinned`](.claude/skills/telegram-pinned/SKILL.md) | change **how Telegram messages are processed or what users can do** (commands, queue, reminders, schedule, routines). You must then update the pinned help message. |
+| [`telegram-commands`](.claude/skills/telegram-commands/SKILL.md) | handle any command members send the bot (/status, /undo, /idea, /check…), requests without /todo, and Arabic requests. |
+| [`bot-operations`](.claude/skills/bot-operations/SKILL.md) | run or change the Telegram routines: run lock, missed-message gaps, health alerts, the health-check routine, daylight-saving-proof schedules, pause. |
 | [`telegram-nudges`](.claude/skills/telegram-nudges/SKILL.md) | send unprompted bot messages: reminders when nobody answers, and the quiet-day check-in. |
 | [`daily-suggestion`](.claude/skills/daily-suggestion/SKILL.md) | post the daily improvement idea. |
 | [`weekly-report`](.claude/skills/weekly-report/SKILL.md) | post the Friday weekly report. |

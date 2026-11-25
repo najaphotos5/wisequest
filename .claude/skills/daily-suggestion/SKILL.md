@@ -7,6 +7,8 @@ description: Pick and post ONE simple, detailed improvement idea for wisequest.o
 
 Each run posts **exactly one** improvement idea for https://wisequest.org in the WiseQuest Telegram group (chat_id `-1004488348585`). It should be easy for a non-technical volunteer to read in 30 seconds, and accepting it takes just a 👍.
 
+**Time guard (daylight saving):** this routine is scheduled at two UTC times. First check the time: if it is not between 8:00 and 8:59 AM in America/Los_Angeles, stop immediately and do nothing (see `bot-operations` section 5). This guard does not apply when the hourly assistant runs these steps for `/idea`.
+
 **You only suggest. Never edit the website in this run.** The hourly assistant does the work when someone reacts 👍 or replies "approve" / "go ahead".
 
 ## 1. Gather inputs
@@ -18,24 +20,33 @@ Each run posts **exactly one** improvement idea for https://wisequest.org in the
 2. Build the site and its quality data: `npm ci && npm run build`. Then read `out/dev-data/scores.json` (per-page `textScore`, `pageScore`, `issues`, `fixes`) and `out/dev-data/history.json` (recent changes).
 3. Skim `docs/UX-IMPROVEMENTS.md` (older review), `app/page.tsx` (homepage, including the photo carousel: `image` + `slides`), `lib/visuals.ts` (page photos), `public/img/`, and `git log --oneline -30` (what changed recently).
 
-## 1b. Weekly dead-video check (Thursdays)
+## 1b. Weekly site-health sweep (Thursdays)
 
-Every **Thursday** (Pacific time), also run `npm run check-videos -- --json`. It lists videos embedded on the site that no longer exist (deleted or private YouTube videos, removed Vimeo or old WordPress/VideoPress videos).
-- If `dead` is not empty: **today's idea is removing them** (skip steps 2–3). Use the message below, theme `content`, and save the `todo` like any idea, e.g. "Remove these videos that no longer exist: on https://wisequest.org/stories/ the YouTube video O4jjf37I8rU (content/pages/stories.mdx line 23); …". List every dead video with its page, file and line.
-- If more than half the videos couldn't be checked (`unknown`), the video sites are probably blocked: say so in your final summary and post a normal idea instead.
-- If all videos are fine, post a normal idea. Don't mention the check.
+Every **Thursday** (Pacific time), check the whole site before picking an idea:
+1. **Dead videos:** `npm run check-videos -- --json`. These are embedded videos that no longer exist: deleted or private YouTube videos, removed Vimeo or old WordPress/VideoPress videos.
+2. **Dead outside links:** `npm run check-external -- --json`. These are links to other websites whose page is gone (404/410).
+3. **Internal links:** `npm run check-links` (already part of the build).
+4. **Spelling:** proofread a rotating batch of **10 pages** for clear typos and grammar mistakes only, not style.
+   - Keep the position in `preferences.json` as `proofread_cursor`, the index into the sorted list of `content/pages/**.mdx` + `content/qa/*.mdx`. Advance it by 10 each week and wrap around.
+   - **Never** flag or touch Quran verses, hadith or other quoted text, Arabic or transliterated words, or names.
+
+What to post:
+- **Problems found in any of 1–4:** today's idea is fixing them (skip steps 2–3). Use the message below, theme `content`, and save one `todo` listing every fix with its page, file and line, e.g. "On https://wisequest.org/learn/quran/ (content/pages/learn/quran.mdx line 103) the link to thedeenshow.com is dead: remove it or replace it with …; on … change 'recieve' to 'receive'; remove the YouTube video O4jjf37I8rU (content/pages/stories.mdx line 23)".
+  - For a dead link, suggest a replacement only if you are sure it is the same resource. Otherwise suggest removing the link and keeping the text.
+  - Up to ~15 items; mention "and N more" in the message if there are more.
+- **A checker couldn't reach most sites** (`unknown` > half): don't report its results, since they may be false. Note it in your final summary.
+- **Everything fine:** post a normal idea and don't mention the check.
 
 ```
 السلام عليكم ورحمة الله
 أسعد الله صباحكم 🌅
 
-🎬 Videos that no longer exist
+🩺 Weekly site check: a few things to fix
 
-These videos show "This video doesn't exist" or "Video unavailable" to visitors:
-• <page link>: <video title, or "a YouTube video" if no title> (<reason>)
+• <page link>: <problem, e.g. "a video that no longer exists", "a link to a page that no longer exists", "typo: recieve → receive">
 • ...
 
-👍 = yes, please remove them (or reply "approve")
+👍 = yes, please fix them (or reply "approve")
 👎 = keep them for now
 ```
 

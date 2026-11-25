@@ -42,6 +42,7 @@ While paused, send **no reminders and no check-ins**.
 
 **Send** a reminder when all of these hold:
 - reminders are not paused
+- the person it waits on has not used `/mute` (their key in `state.muted` is missing or expired; see telegram-commands). Ideas waiting on the whole group are not affected by one person's mute.
 - the local time is between 8:00 and 21:00 America/Los_Angeles
 - the entry is open and has fewer than 2 reminders
 - at least 3 hours have passed since the later of `sent_at` and `reminded_at`

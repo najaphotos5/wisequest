@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.21.00 — 2026-11-25 (minor)
+
+- Telegram bot: commands (/status /undo /idea /report /page /check /history /mute /pause /resume /priority /help), run lock, missed-message and health alerts, previews for big changes, screenshots, weekly site sweep, requests without /todo
+
 ## v01.20.13 — 2026-11-25 (patch)
 
 - Telegram bot now runs every hour, around the clock
