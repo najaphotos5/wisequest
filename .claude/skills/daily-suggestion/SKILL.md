@@ -7,7 +7,7 @@ description: Pick and post ONE simple, detailed improvement idea for wisequest.o
 
 Each run posts **exactly one** improvement idea for https://wisequest.org in the WiseQuest Telegram group (chat_id `-1004488348585`). It should be easy for a non-technical volunteer to read in 30 seconds, and accepting it takes just a 👍.
 
-**Time guard (daylight saving):** this routine is scheduled at two UTC times. First check the time: if it is not between 8:00 and 8:59 AM in America/Los_Angeles, stop immediately and do nothing (see `bot-operations` section 5). This guard does not apply when the hourly assistant runs these steps for `/idea`.
+**Time guard (daylight saving):** this routine is scheduled at two UTC times. First check the time: if it is not between 8:00 and 8:59 AM in America/Los_Angeles, stop immediately and do nothing (see `bot-operations` section 5). Also stop if `suggestions.json` already has an entry dated today (Pacific) that was posted by this routine, i.e. one not marked `"via": "command"`. The hourly assistant marks the ideas it posts for `/idea`, `/page` and `/check` with `"via": "command"`. This guard does not apply when the hourly assistant runs these steps for `/idea`.
 
 **You only suggest. Never edit the website in this run.** The hourly assistant does the work when someone reacts 👍 or replies "approve" / "go ahead".
 

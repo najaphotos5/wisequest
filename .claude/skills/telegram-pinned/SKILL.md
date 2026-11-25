@@ -42,47 +42,68 @@ Changes that only affect the bot's wording or tone (`telegram-voice`) don't need
 📌 How to use the WiseQuest bot
 
 1️⃣ Request a change to wisequest.org
-Type /todo followed by your request in the same message.
+Type /todo followed by your request in the same message, in English or Arabic.
 Example: /todo Add a page about Ramadan with fasting times for Sacramento
-(Tapping /todo in the menu sends it empty, so please type your request after it.)
 • Which page? Paste the link, e.g. wisequest.org/learn/quran
 • What should change, and why?
 • A screenshot helps: attach it and put /todo in the caption.
-You may ask for several things in one message. The bot will divide them into tasks.
+You may ask for several things in one message; the bot divides them into tasks. If you write a request without /todo, the bot will ask whether to add it to the queue (👍 = yes).
 
 2️⃣ Daily ideas and the weekly report
-Every morning (8 AM Pacific) the bot suggests one improvement. On Fridays it posts a weekly report with one suggested action.
+Every morning (8 AM Pacific) the bot suggests one improvement. On Thursdays it is a site check for broken links, missing videos and typos. On Fridays it posts a weekly report with one suggested action.
 👍 or reply "approve" = please do it
 👎 or reply "no" = skip it
-To adjust an idea, reply with the change, e.g. "yes, but make the buttons green".
+To adjust an idea, reply with the change.
 
 3️⃣ The queue: one task per hour
-Large or multi-part requests are divided into small tasks. The bot completes one task each hour, so that every change is done carefully and checked on computer and phone before it is published.
-New requests join the end of the queue, and the bot replies with the current order.
-/queue = show the current queue
-Reply "move 3 to 1" or "do task 3 first" = change the order (your own tasks; owners can move any task)
+Large requests are divided into small tasks. The bot completes one task each hour, checks it on computer and phone, and replies with before and after screenshots.
+Big changes (homepage, menu, Palestine page, removing pages, long religious texts) get a preview first: 👍 publishes it at once; otherwise it is published after 2 hours unless someone asks for changes.
+New requests join the end of the queue.
+Reply "move 3 to 1" = change the order (your own tasks; owners can move any task)
 /queue remove 3 = remove one of your waiting tasks
 
-4️⃣ What the bot's reactions mean
-The bot checks the group every hour, day and night.
-👀 Seen
-✍ Working on it
-🎉 Done and live, with a reply listing the changes and a link
-🤔 More information needed: please reply to the bot's question
-🙏 Cannot be done (the reply explains why)
+4️⃣ Commands
+/status = what the bot is doing now
+/status 12 = the history of request 12
+/queue = the current queue
+/history = the last 10 published changes
+/undo = undo the last published change
+/revert 7 = undo request 7 · /revert 7.2 = undo only task 2 of request 7
+/idea = suggest an improvement now
+/report = website statistics for the last 7 days
+/page jesus = statistics and ideas for one page
+/check = check the site for broken links, missing videos and heavy pages
+/mute = no reminders about your requests for 7 days
+/help = a short version of this message
+Owners only: /pause and /resume publishing · /priority 12 = move request 12 to the front
 
-5️⃣ Undo a change
-/revert 7 = undo request 7 (all of its tasks)
-/revert 7.2 = undo only task 2 of request 7
-It is undone within the hour.
+5️⃣ What the bot's reactions mean
+The bot checks the group every hour, day and night, and answers commands at the next check.
+👀 Seen · ✍ Working on it · 🎉 Done and live · 🤔 More information needed (please reply) · 🙏 Cannot be done (with the reason)
 
-6️⃣ Reminders
+6️⃣ Reminders and check-ins
 If a question or idea receives no answer, the bot sends a gentle reminder after 3 hours, at most two per message, between 8 AM and 9 PM Pacific. On quiet days, the bot may post one friendly check-in in the afternoon. A 👎 on any bot message, or a reply of "stop", pauses reminders and check-ins for 7 days.
 
-Changes are published automatically, without an approval step. The bot asks only when a request is unclear.
+7️⃣ If something goes wrong
+The owners are alerted automatically if the bot stops working. If you sent a request and received no reply within two hours, please send it again.
 
+Changes are published automatically; the bot asks only when a request is unclear.
 📖 For Quran verses or hadith, please include the source (e.g. Quran 2:255, Sahih Muslim 26). The bot never invents or rewords religious text.
-
 For questions not about the website, please use wisequest.org/contact
 ```
 <!-- PINNED END -->
+
+## Short help (sent for /help)
+
+<!-- HELP START -->
+```
+📌 Quick help
+/todo <request> = request a change (English or Arabic)
+👍 on an idea = do it · 👎 = skip
+/status · /queue · /history
+/undo = undo the last change · /revert 7 = undo request 7
+/idea · /report · /page <name> · /check
+/mute = no reminders for 7 days
+The full guide is in the pinned message.
+```
+<!-- HELP END -->

@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.21.01 — 2026-11-25 (patch)
+
+- Telegram bot: tested screenshot recipe, pinned help + /help text, command menu, daylight-saving guards
+
 ## v01.21.00 — 2026-11-25 (minor)
 
 - Telegram bot: commands (/status /undo /idea /report /page /check /history /mute /pause /resume /priority /help), run lock, missed-message and health alerts, previews for big changes, screenshots, weekly site sweep, requests without /todo
