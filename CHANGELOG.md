@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.20.000 — 2026-11-25 (minor)
+
+- Jesus page: added a 'Jesus in Islam' section
+
 ## v01.19.011 — 2026-11-25 (patch)
 
 - Jesus page: both related videos shown as thumbnails side by side
