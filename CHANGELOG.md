@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.21.09 — 2026-11-25 (patch)
+
+- Telegram bot: separate messages with different asks become separate queued tasks
+
 ## v01.21.08 — 2026-11-25 (patch)
 
 - Telegram bot: numbered steps in a request become separate queued tasks

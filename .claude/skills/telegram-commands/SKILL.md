@@ -90,7 +90,7 @@ If anyone else sends these, reply kindly that only the site owners can use the c
 
 ## Requests without /todo
 
-If a member's message (not from a bot, and not a reply to an existing request or idea) **clearly asks for a change to the website**, the bot offers to queue it. For example: "can we add X to the homepage?", "the Ramadan page has a typo", "please change the photo on Stories", "ممكن نضيف صفحة عن رمضان؟".
+If a member's message (not from a bot, not a reply to an existing request or idea, and not a follow-up to their own unfinished request within 2 hours, which task-queue section 1 queues directly) **clearly asks for a change to the website**, the bot offers to queue it. For example: "can we add X to the homepage?", "the Ramadan page has a typo", "please change the photo on Stories", "ممكن نضيف صفحة عن رمضان؟".
 - Reply once: Arabic opening + "Shall I add this to the queue? 👍 = yes, please add it." Then save `state.offers.push({message_id, ask_message_id, summary, date})`. `summary` is a short, neutral description of the requested change, with no names; it becomes the request text.
 - On a 👍 (or a "yes" reply) on the ask message **from the person who wrote the original message, or an owner**: create a request from `summary`, with `message_id` = the original message. Then queue it as usual and remove the offer.
 - On a 👎 or "no": remove the offer silently.
