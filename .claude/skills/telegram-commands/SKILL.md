@@ -76,7 +76,7 @@ All of these are read-only. Use `npm run ga -- <report> <days> --json` and follo
 
 | Command | What to do |
 |---|---|
-| `/mute` | For 7 days, no reminders about **this person's** requests or questions. Store `state.muted[<key>] = until`, where `<key>` is the first 12 hex characters of sha256("wq:" + user id). Never store the raw id. Reply: "You will not receive reminders for 7 days." The group check-in is unaffected (it is addressed to everyone), and nudges are not paused for others. `/mute off` ends it early. |
+| `/mute` | Until **8:00 AM tomorrow (America/Los_Angeles)**, no reminders or follow-ups about **this person's** requests or questions. Store `state.muted[<key>] = until` (unix seconds of tomorrow 8:00 AM Pacific), where `<key>` is the first 12 hex characters of sha256("wq:" + user id). Never store the raw id. Reply, e.g.: "Understood. You will not receive reminders until tomorrow morning." (an Arabic touch such as نوم العوافي 😴 fits here when it is late). The group check-in is unaffected (it is addressed to everyone), and nudges are not paused for others. `/mute off` ends it early. |
 
 ## Owners only
 
@@ -100,6 +100,6 @@ If a member's message (not from a bot, and not a reply to an existing request or
 ## Telegram command menu
 
 Keep the bot's command menu (Telegram `setMyCommands`, scope: all group chats) in sync with this file. Whenever a command is added, removed or renamed, call `setMyCommands` with:
-`todo` Request a change · `status` What the bot is doing · `queue` Show the queue · `history` Last 10 changes · `undo` Undo the last change · `revert` Undo a specific change · `idea` Suggest an improvement now · `report` Website statistics · `page` Statistics and ideas for one page · `check` Check the site for problems · `mute` Stop my reminders for 7 days · `stats` Visitors and views · `top` Most viewed pages · `live` Visitors right now · `sources` Where visitors come from · `where` Visitors by country and city · `devices` Mobile vs desktop · `downloads` Most downloaded files · `trend` Daily visitors chart · `compare` This week vs last week · `journey` Visits to key pages · `help` How to use the bot · `pause` Pause publishing (owners) · `resume` Resume publishing (owners) · `priority` Move a request first (owners)
+`todo` Request a change · `status` What the bot is doing · `queue` Show the queue · `history` Last 10 changes · `undo` Undo the last change · `revert` Undo a specific change · `idea` Suggest an improvement now · `report` Website statistics · `page` Statistics and ideas for one page · `check` Check the site for problems · `mute` No reminders until tomorrow morning · `stats` Visitors and views · `top` Most viewed pages · `live` Visitors right now · `sources` Where visitors come from · `where` Visitors by country and city · `devices` Mobile vs desktop · `downloads` Most downloaded files · `trend` Daily visitors chart · `compare` This week vs last week · `journey` Visits to key pages · `help` How to use the bot · `pause` Pause publishing (owners) · `resume` Resume publishing (owners) · `priority` Move a request first (owners)
 
 Then update the pinned message as described in `telegram-pinned`.

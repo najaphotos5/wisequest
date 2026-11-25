@@ -73,7 +73,7 @@ Reply "move 3 to 1" = change the order (your own tasks; owners can move any task
 /report = a weekly summary of website statistics
 /page jesus = statistics and ideas for one page
 /check = check the site for broken links, missing videos and heavy pages
-/mute = no reminders about your requests for 7 days
+/mute = no reminders about your requests until tomorrow morning
 /help = a short version of this message
 Owners only: /pause and /resume publishing · /priority 12 = move request 12 to the front
 
@@ -116,7 +116,7 @@ For questions not about the website, please use wisequest.org/contact
 /undo = undo the last change · /revert 7 = undo request 7
 /idea · /report · /page <name> · /check
 📊 /stats · /top · /live · /sources · /where · /devices · /downloads · /trend · /compare · /journey
-/mute = no reminders for 7 days
+/mute = no reminders until tomorrow morning
 The full guide is in the pinned message.
 ```
 <!-- HELP END -->

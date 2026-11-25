@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.21.06 — 2026-11-25 (patch)
+
+- Telegram bot: /mute lasts until tomorrow morning
+
 ## v01.21.05 — 2026-11-25 (patch)
 
 - Telegram bot: statistics commands (/stats /top /live /sources /where /devices /downloads /trend /compare /journey), follow-up 3 h after publishing
