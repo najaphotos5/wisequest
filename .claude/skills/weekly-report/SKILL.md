@@ -37,6 +37,8 @@ Every Friday, post **one** short report about the previous 7 days (last Friday �
 
 ## 3. Message (plain text, max ~15 lines, no tables)
 
+The Arabic greeting and closing lines in the templates here are only examples: pick fresh ones from the phrase bank in `.claude/skills/telegram-voice/SKILL.md` each time (rotate; don't repeat yesterday's or last week's).
+
 ```
 السلام عليكم ورحمة الله
 جمعة مباركة 🤍
