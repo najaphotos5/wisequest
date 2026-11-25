@@ -100,6 +100,8 @@ Do this for every new request: a `/todo`, an accepted idea or a website request.
 
 ## Rules
 
+- If you change these rules (commands, ordering, reverts), also update the pinned help message: see `.claude/skills/telegram-pinned/SKILL.md`.
+
 - Only one task is published per run. Reverts are extra, and needs-info questions are free.
 - The queue is first come, first served unless people reorder it.
 - Ideas from the daily suggestion join the queue like any request when accepted.
