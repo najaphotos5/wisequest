@@ -64,7 +64,7 @@ Reply "move 3 to 1" or "do task 3 first" = change the order (your own tasks; own
 /queue remove 3 = remove one of your waiting tasks
 
 4️⃣ What the bot's reactions mean
-The bot checks the group every hour, 7 AM to midnight Pacific.
+The bot checks the group every hour, day and night.
 👀 Seen
 ✍ Working on it
 🎉 Done and live, with a reply listing the changes and a link
