@@ -60,7 +60,7 @@
       "pr": 2,
       "summary": "Palestine page fixes published (PR 2, v01.14.001); approved by owner in Claude Code",
       "issue": 1,
-      "merge_sha": "82feb66be98a6dc655100b28635f8e3d8b9d6c75"
+      "merge_sha": "941e9b86048c58f9129005695532e235ccaa53f7"
     },
     {
       "id": 6,
@@ -75,7 +75,7 @@
       "summary": "How to Pray page improved (v01.16.004)",
       "theme": "accessibility",
       "from_suggestion": 36,
-      "merge_sha": "5e150a9a03e6ee3e8cddafbc72815fe51b27c5ae"
+      "merge_sha": "9947824470458b0db046a6c744ea7a70a0e33990"
     },
     {
       "id": 7,
@@ -86,7 +86,7 @@
       ],
       "branch": "claude/todo-7",
       "pr": 4,
-      "merge_sha": "0a4491135ac89417cba5d3471ecaf62dc9ee0bed",
+      "merge_sha": "d5aae8b5a1085ee6ea490fa946daddb9f7444334",
       "summary": "Jesus page chart image + text blocks (v01.18.003)",
       "from_suggestion": 42,
       "theme": "clarity"
@@ -100,7 +100,7 @@
       ],
       "branch": "claude/todo-8",
       "pr": 5,
-      "merge_sha": "33fa4ac22591fafc099f2255172a94ee0dd58e92",
+      "merge_sha": "0ab4057be9b55d3a973c69122efc7c15e8439991",
       "summary": "Jesus page chart rebuilt as styled comparison (v01.19.000)",
       "theme": "clarity"
     },
@@ -119,7 +119,7 @@
       "pr": 8,
       "summary": "Jesus page: video button + both videos + Jesus in Islam section published (v01.20.000)",
       "theme": "content",
-      "merge_sha": "450eefc3c39625b4e4824ccf56e3b76affe20152",
+      "merge_sha": "21b39346d64214aeae37c79a01a6218e957caa4c",
       "answered_message_ids": [
         53
       ],
@@ -142,7 +142,7 @@
       ],
       "branch": "claude/todo-10",
       "pr": 7,
-      "merge_sha": "accde12ad57275a0c8c61a89deb316092425aea4",
+      "merge_sha": "795b9623c4d693c4e2a9610e9ec9db4615756a27",
       "summary": "Jesus page: second video added (v01.19.005)",
       "theme": "content"
     },
@@ -155,7 +155,7 @@
       ],
       "branch": "claude/todo-11",
       "pr": 9,
-      "merge_sha": "ddf44eebd822fab977ff4db293903ce13ac48d6e",
+      "merge_sha": "f1840d3bb989798b56e08d8cce722a4e4d251ef4",
       "summary": "Get Involved: welcome, jump links, contact button (v01.20.001)",
       "from_suggestion": 60,
       "theme": "engagement"
@@ -169,7 +169,7 @@
       ],
       "branch": "claude/todo-12-1",
       "pr": 10,
-      "merge_sha": "3726b2e056b425798028d700f00edadc6595b68e",
+      "merge_sha": "8cc9a6ab4c18d2f20758852efbbdfc628d9b293a",
       "summary": "Jesus chart: Islamic View column separates summary from Quran reference (v01.20.009)",
       "theme": "clarity"
     },
@@ -183,7 +183,7 @@
       ],
       "branch": "claude/todo-13-1",
       "pr": 11,
-      "merge_sha": "3a48e05f7f3e90a01baea999034beb2ccd44349a",
+      "merge_sha": "ccc7c9353cc43d8f70195ad7d3d9392ae1c2f483",
       "summary": "Verify Jesus chart Quran references; remove reference on row 14",
       "theme": "content"
     },
@@ -198,7 +198,7 @@
       ],
       "branch": "claude/todo-14-1",
       "pr": 12,
-      "merge_sha": "cd7a13c1414efe8676c8e05c80fe066ed99c5d77",
+      "merge_sha": "29d65494029d82c5e2567dd9e3f1b5691a00f7c1",
       "summary": "Jesus page closing remarks rephrased (v01.24.01), then rewritten as 'Finding Jesus through Islam' (v01.24.06); screenshots 70/71 and done message 69 updated",
       "theme": "clarity",
       "version": "v01.24.01",
@@ -207,7 +207,7 @@
           "n": 1,
           "title": "Rephrase the Yusuf Estes and Sinéad O’Connor remarks",
           "status": "done",
-          "merge_sha": "cd7a13c1414efe8676c8e05c80fe066ed99c5d77",
+          "merge_sha": "29d65494029d82c5e2567dd9e3f1b5691a00f7c1",
           "version": "01.24.01",
           "pr": 12
         },
@@ -215,7 +215,7 @@
           "n": 2,
           "title": "Owner follow-up: section 'Finding Jesus through Islam' with clearer wording",
           "status": "done",
-          "merge_sha": "64fa4debbe1dbdb30dd80aae814c67ac1b661f09",
+          "merge_sha": "c523e80013a679606f99450b61983e4a00e66f07",
           "version": "01.24.06",
           "note": "published directly to main by the owner's session (no PR)"
         }
