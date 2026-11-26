@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.24.10 — 2026-11-26 (patch)
+
+- Telegram bot: lots more Arabic humour and an 'overworked bot' persona
+
 ## v01.24.09 — 2026-11-26 (patch)
 
 - History now starts from the original WordPress site (main rebased onto it; backup kept)
