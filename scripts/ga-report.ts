@@ -10,6 +10,7 @@
  *   npm run ga -- landing [days]      first page people see
  *   npm run ga -- events [days]       downloads, clicks, scrolls, video plays
  *   npm run ga -- downloads 28        which files (PDFs) were downloaded
+ *   npm run ga -- feedback 28         "Was this page helpful?" answers per page (feedback_yes / feedback_no / feedback_no_<reason>)
  *   npm run ga -- realtime            people on the site right now
  *   npm run ga -- all [days]          every report above (default 28 days)
  *   add --json for machine-readable output
@@ -65,7 +66,7 @@ async function token(key: Key): Promise<string> {
 }
 
 type Row = Record<string, string | number>;
-type Spec = { dimensions?: string[]; metrics: string[]; orderBy?: string; desc?: boolean; limit?: number; compare?: boolean; eventName?: string };
+type Spec = { dimensions?: string[]; metrics: string[]; orderBy?: string; desc?: boolean; limit?: number; compare?: boolean; eventName?: string; eventPrefix?: string };
 
 const range = (days: number, offset = 0) => ({ startDate: `${days + offset}daysAgo`, endDate: offset ? `${offset + 1}daysAgo` : "yesterday" });
 
@@ -76,6 +77,7 @@ async function run(tok: string, spec: Spec, days: number, realtime = false): Pro
     limit: spec.limit ?? 25,
   };
   if (spec.orderBy) body.orderBys = [{ desc: spec.desc ?? true, [spec.metrics.includes(spec.orderBy) ? "metric" : "dimension"]: spec.metrics.includes(spec.orderBy) ? { metricName: spec.orderBy } : { dimensionName: spec.orderBy } }];
+  if (spec.eventPrefix) body.dimensionFilter = { filter: { fieldName: "eventName", stringFilter: { matchType: "BEGINS_WITH", value: spec.eventPrefix } } };
   if (spec.eventName) body.dimensionFilter = { filter: { fieldName: "eventName", stringFilter: { value: spec.eventName } } };
   if (!realtime) body.dateRanges = spec.compare ? [range(days), range(days, days)] : [range(days)];
   const r = await fetch(`${API}:${realtime ? "runRealtimeReport" : "runReport"}`, {
@@ -124,6 +126,7 @@ const REPORTS: Record<string, Spec & { realtime?: boolean; title: string }> = {
   landing: { title: "Landing pages", dimensions: ["landingPage"], metrics: ["sessions", "engagementRate", "averageSessionDuration"], orderBy: "sessions" },
   events: { title: "Events", dimensions: ["eventName"], metrics: ["eventCount", "totalUsers"], orderBy: "eventCount" },
   downloads: { title: "Downloads (files)", dimensions: ["fileName", "linkUrl"], metrics: ["eventCount", "totalUsers"], orderBy: "eventCount", eventName: "file_download" },
+  feedback: { title: "Page feedback (Was this page helpful?)", dimensions: ["pagePath", "eventName"], metrics: ["eventCount"], orderBy: "eventCount", eventPrefix: "feedback_", limit: 200 },
   realtime: { title: "Right now (last 30 minutes)", dimensions: ["unifiedScreenName"], metrics: ["activeUsers"], orderBy: "activeUsers", realtime: true },
 };
 

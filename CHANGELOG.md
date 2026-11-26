@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.24.00 — 2026-11-26 (minor)
+
+- Was this page helpful? 👍/👎 on every page, tracked in Google Analytics; feedback in the weekly PDF, /feedback command
+
 ## v01.23.00 — 2026-11-26 (minor)
 
 - Website report: improvements published, page quality ratings, richer 'needs attention'; Friday message summarises everything

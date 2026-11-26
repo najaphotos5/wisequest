@@ -65,7 +65,7 @@ Recompute `preferences.json` = `{weights: {theme: number}, updated: date, notes:
 
 ## 3. Pick ONE idea
 
-1. Make a short candidate list (3–6) from the inputs: lowest-scoring pages and their `issues`/`fixes`, homepage and carousel ideas, gaps from `docs/UX-IMPROVEMENTS.md`, and themes people request.
+1. Make a short candidate list (3–6) from the inputs (include visitor feedback: `npm run ga -- feedback 28 --json`; a page where 👎 outweighs 👍 is a strong candidate, and its top reason hints at the fix): lowest-scoring pages and their `issues`/`fixes`, homepage and carousel ideas, gaps from `docs/UX-IMPROVEMENTS.md`, and themes people request.
 2. Drop candidates that:
    - repeat a **page** or **theme** suggested in the last 7 days
    - are already done (check git log and history) or already requested

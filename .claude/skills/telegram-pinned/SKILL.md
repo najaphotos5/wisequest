@@ -88,6 +88,7 @@ Owners only: /pause and /resume publishing · /priority 12 = move request 12 to 
 /trend = daily visitors chart
 /compare = this week vs last week
 /journey = how many visitors reach the key pages
+/feedback = what visitors answered to "Was this page helpful?"
 
 5️⃣ What the bot's reactions mean
 The bot checks the group every hour, day and night, and answers commands at the next check.
@@ -115,7 +116,7 @@ For questions not about the website, please use wisequest.org/contact
 /status · /queue · /history
 /undo = undo the last change · /revert 7 = undo request 7
 /idea · /report · /page <name> · /check
-📊 /stats · /top · /live · /sources · /where · /devices · /downloads · /trend · /compare · /journey
+📊 /stats · /top · /live · /sources · /where · /devices · /downloads · /trend · /compare · /journey · /feedback
 /mute = no reminders until tomorrow morning
 The full guide is in the pinned message.
 ```

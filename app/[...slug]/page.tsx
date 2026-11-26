@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { NextSteps } from "@/components/NextSteps";
+import { PageFeedback } from "@/components/PageFeedback";
 import { DevPageInfo } from "@/components/DevPageInfo";
 import { ArticleBody } from "@/components/ArticleBody";
 import { PageHeader } from "@/components/PageShell";
@@ -58,6 +59,7 @@ export default async function ContentPage({ params }: Props) {
           </>
         }
       />
+      <PageFeedback placement="inline" />
       <NextSteps />
       <DevPageInfo page={page} kind="pages" />
     </article>

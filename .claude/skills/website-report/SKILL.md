@@ -40,11 +40,12 @@ The script does this automatically, and prints `visitors28: null` and `daysOfDat
 6. **Top pages, last 7 days:** views, visitors, engaged time per visitor, engagement rate, quality score, and change in views.
 7. **Top pages, last 28 days** (same columns, without the change).
 8. **Pages that need attention**, busiest first: visitors stay under 15 s, engagement is under 35%, the page rating is under 75, or the text rating is under 6/10. Each one shows why, the main issue and the suggested fix.
-9. **Key pages:** Become Muslim, New Muslims, Contact, Free Quran, Quran 101 (local). Are visitors reaching them?
-10. **How visitors arrive:** landing pages and traffic sources.
-11. **Where visitors are:** the Sacramento-area share, plus countries and cities.
-12. **Devices**, and **downloads** (which files).
-13. **All tracked actions** (events).
+9. **Visitor feedback** ("Was this page helpful?"): 👍/👎 per page, % helpful, and the most common reason for 👎. Totals are in the JSON as `feedback` (yes, no, and pages where No outweighs Yes).
+10. **Key pages:** Become Muslim, New Muslims, Contact, Free Quran, Quran 101 (local). Are visitors reaching them?
+11. **How visitors arrive:** landing pages and traffic sources.
+12. **Where visitors are:** the Sacramento-area share, plus countries and cities.
+13. **Devices**, and **downloads** (which files).
+14. **All tracked actions** (events).
 
 **Rules for the content:**
 - Plain, formal English, never Arabic humour.
@@ -58,6 +59,7 @@ The script does this automatically, and prints `visitors28: null` and `daysOfDat
    - **Improvements:** how many visitor-facing updates were published, and the top 2–3 grouped by page (e.g. "Jesus page (10 updates): new 'Jesus in Islam' section, videos, comparison table")
    - **Quality:** average text and page ratings with ▲/▼ vs last week, and how many pages are rated 85+
    - **Top 3 pages:** with views and engaged time
+   - **Visitor feedback:** 👍 N · 👎 N (N% helpful), and any page where 👎 outweighs 👍 (only once there are votes)
    - **Needs attention:** the top 2–3 pages, each with its reason and the fix in a few words
    - **Visitors come from:** the top source and the local share
    - **The week's one action**

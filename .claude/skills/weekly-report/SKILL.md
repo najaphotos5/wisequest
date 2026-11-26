@@ -57,6 +57,8 @@ The Arabic greeting and closing lines in the templates here are only examples: p
 • <item>
 • <item>
 
+💬 Visitor feedback: 👍 N · 👎 N (N% found pages helpful); most 👎: <page> (<top reason>). Leave this line out while there are no votes.
+
 📉 Needs attention
 • <page>: <reason> → <fix in a few words>
 • <page>: <reason> → <fix>

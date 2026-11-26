@@ -85,6 +85,7 @@ GitHub Actions:
 - `data/mosques.json`, `data/sessions.json` — area mosques and Quran 101 locations/times.
 - `lib/site.ts` — site name, nav menus, contact details, form endpoint, donate link.
 - `lib/redirects.ts` — old WordPress URLs → new URLs (generates `public/_redirects` and `vercel.json`).
+- `components/PageFeedback.tsx` — "Was this page helpful?" on every page (after the article on article and Q&A pages, otherwise above the footer). Sends GA events `feedback_yes`, `feedback_no`, `feedback_no_<reason>`; see them with `npm run ga -- feedback 28` or `/feedback` in Telegram.
 - MDX components available in content: `<Verse cite>`, `<Callout title>`, `<Steps>/<Step title>`, `<Download href title note>`, `<YouTube id title>`, `<VideoGrid>`, `<ButtonLink href>`.
 
 After hand-editing a migrated page, add `curated: true` to its front matter so `npm run migrate` never overwrites it.
