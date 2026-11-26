@@ -4,6 +4,8 @@
  * writes content/_raw/<slug>.md plus content/_raw/_report.json.
  *
  * Usage: npm run scrape            (add --assets to also download images/PDFs)
+ *        npm run scrape -- --out <dir> --api   write the Markdown to <dir> instead of content/_raw, and with --api
+ *                                              also the raw REST API payloads (<dir>/../api/pages.json, posts.json)
  */
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
@@ -12,7 +14,9 @@ import TurndownService from "turndown";
 
 const SITE = "wisequest.home.blog";
 const API = `https://public-api.wordpress.com/wp/v2/sites/${SITE}`;
-const OUT = path.join(process.cwd(), "content/_raw");
+const outArg = process.argv.indexOf("--out");
+const OUT = outArg > -1 ? path.resolve(process.argv[outArg + 1]) : path.join(process.cwd(), "content/_raw");
+const SAVE_API = process.argv.includes("--api");
 const ASSETS = path.join(process.cwd(), "public/wp");
 const DOWNLOAD_ASSETS = process.argv.includes("--assets");
 
@@ -108,6 +112,12 @@ async function main() {
   if (DOWNLOAD_ASSETS) await mkdir(ASSETS, { recursive: true });
 
   const [pages, posts] = await Promise.all([fetchAll("pages"), fetchAll("posts")]);
+  if (SAVE_API) {
+    const apiDir = path.join(OUT, "..", "api");
+    await mkdir(apiDir, { recursive: true });
+    await writeFile(path.join(apiDir, "pages.json"), JSON.stringify(pages, null, 2));
+    await writeFile(path.join(apiDir, "posts.json"), JSON.stringify(posts, null, 2));
+  }
   const report: Record<string, unknown>[] = [];
   const assetUrls = new Set<string>();
 

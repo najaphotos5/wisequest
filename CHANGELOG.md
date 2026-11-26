@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.24.08 — 2026-11-26 (patch)
+
+- Original WordPress site preserved on branch original-site; npm run original compares any page with it
+
 ## v01.24.07 — 2026-11-26 (patch)
 
 - Bot screenshots: long and cut screenshots for big changes, wide-table cells, selectors, chapter pages; tested edge cases
