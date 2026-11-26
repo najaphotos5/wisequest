@@ -107,22 +107,24 @@ How it works:
 
 ## 2c. Screenshots (previews and "done" replies)
 
-**After every published task**, reply to the "done" message with a phone-width **before** and **after** screenshot of **the part that changed**, as a media group with the captions "Before" and "After". For a brand-new page there is only "After". People should see exactly what changed without opening the site. **Never** send the top of the page, the footer, or anything unrelated.
+**After every published task**, reply to the "done" message with a phone-width **before** and **after** screenshot of **the part that changed**, as a media group with the captions "🔴 BEFORE (old text)" and "🟢 AFTER (new text, now live)". For a brand-new page there is only "After". People should see exactly what changed without opening the site. **Never** send the top of the page, the footer, or anything unrelated.
 
 **Always use `scripts/screenshot.cjs` with `--text`.** It finds the words on the page (opening "Show the full page" on chapter pages), scrolls them to the middle of the screen, outlines that block in yellow and takes the screenshot. If the words aren't found, it exits with code 2 and takes no screenshot.
 
 ```bash
 mkdir -p /tmp/shot && cd /tmp/shot && [ -d node_modules/playwright ] || (npm init -y >/dev/null && npm i playwright@1 >/dev/null); cd -   # once per run, outside the repo
 # BEFORE: on the live site, BEFORE merging, using words from the OLD text of the changed part
-node scripts/screenshot.cjs "https://wisequest.org/<path>/?t=$(date +%s)" /tmp/shot/before.png --text "<5-10 distinctive words from the old text>"
+node scripts/screenshot.cjs "https://wisequest.org/<path>/?t=$(date +%s)" /tmp/shot/before.png --text "<words from changed block 1, old text>" --text "<block 2, old text>" --label Before
 # AFTER: on the live site, once the deploy is confirmed, using words from the NEW text
-node scripts/screenshot.cjs "https://wisequest.org/<path>/?t=$(date +%s)" /tmp/shot/after.png --text "<5-10 distinctive words from the new text>"
+node scripts/screenshot.cjs "https://wisequest.org/<path>/?t=$(date +%s)" /tmp/shot/after.png --text "<words from changed block 1, new text>" --text "<block 2, new text>" --label After
 # PREVIEW (task-queue 2b): the same, from the local build: npx -y serve out -l 4321 & … http://localhost:4321/<path>/
 ```
 
+- **Highlight every changed block:** give one `--text` per changed paragraph, list item, table cell or heading in that area, so **all** of them are outlined in yellow, not just the first. Use the same blocks, in the same order, for before and after.
+- **Always label:** `--label Before` and `--label After`. This stamps a large red BEFORE or green AFTER ✓ tag on the image, plus a coloured strip at the top, so the two can't be confused.
 - **Choosing `--text`:** pick words that appear **only** in the changed block, e.g. the start of the edited sentence, a new heading, or a table cell. Copy them exactly. Quotes and apostrophes may be straight or curly.
 - **Removed content:** for "before", use the removed words. For "after", use words from the block that now sits in its place, or a nearby heading.
-- **Several changed places:** take the most important one, or send up to 2 pairs.
+- **Changed places far apart on the page** (they don't fit on one screen): send one before/after pair per place, up to 2 pairs. The script warns when the blocks are taller than the screen.
 - **Desktop-only layout changes:** add `--width 1280 --height 800`.
 - **Check before sending:** open both PNGs and look at them. Is the highlighted block the change? If not, retake with better words. If the script can't find the text after two tries, send no screenshots and say so in the run summary.
 - **Sending:** `sendMediaGroup` with `multipart/form-data` (attach://before, attach://after) and `reply_parameters` to the done or preview message.

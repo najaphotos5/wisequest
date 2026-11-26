@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.24.04 — 2026-11-26 (patch)
+
+- Bot screenshots: highlight every changed block, big BEFORE/AFTER labels
+
 ## v01.24.03 — 2026-11-26 (patch)
 
 - Bot screenshots: always centred on and highlighting the changed text (scripts/screenshot.cjs)
