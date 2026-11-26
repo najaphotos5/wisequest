@@ -124,7 +124,16 @@ node scripts/screenshot.cjs "https://wisequest.org/<path>/?t=$(date +%s)" /tmp/s
 - **Always label:** `--label Before` and `--label After`. This stamps a large red BEFORE or green AFTER ✓ tag on the image, plus a coloured strip at the top, so the two can't be confused.
 - **Choosing `--text`:** pick words that appear **only** in the changed block, e.g. the start of the edited sentence, a new heading, or a table cell. Copy them exactly. Quotes and apostrophes may be straight or curly.
 - **Removed content:** for "before", use the removed words. For "after", use words from the block that now sits in its place, or a nearby heading.
-- **Changed places far apart on the page** (they don't fit on one screen): send one before/after pair per place, up to 2 pairs. The script warns when the blocks are taller than the screen.
+- **Framing is automatic** (the script prints `mode` in its JSON line):
+  - `screen`: the changed blocks fit on one phone screen, centred.
+  - `long`: they are taller than the screen, so one long screenshot covers all of them plus a little context (up to 2400 px).
+  - `long-cut`: even longer, so the image is cut at 2400 px and fades out with "… the change continues below". That is fine. Mention in the done reply that the screenshot shows the first part.
+  - `top`: no `--text` was given (brand-new page).
+- **Changed places far apart on the page** (e.g. the top and the bottom): send one before/after pair per place, up to 2 pairs, rather than one huge image.
+- **Wide tables:** the script scrolls the table sideways so the changed cell is visible next to the frozen columns. Give the cell's own words.
+- **Non-text changes** (a photo, a button, a video): use `--selector "<css>"` (e.g. `--selector "figure img[src*='mosque']"`) instead of, or together with, `--text`.
+- **Every new or changed block counts:** include new headings and introductions too, not just the edited sentences.
+- **Tested cases (2026-11-25):** one paragraph · two paragraphs · tall section (long) · very tall (long-cut) · cells in each table column on a phone · text inside a collapsed chapter · text that also appears in the footer (the article wins) · text not on the page (exit 2, no image) · a new page (top) · a photo by selector · desktop width. Re-run these after changing the script.
 - **Desktop-only layout changes:** add `--width 1280 --height 800`.
 - **Check before sending:** open both PNGs and look at them. Is the highlighted block the change? If not, retake with better words. If the script can't find the text after two tries, send no screenshots and say so in the run summary.
 - **Sending:** `sendMediaGroup` with `multipart/form-data` (attach://before, attach://after) and `reply_parameters` to the done or preview message.

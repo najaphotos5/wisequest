@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.24.07 — 2026-11-26 (patch)
+
+- Bot screenshots: long and cut screenshots for big changes, wide-table cells, selectors, chapter pages; tested edge cases
+
 ## v01.24.06 — 2026-11-26 (patch)
 
 - Jesus page: closing remarks rewritten as 'Finding Jesus through Islam' (Yusuf Estes, Sinéad O’Connor)
