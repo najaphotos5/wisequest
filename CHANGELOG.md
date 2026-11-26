@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.24.03 — 2026-11-26 (patch)
+
+- Bot screenshots: always centred on and highlighting the changed text (scripts/screenshot.cjs)
+
 ## v01.24.02 — 2026-11-26 (patch)
 
 - Page feedback: never show the bottom bar on pages that already have one after the article
