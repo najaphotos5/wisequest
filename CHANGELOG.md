@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.24.01 — 2026-11-26 (patch)
+
+- Jesus page: rephrased the closing remarks about Yusuf Estes and Sinéad O’Connor so they read better (#14)
+
 ## v01.24.00 — 2026-11-26 (minor)
 
 - Was this page helpful? 👍/👎 on every page, tracked in Google Analytics; feedback in the weekly PDF, /feedback command
