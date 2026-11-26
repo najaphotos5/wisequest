@@ -50,16 +50,16 @@ The Arabic greeting and closing lines in the templates here are only examples: p
 👥 Visitors: N this week (▲/▼ x%) · N in the last 28 days (only once 28 days of data exist) · Views: N · Avg time engaged per visitor: Xs
 🏆 Top pages: <page> (N views, Xs) · <page> · <page>
 🌍 Visitors come mostly from: <source>; Sacramento area: N%
-⭐ Site quality: text X/10, pages Y/100 (▲/▼ vs last week)
+⭐ Site quality: text X/10, pages Y/100 (▲/▼ vs last week) · N of M pages rated 85+
+🛠 Improvements this week: N updates, e.g. <page> (<what>), <page> (<what>)
 
 📈 Progress
 • <item>
 • <item>
 
 📉 Needs attention
-• <item>
-
-🛠 Published this week: N updates, e.g. <short>, <short>
+• <page>: <reason> → <fix in a few words>
+• <page>: <reason> → <fix>
 
 👉 Suggested action: <one plain sentence naming the page and the change>
 👍 = yes, please proceed (or reply "approve") · 👎 = skip
@@ -70,6 +70,7 @@ The Arabic greeting and closing lines in the templates here are only examples: p
 ```
 
 Rules for the text:
+- Summarise **everything** in the PDF: visitors, improvements, quality ratings, top pages, pages needing attention, sources, and the action. Keep each point to one line; the PDF has the details. Take the numbers from the `report:pdf` JSON output.
 - Follow `.claude/skills/telegram-voice/SKILL.md` for greetings and phrases: e.g. ما شاء الله / الحمد لله for progress, لا بأس for regressions. All English in the report is formal. An Arabic joke is welcome when it fits (telegram-voice section 5), e.g. on a record week.
 - Use plain words: "visitors", "time spent reading". Not "sessions", "engagement rate".
 - Round numbers. Show ▲ for better and ▼ for worse.

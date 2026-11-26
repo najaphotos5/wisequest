@@ -82,6 +82,72 @@ const norm = (p: unknown) => {
   return s;
 };
 
+type Score = { path?: string; textScore?: number; pageScore?: number; issues?: string[]; fixes?: string[] };
+type Quality = { averageText?: number; averagePage?: number; pages: Score[] };
+function quality(): Quality {
+  const f = path.join(ROOT, "out/dev-data/scores.json");
+  if (!fs.existsSync(f)) return { pages: [] };
+  try {
+    const j = JSON.parse(fs.readFileSync(f, "utf8"));
+    const src = j.byPath && typeof j.byPath === "object" ? j.byPath : {};
+    const pages = Object.entries(src).filter(([, v]) => v && typeof v === "object").map(([k, v]) => ({ path: norm(k), ...(v as Score) }));
+    return { averageText: j.averageText, averagePage: j.averagePage, pages };
+  } catch {
+    return { pages: [] };
+  }
+}
+
+const git = (...a: string[]) => {
+  try {
+    return execFileSync("git", a, { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] });
+  } catch {
+    return "";
+  }
+};
+
+/** Last week's quality averages from the weekly report log (state branch), if any. */
+function previousQuality(): { averageText?: number; averagePage?: number } {
+  git("fetch", "-q", "origin", "claude/telegram-state");
+  const raw = git("show", "origin/claude/telegram-state:reports.json");
+  try {
+    const list = JSON.parse(raw) as { week_end?: string; quality?: { averageText?: number; averagePage?: number } }[];
+    const last = [...list].reverse().find((r) => r.quality && r.week_end && r.week_end < today);
+    return last?.quality ?? {};
+  } catch {
+    return {};
+  }
+}
+
+const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
+
+/** Visitor-facing changes published in the period, grouped by topic (dev tools and bot/skill updates are left out). */
+function siteChanges(days: number) {
+  const ref = git("rev-parse", "--verify", "-q", "origin/main").trim() ? "origin/main" : "HEAD";
+  const log = git("log", ref, `--since=${days} days ago`, "--format=%cs|%s", "--", "content", "app", "components", "public", "lib", "data");
+  const SKIP = /(dev mode|^telegram bot|^guidelines|^website report|^version format|^daily suggestion|^weekly report|^reverted request)/i;
+  const items = log
+    .split("\n")
+    .filter(Boolean)
+    .map((l) => {
+      const [date, ...rest] = l.split("|");
+      const subj = rest.join("|");
+      const m = subj.match(/^v([\d.]+):\s*(.*?)(?:\s*\(#\d+\))?$/);
+      const text = m ? m[2] : subj;
+      const i = text.indexOf(":");
+      return { date, version: m ? `v${m[1]}` : "", topic: i > 0 && i < 40 ? text.slice(0, i).trim() : "Other improvements", detail: cap(i > 0 && i < 40 ? text.slice(i + 1).trim() : text) };
+    })
+    .filter((x) => !SKIP.test(x.topic) && !SKIP.test(x.detail));
+  const groups = new Map<string, typeof items>();
+  // Merge sub-topics into their page ("Jesus page chart" → "Jesus page").
+  const topics = [...new Set(items.map((i) => i.topic))].sort((a, b) => a.length - b.length);
+  for (const it of items) {
+    const parent = topics.find((t) => t !== it.topic && t !== "Other improvements" && it.topic.toLowerCase().startsWith(t.toLowerCase() + " "));
+    if (parent) it.topic = parent;
+  }
+  for (const it of items) groups.set(it.topic, [...(groups.get(it.topic) ?? []), it]);
+  return { count: items.length, groups: [...groups.entries()].map(([topic, list]) => ({ topic, list })).sort((a, b) => b.list.length - a.list.length) };
+}
+
 function scores(): Record<string, { textScore?: number; pageScore?: number }> {
   const f = path.join(ROOT, "out/dev-data/scores.json");
   if (!fs.existsSync(f)) return {};
@@ -117,6 +183,11 @@ function table(head: string[], rows: string[][], cls = "") {
   if (!rows.length) return `<p class="muted">No data for this period yet.</p>`;
   return `<table class="${cls}"><thead><tr>${head.map((h) => `<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.map((r) => `<tr>${r.map((c) => `<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
 }
+
+// Filled in by build() for the JSON summary.
+const attention: { page: string; title: string; views: number; reasons: string[]; issue: string; fix: string }[] = [];
+const changesSummary: { count: number; groups: { topic: string; count: number; latest: string }[] } = { count: 0, groups: [] };
+const qualitySummary: { averageText?: number; averagePage?: number; prevText?: number; prevPage?: number } = {};
 
 // ---------- build ----------
 function build(week: GA, month: GA) {
@@ -159,10 +230,41 @@ function build(week: GA, month: GA) {
       ];
     });
 
-  const fix = (month.pages?.rows ?? [])
-    .filter((r) => n(r.screenPageViews) >= 5 && (n(r.avgEngagementSec) < 15 || n(r.engagementRate) < 0.35))
-    .slice(0, 8)
-    .map((r) => [`<b>${esc(T[norm(r.pagePath)] ?? norm(r.pagePath))}</b><br><span class="muted small">${esc(norm(r.pagePath))}</span>`, int(r.screenPageViews), secs(r.avgEngagementSec), pct(r.engagementRate)]);
+  const QL = quality();
+  const PQ = previousQuality();
+  const views = Object.fromEntries((month.pages?.rows ?? []).map((r) => [norm(r.pagePath), r]));
+  attention.length = 0;
+  for (const q of QL.pages) {
+    const r = views[q.path!];
+    const reasons: string[] = [];
+    if (r && n(r.screenPageViews) >= 5 && n(r.avgEngagementSec) < 15) reasons.push(`visitors leave quickly (${secs(r.avgEngagementSec)})`);
+    if (r && n(r.screenPageViews) >= 5 && n(r.engagementRate) < 0.35) reasons.push(`few engaged visits (${pct(r.engagementRate)})`);
+    if (n(q.pageScore) && n(q.pageScore) < 75) reasons.push(`low page rating (${Math.round(n(q.pageScore))}/100)`);
+    if (q.textScore !== undefined && n(q.textScore) < 6) reasons.push(`hard to read (text ${n(q.textScore).toFixed(1)}/10)`);
+    if (reasons.length) attention.push({ page: q.path!, title: T[q.path!] ?? q.path!, views: r ? n(r.screenPageViews) : 0, reasons, issue: q.issues?.[0] ?? "", fix: q.fixes?.[0] ?? "" });
+  }
+  attention.sort((a, b) => b.views - a.views || b.reasons.length - a.reasons.length);
+  const fix = attention.slice(0, 10).map((a) => [`<b>${esc(a.title)}</b><br><span class="muted small">${esc(a.page)}</span>`, int(a.views), esc(a.reasons.join("; ")), `${esc(a.issue)}${a.fix ? `<br><span class="muted small">Suggested: ${esc(a.fix)}</span>` : ""}`]);
+
+  const qualityRows = [...QL.pages]
+    .sort((a, b) => n(a.pageScore) - n(b.pageScore))
+    .map((q) => [`<b>${esc(T[q.path!] ?? q.path)}</b><br><span class="muted small">${esc(q.path)}</span>`, q.textScore !== undefined ? `${n(q.textScore).toFixed(1)}/10` : "–", q.pageScore !== undefined ? `${Math.round(n(q.pageScore))}/100` : "–", views[q.path!] ? int(views[q.path!].screenPageViews) : "0", esc(q.issues?.[0] ?? "No issues found")]);
+  const qChange = (cur?: number, prev?: number, dp = 1) => (cur === undefined || prev === undefined ? "" : ` <span class="${cur >= prev ? "up" : "down"}">${cur >= prev ? "▲" : "▼"} ${Math.abs(cur - prev).toFixed(dp)}</span>`);
+  const goodPages = QL.pages.filter((q) => n(q.pageScore) >= 85).length;
+
+  const CH = siteChanges(DAYS);
+  changesSummary.count = CH.count;
+  changesSummary.groups = CH.groups.map((g) => ({ topic: g.topic, count: g.list.length, latest: g.list[0]?.detail ?? "" }));
+  const changesHtml = CH.count
+    ? `<p><b>${CH.count}</b> visitor-facing update${CH.count === 1 ? "" : "s"} published in the last ${DAYS} days (internal tools and bot settings not counted).</p>
+      ${CH.groups
+        .map((g) => `<h3>${esc(g.topic)} <span class="muted">(${g.list.length})</span></h3><ul>${g.list.slice(0, 6).map((it) => `<li>${esc(it.detail)} <span class="muted small">${esc(it.version)} · ${esc(it.date)}</span></li>`).join("")}${g.list.length > 6 ? `<li class="muted">…and ${g.list.length - 6} more</li>` : ""}</ul>`)
+        .join("")}`
+    : `<p class="muted">No visitor-facing changes were published in this period.</p>`;
+  qualitySummary.averageText = QL.averageText;
+  qualitySummary.averagePage = QL.averagePage;
+  qualitySummary.prevText = PQ.averageText;
+  qualitySummary.prevPage = PQ.averagePage;
 
   const totalSessions = sum(month.sources?.rows, "sessions") || 1;
   const sources = (month.sources?.rows ?? []).slice(0, 10).map((r) => [esc(r.sessionDefaultChannelGroup), esc(r.sessionSource), int(r.sessions), pct(n(r.sessions) / totalSessions), pct(r.engagementRate)]);
@@ -214,6 +316,18 @@ function build(week: GA, month: GA) {
   ${HAS28 ? kpis(month, "Last 28 days (vs the 28 days before)") : `<p class="muted small">28-day figures will appear once 28 days of data exist (tracking began on ${TRACKING_START}; ${DAYS_OF_DATA} days so far).</p>`}
   <p class="muted small">Engaged time = time the page was open and in focus. Engagement rate = share of visits that lasted 10 s+, viewed 2+ pages or included an action.</p>
 
+  ${sec(`Improvements published (last ${DAYS} days)`)}
+  ${changesHtml}
+
+  ${sec("Page quality ratings")}
+  <div class="kpis">
+    <div class="kpi"><div class="kv">${QL.averageText !== undefined ? n(QL.averageText).toFixed(1) : "–"}/10${qChange(QL.averageText, PQ.averageText)}</div><div class="kn">Average text rating (readability)</div></div>
+    <div class="kpi"><div class="kv">${QL.averagePage !== undefined ? Math.round(n(QL.averagePage)) : "–"}/100${qChange(QL.averagePage, PQ.averagePage, 0)}</div><div class="kn">Average page rating (overall)</div></div>
+    <div class="kpi"><div class="kv">${goodPages}/${QL.pages.length}</div><div class="kn">Pages rated 85+ (good)</div></div>
+  </div>
+  <p class="muted small">Text rating: sentence length, reading ease and plain words (out of 10). Page rating: text, structure, accessibility, media and freshness (out of 100). From the site's own build-time checks; changes compare with last week's report.</p>
+  ${table(["Page (lowest rated first)", "Text", "Page", `Views (${L})`, "Main issue"], qualityRows)}
+
   ${sec(`Visitors per day (last ${L})`)}
   ${bars(month.daily?.rows ?? [])}
 
@@ -224,8 +338,8 @@ function build(week: GA, month: GA) {
   ${table(["#", "Page", "Views", "Visitors", "Engaged time / visitor", "Engagement", "Quality"], pageRows(month, false))}` : ""}
 
   ${sec("Pages that need attention")}
-  <p>Pages with at least 5 views in the last ${L} where visitors leave quickly (under 15 s) or few visits are engaged (under 35%).</p>
-  ${table(["Page", "Views", "Engaged time / visitor", "Engagement"], fix)}
+  <p>Pages where visitors leave quickly (under 15 s), few visits are engaged (under 35%), the page rating is under 75, or the text is hard to read (under 6/10). Busiest pages first.</p>
+  ${table(["Page", `Views (${L})`, "Why", "Main issue and suggested fix"], fix)}
 
   ${sec("Key pages: are visitors reaching them?")}
   ${table(["Page", `Views (${L})`, "Visitors", "Engaged time / visitor"], keyRows)}
@@ -272,7 +386,7 @@ function main() {
   if (!HTML_OUT) fs.rmSync(tmpHtml, { force: true });
   const o = week.overview?.rows?.[0] ?? {};
   const top = (week.pages?.rows ?? []).slice(0, 3).map((r) => ({ page: norm(r.pagePath), views: n(r.screenPageViews), engagedSec: Math.round(n(r.avgEngagementSec)) }));
-  console.log(JSON.stringify({ pdf: OUT, bytes: fs.statSync(OUT).size, days: DAYS, visitors: n(o.activeUsers), pageViews: n(o.screenPageViews), engagedSecPerVisitor: n(o.activeUsers) ? Math.round(n(o.userEngagementDuration) / n(o.activeUsers)) : 0, engagementRate: Math.round(n(o.engagementRate) * 100), visitors28: HAS28 ? n(month.overview?.rows?.[0]?.activeUsers) : null, daysOfData: DAYS_OF_DATA, top }, null, 2));
+  console.log(JSON.stringify({ pdf: OUT, bytes: fs.statSync(OUT).size, days: DAYS, visitors: n(o.activeUsers), pageViews: n(o.screenPageViews), engagedSecPerVisitor: n(o.activeUsers) ? Math.round(n(o.userEngagementDuration) / n(o.activeUsers)) : 0, engagementRate: Math.round(n(o.engagementRate) * 100), visitors28: HAS28 ? n(month.overview?.rows?.[0]?.activeUsers) : null, daysOfData: DAYS_OF_DATA, top, quality: qualitySummary, attention: attention.slice(0, 5).map((a) => ({ page: a.page, title: a.title, views: a.views, reasons: a.reasons, fix: a.fix })), improvements: changesSummary }, null, 2));
 }
 
 main();
