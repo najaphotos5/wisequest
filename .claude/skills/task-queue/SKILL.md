@@ -148,7 +148,7 @@ How:
   If you would prefer a different order, please reply, for example: move 3 to 1.
   ```
   Keep each line short. If more than 8 tasks are waiting, show the first 8 and "…and N more".
-- **After each task is done:** the usual "done" reply under the request, starting with "Task n of N done". Include what changed, the version, the live link and "If you would like this task undone, please reply /revert <id>.<n>." Add "Next up: <next task title>" if this request still has tasks left, or the closing duʿāʾ when it was the last one.
+- **After each task is done:** the usual "done" reply under the request. Its first line always starts with ✅, followed by "Task n of N done" when there are several tasks. Include what changed, the version, the live link and "If you would like this task undone, please reply /revert <id>.<n>." Add "Next up: <next task title>" if this request still has tasks left, or the closing duʿāʾ when it was the last one.
 - Never post more than one queue message per request per run.
 
 ## 4. Changing the order

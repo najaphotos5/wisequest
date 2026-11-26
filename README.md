@@ -22,6 +22,7 @@ All rules live in **skills** under [`.claude/skills/`](.claude/skills/). Any age
 | [telegram-nudges](.claude/skills/telegram-nudges/SKILL.md) | Reminders when nobody answers, and the once-a-day quiet-day check-in |
 | [daily-suggestion](.claude/skills/daily-suggestion/SKILL.md) | The daily improvement idea |
 | [weekly-report](.claude/skills/weekly-report/SKILL.md) | The Friday weekly report |
+| [website-report](.claude/skills/website-report/SKILL.md) | The detailed analytics PDF (`npm run report:pdf`) attached to the Friday report and /report |
 | [analytics](.claude/skills/analytics/SKILL.md) | Reading Google Analytics |
 
 **Automations** (Claude cloud routines; their prompts defer to the skills above):
@@ -54,6 +55,7 @@ The UX audit and site structure plan are in [docs/AUDIT.md](docs/AUDIT.md). The 
 | `npm run check-links` | Verify every internal link/asset in `out/` resolves |
 | `npm run check-videos` | Find embedded videos that no longer exist |
 | `npm run check-external` | Find links to other websites whose page is gone (404/410) |
+| `npm run report:pdf` | Detailed analytics report as a PDF (last 7 + 28 days) |
 | `npm run release -- <patch\|minor\|major> "summary"` | Sync, build, check links, bump version, commit, push (retries safely if someone else pushed) |
 | `npm run version:show` | Print the current version |
 | `npm run scrape -- --assets` | Re-pull all pages + images/PDFs from the live WordPress site into `content/_raw` and `public/wp` |

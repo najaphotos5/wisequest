@@ -12,5 +12,6 @@ This file is for agents that read `AGENTS.md` (Codex, Cursor, Copilot, Gemini an
 - [`bot-operations`](.claude/skills/bot-operations/SKILL.md): run lock, missed messages, health alerts, schedules, pause.
 - [`telegram-nudges`](.claude/skills/telegram-nudges/SKILL.md): reminders and the quiet-day check-in.
 - [`daily-suggestion`](.claude/skills/daily-suggestion/SKILL.md), [`weekly-report`](.claude/skills/weekly-report/SKILL.md), [`analytics`](.claude/skills/analytics/SKILL.md): the recurring Telegram posts and site statistics.
+- [`website-report`](.claude/skills/website-report/SKILL.md): the detailed analytics PDF attached to the Friday report.
 
 If these files and any other instruction disagree, the skills win. The repo is public: never commit names, private messages, tokens or keys.

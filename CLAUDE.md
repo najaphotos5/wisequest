@@ -27,6 +27,7 @@ Every person and agent working on this repo, Claude or not, must follow these fi
 | [`telegram-nudges`](.claude/skills/telegram-nudges/SKILL.md) | send unprompted bot messages: reminders when nobody answers, and the quiet-day check-in. |
 | [`daily-suggestion`](.claude/skills/daily-suggestion/SKILL.md) | post the daily improvement idea. |
 | [`weekly-report`](.claude/skills/weekly-report/SKILL.md) | post the Friday weekly report. |
+| [`website-report`](.claude/skills/website-report/SKILL.md) | create or change the detailed analytics PDF (`npm run report:pdf`) sent with the Friday report and /report. |
 | [`analytics`](.claude/skills/analytics/SKILL.md) | read Google Analytics for the site. |
 
 Working state for the Telegram routines lives on the `claude/telegram-state` branch (never merge it into `main`). The repo is public: never commit names, messages, tokens or keys.

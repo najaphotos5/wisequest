@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.22.00 — 2026-11-26 (minor)
+
+- Website report PDF (npm run report:pdf) attached to the Friday report and /report; done replies always start with ✅
+
 ## v01.21.09 — 2026-11-25 (patch)
 
 - Telegram bot: separate messages with different asks become separate queued tasks
