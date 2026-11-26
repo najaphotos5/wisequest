@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.24.09 — 2026-11-26 (patch)
+
+- History now starts from the original WordPress site (main rebased onto it; backup kept)
+
 ## v01.24.08 — 2026-11-26 (patch)
 
 - Original WordPress site preserved on branch original-site; npm run original compares any page with it

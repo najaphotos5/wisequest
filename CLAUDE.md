@@ -30,6 +30,6 @@ Every person and agent working on this repo, Claude or not, must follow these fi
 | [`website-report`](.claude/skills/website-report/SKILL.md) | create or change the detailed analytics PDF (`npm run report:pdf`) sent with the Friday report and /report. |
 | [`analytics`](.claude/skills/analytics/SKILL.md) | read Google Analytics for the site. |
 
-The original WordPress site (wisequest.home.blog) is preserved on the branch `original-site`. Compare any page with `npm run original -- <path>` (never merge that branch).
+The original WordPress site (wisequest.home.blog) is the first commit in the history and is also on the branch `original-site`. Compare any page with `npm run original -- <path>`. On 2026-11-25 `main` was rebased once, at the owner's request, onto that snapshot. The old history is kept on `backup/main-before-original-rebase`. The never-force-push rule still applies.
 
 Working state for the Telegram routines lives on the `claude/telegram-state` branch (never merge it into `main`). The repo is public: never commit names, messages, tokens or keys.

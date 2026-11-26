@@ -7,6 +7,7 @@
  *   npm run original -- --list                 every old page and where it lives now
  *
  * Read-only: reads the snapshot with `git show original-site:…` (fetches the branch if it isn't local).
+ * The same snapshot is also the first commit of main's history.
  */
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";

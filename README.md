@@ -47,7 +47,7 @@ The UX audit and site structure plan are in [docs/AUDIT.md](docs/AUDIT.md). The 
 
 ## The original site
 
-The original WordPress site, https://wisequest.home.blog/, is preserved on the branch **`original-site`**. That branch holds every page as HTML, Markdown and a full-page screenshot, plus an index mapping each old URL to its new page. It shares no history with `main` and is never merged. To compare:
+The original WordPress site, https://wisequest.home.blog/, is the **first commit** of this repo's history (`git log --reverse`). It is also kept on the branch **`original-site`**. That branch holds every page as HTML, Markdown and a full-page screenshot, plus an index mapping each old URL to its new page. The commit right after it ("Start the Next.js rebuild…") removes those files from the working tree, so they don't ship with the site. To compare:
 
 ```bash
 npm run original -- /learn/jesus/          # old URL(s) and what changed (words, paragraphs, new sections)
