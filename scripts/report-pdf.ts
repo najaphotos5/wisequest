@@ -1,7 +1,7 @@
 /**
  * Builds the detailed WiseQuest website report as a PDF (used by the `website-report` skill).
  *
- *   npm run report:pdf                         last 7 days (+ last 28 days), saved to /tmp/wisequest-report-<date>.pdf
+ *   npm run report:pdf                         last 7 days (+ last 28 days once 28 days of data exist), saved to /tmp/wisequest-report-<date>.pdf
  *   npm run report:pdf -- --days 28 --out report.pdf
  *   npm run report:pdf -- --html report.html   also keep the HTML (for checking the layout)
  *
@@ -29,6 +29,10 @@ const DAYS = Number(arg("days", "7"));
 const today = new Date().toISOString().slice(0, 10);
 const OUT = path.resolve(arg("out", path.join(os.tmpdir(), `wisequest-report-${today}.pdf`))!);
 const HTML_OUT = arg("html");
+// Google Analytics tracking began on this date. Until 28 full days exist, the report shows only the shorter period.
+const TRACKING_START = process.env.GA_TRACKING_START ?? "2026-11-22";
+const DAYS_OF_DATA = Math.floor((Date.parse(today) - Date.parse(TRACKING_START)) / 864e5);
+const HAS28 = DAYS_OF_DATA >= 28;
 
 function ga(days: number): GA {
   const out = execFileSync("npx", ["tsx", "scripts/ga-report.ts", "all", String(days), "--json", "--compare"], {
@@ -116,6 +120,9 @@ function table(head: string[], rows: string[][], cls = "") {
 
 // ---------- build ----------
 function build(week: GA, month: GA) {
+  const L = HAS28 ? "28 days" : `${DAYS} days`; // period used for the detail sections
+  let no = 0;
+  const sec = (t: string) => `<h2>${++no}. ${t}</h2>`;
   const T = titles();
   const Q = scores();
   const ov = (g: GA) => g.overview?.rows?.[0] ?? {};
@@ -199,49 +206,49 @@ function build(week: GA, month: GA) {
   .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   footer { margin-top: 20px; color: #7a8a93; font-size: 9px; text-align: center; }
   </style></head><body>
-  <div class="cover"><h1>WiseQuest website report</h1><p>Last ${DAYS} days: ${period(DAYS)} · Last 28 days: ${period(28)}</p><p>wisequest.org · Generated ${today}</p></div>
+  <div class="cover"><h1>WiseQuest website report</h1><p>Last ${DAYS} days: ${period(DAYS)}${HAS28 ? ` · Last 28 days: ${period(28)}` : ""}</p><p>wisequest.org · Generated ${today}</p></div>
   ${small ? `<div class="note"><b>Small numbers:</b> the site is still new (tracking began on Nov 22, 2026), so week-to-week changes can swing widely. Treat them as early signals, not trends.</div>` : ""}
 
-  <h2>1. Key numbers</h2>
+  ${sec("Key numbers")}
   ${kpis(week, `Last ${DAYS} days (vs the ${DAYS} days before)`)}
-  ${kpis(month, "Last 28 days (vs the 28 days before)")}
+  ${HAS28 ? kpis(month, "Last 28 days (vs the 28 days before)") : `<p class="muted small">28-day figures will appear once 28 days of data exist (tracking began on ${TRACKING_START}; ${DAYS_OF_DATA} days so far).</p>`}
   <p class="muted small">Engaged time = time the page was open and in focus. Engagement rate = share of visits that lasted 10 s+, viewed 2+ pages or included an action.</p>
 
-  <h2>2. Visitors per day (last 28 days)</h2>
+  ${sec(`Visitors per day (last ${L})`)}
   ${bars(month.daily?.rows ?? [])}
 
-  <h2>3. Top pages: last ${DAYS} days</h2>
+  ${sec(`Top pages: last ${DAYS} days`)}
   ${table(["#", "Page", "Views", "Visitors", "Engaged time / visitor", "Engagement", "Quality", "Views vs before"], pageRows(week, true))}
 
-  <h2>4. Top pages: last 28 days</h2>
-  ${table(["#", "Page", "Views", "Visitors", "Engaged time / visitor", "Engagement", "Quality"], pageRows(month, false))}
+  ${HAS28 ? `${sec("Top pages: last 28 days")}
+  ${table(["#", "Page", "Views", "Visitors", "Engaged time / visitor", "Engagement", "Quality"], pageRows(month, false))}` : ""}
 
-  <h2>5. Pages that need attention</h2>
-  <p>Pages with at least 5 views in 28 days where visitors leave quickly (under 15 s) or few visits are engaged (under 35%).</p>
+  ${sec("Pages that need attention")}
+  <p>Pages with at least 5 views in the last ${L} where visitors leave quickly (under 15 s) or few visits are engaged (under 35%).</p>
   ${table(["Page", "Views", "Engaged time / visitor", "Engagement"], fix)}
 
-  <h2>6. Key pages: are visitors reaching them?</h2>
-  ${table(["Page", "Views (28 days)", "Visitors", "Engaged time / visitor"], keyRows)}
+  ${sec("Key pages: are visitors reaching them?")}
+  ${table(["Page", `Views (${L})`, "Visitors", "Engaged time / visitor"], keyRows)}
 
-  <h2>7. How visitors arrive</h2>
-  <h3>First page seen (landing pages, 28 days)</h3>
+  ${sec("How visitors arrive")}
+  <h3>First page seen (landing pages, last ${L})</h3>
   ${table(["Landing page", "Visits", "Engagement", "Avg visit length"], landing)}
-  <h3>Traffic sources (28 days)</h3>
+  <h3>Traffic sources (last ${L})</h3>
   ${table(["Channel", "Source", "Visits", "Share", "Engagement"], sources)}
 
-  <h2>8. Where visitors are</h2>
-  <p>Sacramento area: <b>${pct(local / totalUsers)}</b> of visitors in the last 28 days (${int(local)} of ${int(totalUsers)}).</p>
+  ${sec("Where visitors are")}
+  <p>Sacramento area: <b>${pct(local / totalUsers)}</b> of visitors in the last ${L} (${int(local)} of ${int(totalUsers)}).</p>
   ${table(["Country", "City", "Visitors", "Visits"], geo)}
 
   <div class="cols"><div>
-  <h2>9. Devices</h2>
+  ${sec("Devices")}
   ${table(["Device", "Visitors", "Share", "Engagement", "Avg visit"], devices)}
   </div><div>
-  <h2>10. Downloads</h2>
+  ${sec("Downloads")}
   ${table(["File", "Downloads", "People"], downloads)}
   </div></div>
 
-  <h2>11. All tracked actions (28 days)</h2>
+  ${sec(`All tracked actions (last ${L})`)}
   ${table(["Event", "Count", "People"], events)}
 
   <footer>WiseQuest · wisequest.org · Data: Google Analytics 4 (read-only)${Object.keys(Q).length ? " and the site's quality scores" : ""}. No personal data is included.</footer>
@@ -257,7 +264,7 @@ function chrome() {
 
 function main() {
   const week = ga(DAYS);
-  const month = DAYS === 28 ? week : ga(28);
+  const month = DAYS === 28 || !HAS28 ? week : ga(28);
   const html = build(week, month);
   const tmpHtml = HTML_OUT ? path.resolve(HTML_OUT) : path.join(os.tmpdir(), `wisequest-report-${process.pid}.html`);
   fs.writeFileSync(tmpHtml, html);
@@ -265,7 +272,7 @@ function main() {
   if (!HTML_OUT) fs.rmSync(tmpHtml, { force: true });
   const o = week.overview?.rows?.[0] ?? {};
   const top = (week.pages?.rows ?? []).slice(0, 3).map((r) => ({ page: norm(r.pagePath), views: n(r.screenPageViews), engagedSec: Math.round(n(r.avgEngagementSec)) }));
-  console.log(JSON.stringify({ pdf: OUT, bytes: fs.statSync(OUT).size, days: DAYS, visitors: n(o.activeUsers), pageViews: n(o.screenPageViews), engagedSecPerVisitor: n(o.activeUsers) ? Math.round(n(o.userEngagementDuration) / n(o.activeUsers)) : 0, engagementRate: Math.round(n(o.engagementRate) * 100), visitors28: n(month.overview?.rows?.[0]?.activeUsers), top }, null, 2));
+  console.log(JSON.stringify({ pdf: OUT, bytes: fs.statSync(OUT).size, days: DAYS, visitors: n(o.activeUsers), pageViews: n(o.screenPageViews), engagedSecPerVisitor: n(o.activeUsers) ? Math.round(n(o.userEngagementDuration) / n(o.activeUsers)) : 0, engagementRate: Math.round(n(o.engagementRate) * 100), visitors28: HAS28 ? n(month.overview?.rows?.[0]?.activeUsers) : null, daysOfData: DAYS_OF_DATA, top }, null, 2));
 }
 
 main();

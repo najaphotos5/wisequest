@@ -24,6 +24,14 @@ npm run report:pdf -- --days 28 --out /tmp/report.pdf --html /tmp/report.html   
 
 ## 2. What the PDF contains (keep this order)
 
+**Until 28 full days of data exist** (tracking began on 2026-11-22, so on 2026-12-20; set by `GA_TRACKING_START` in the script):
+- show only the last 7 days, without the 28-day key numbers and the 28-day top pages
+- label every other section "last 7 days"
+- add a short note that the 28-day figures will appear later
+
+The script does this automatically, and prints `visitors28: null` and `daysOfData`. In the Telegram message, mention the 28-day numbers only when `visitors28` is not null.
+
+
 1. **Cover:** both periods (dates) and the generation date. Below it, a "small numbers" note while weekly page views are under 300.
 2. **Key numbers** for the last 7 and last 28 days, each with ▲/▼ vs the previous period of the same length: visitors, new visitors, visits, page views, engaged time per visitor, engagement rate, pages per visitor.
 3. **Visitors per day** (last 28 days): a bar chart.

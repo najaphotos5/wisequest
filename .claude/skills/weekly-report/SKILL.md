@@ -47,7 +47,7 @@ The Arabic greeting and closing lines in the templates here are only examples: p
 
 📊 Weekly report: <Fri d> – <Thu d>
 
-👥 Visitors: N this week (▲/▼ x%) · N in the last 28 days · Views: N · Avg time engaged per visitor: Xs
+👥 Visitors: N this week (▲/▼ x%) · N in the last 28 days (only once 28 days of data exist) · Views: N · Avg time engaged per visitor: Xs
 🏆 Top pages: <page> (N views, Xs) · <page> · <page>
 🌍 Visitors come mostly from: <source>; Sacramento area: N%
 ⭐ Site quality: text X/10, pages Y/100 (▲/▼ vs last week)
