@@ -107,34 +107,27 @@ How it works:
 
 ## 2c. Screenshots (previews and "done" replies)
 
-**After every published task**, send a phone-width **before** and **after** screenshot of the main changed page as a media group, replying to the "done" message. Captions: "Before" and "After". For a brand-new page there is only "After". This lets people check the result without opening the site.
+**After every published task**, reply to the "done" message with a phone-width **before** and **after** screenshot of **the part that changed**, as a media group with the captions "Before" and "After". For a brand-new page there is only "After". People should see exactly what changed without opening the site. **Never** send the top of the page, the footer, or anything unrelated.
 
-How:
-- **Before:** take it from the live site just before merging.
-- **After:** take it from the live site after the deploy is confirmed. Add `?t=<time>` to bypass the cache.
-- **Previews:** take them from the local build (`npx -y serve out -l 4321` in the background, then http://localhost:4321/<path>/).
-- **Viewport:** phone 390×844 at deviceScaleFactor 2; desktop 1280×800. Capture the top of the page plus the changed section (scroll to it), not the whole page.
-- **Tool (tested in the cloud environment, 2026-11-25):** the Playwright browser download is blocked there, but Chrome is preinstalled. Use the `playwright` npm package in a scratch folder **outside the repo**, never in the project's package.json, and launch the preinstalled Chrome:
-  ```bash
-  mkdir -p /tmp/shot && cd /tmp/shot && [ -d node_modules/playwright ] || (npm init -y >/dev/null && npm i playwright@1 >/dev/null)
-  cat > shot.js <<'JS'
-  const { chromium } = require('playwright');
-  const [url, out, w = '390', h = '844'] = process.argv.slice(2);
-  (async () => {
-    const exe = ['/usr/bin/google-chrome', '/opt/pw-browsers/chromium'].find((p) => require('fs').existsSync(p));
-    const b = await chromium.launch({ executablePath: exe, args: ['--no-sandbox'] });
-    const p = await (await b.newContext({ viewport: { width: +w, height: +h }, deviceScaleFactor: 2 })).newPage();
-    await p.goto(url, { waitUntil: 'networkidle', timeout: 45000 });
-    await p.screenshot({ path: out });
-    await b.close();
-  })();
-  JS
-  node shot.js "https://wisequest.org/<path>/?t=$(date +%s)" after.png        # phone
-  node shot.js "http://localhost:4321/<path>/" preview-desktop.png 1280 800   # desktop
-  ```
-  To show a section further down the page, scroll to it first (`await p.locator('text=<heading>').first().scrollIntoViewIfNeeded()`) before taking the screenshot.
+**Always use `scripts/screenshot.cjs` with `--text`.** It finds the words on the page (opening "Show the full page" on chapter pages), scrolls them to the middle of the screen, outlines that block in yellow and takes the screenshot. If the words aren't found, it exits with code 2 and takes no screenshot.
+
+```bash
+mkdir -p /tmp/shot && cd /tmp/shot && [ -d node_modules/playwright ] || (npm init -y >/dev/null && npm i playwright@1 >/dev/null); cd -   # once per run, outside the repo
+# BEFORE: on the live site, BEFORE merging, using words from the OLD text of the changed part
+node scripts/screenshot.cjs "https://wisequest.org/<path>/?t=$(date +%s)" /tmp/shot/before.png --text "<5-10 distinctive words from the old text>"
+# AFTER: on the live site, once the deploy is confirmed, using words from the NEW text
+node scripts/screenshot.cjs "https://wisequest.org/<path>/?t=$(date +%s)" /tmp/shot/after.png --text "<5-10 distinctive words from the new text>"
+# PREVIEW (task-queue 2b): the same, from the local build: npx -y serve out -l 4321 & … http://localhost:4321/<path>/
+```
+
+- **Choosing `--text`:** pick words that appear **only** in the changed block, e.g. the start of the edited sentence, a new heading, or a table cell. Copy them exactly. Quotes and apostrophes may be straight or curly.
+- **Removed content:** for "before", use the removed words. For "after", use words from the block that now sits in its place, or a nearby heading.
+- **Several changed places:** take the most important one, or send up to 2 pairs.
+- **Desktop-only layout changes:** add `--width 1280 --height 800`.
+- **Check before sending:** open both PNGs and look at them. Is the highlighted block the change? If not, retake with better words. If the script can't find the text after two tries, send no screenshots and say so in the run summary.
 - **Sending:** `sendMediaGroup` with `multipart/form-data` (attach://before, attach://after) and `reply_parameters` to the done or preview message.
-- **If anything fails** (no browser, blocked download, timeout): skip the screenshots silently and mention it only in the run summary. **Never** let screenshots delay or block publishing.
+- **Tools:** the script uses the preinstalled Chrome (the Playwright browser download is blocked in the cloud). Never add Playwright to the project's package.json.
+- **If anything fails:** skip the screenshots and mention it only in the run summary. Never let screenshots delay or block publishing.
 
 ## 3. Messages (Telegram, following telegram-voice)
 
