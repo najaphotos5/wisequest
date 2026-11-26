@@ -17,7 +17,7 @@ npm run report:pdf -- --days 28 --out /tmp/report.pdf --html /tmp/report.html   
 ```
 
 - **Inputs:** Google Analytics comes through `scripts/ga-report.ts`, which is read-only and uses the credentials described in the `analytics` skill. Quality scores come from `out/dev-data/scores.json`, and page titles from the content front matter.
-- **Output:** the command prints JSON with the PDF path and the key numbers (`visitors`, `pageViews`, `engagedSecPerVisitor`, `engagementRate`, `visitors28`, `top`). Use those numbers for the Telegram message.
+- **Output:** the command prints JSON with the PDF path and everything the Telegram message needs: `visitors`, `pageViews`, `engagedSecPerVisitor`, `engagementRate`, `visitors28`, `top`, `quality` (averageText, averagePage, prevText, prevPage), `attention` (top 5 pages with reasons and the fix) and `improvements` (count and groups by topic).
 - **Rendering:** the preinstalled Chrome (`/usr/bin/google-chrome` in the cloud, or Chrome.app on macOS) prints the HTML to PDF. There are no extra packages, and none may be added.
 - **Checking the layout:** whenever you change the design, keep the HTML (`--html`) and take a screenshot of it with headless Chrome, then look at it.
 - **If Google Analytics fails:** don't send a PDF. Say "visitor statistics are unavailable this week" in the message.
@@ -33,16 +33,18 @@ The script does this automatically, and prints `visitors28: null` and `daysOfDat
 
 
 1. **Cover:** both periods (dates) and the generation date. Below it, a "small numbers" note while weekly page views are under 300.
-2. **Key numbers** for the last 7 and last 28 days, each with ▲/▼ vs the previous period of the same length: visitors, new visitors, visits, page views, engaged time per visitor, engagement rate, pages per visitor.
-3. **Visitors per day** (last 28 days): a bar chart.
-4. **Top pages, last 7 days:** views, visitors, engaged time per visitor, engagement rate, quality score, and change in views.
-5. **Top pages, last 28 days** (same columns, without the change).
-6. **Pages that need attention:** pages with at least 5 views where visitors stay under 15 s, or engagement is under 35%.
-7. **Key pages:** Become Muslim, New Muslims, Contact, Free Quran, Quran 101 (local). Are visitors reaching them?
-8. **How visitors arrive:** landing pages and traffic sources.
-9. **Where visitors are:** the Sacramento-area share, plus countries and cities.
-10. **Devices**, and **downloads** (which files).
-11. **All tracked actions** (events).
+2. **Improvements published** in the period: visitor-facing changes from `git log origin/main` (content, app, components, public, lib, data), grouped by page or topic, with version and date. Internal tools (dev mode) and bot or skill updates are left out.
+3. **Page quality ratings:** the average text rating (/10) and average page rating (/100), compared with last week's report (`reports.json`), plus the number of pages rated 85+. Then every page, lowest rated first, with its text and page scores, views and main issue. Scores come from `out/dev-data/scores.json`, so run `npm run build` first.
+4. **Key numbers** for the last 7 and last 28 days, each with ▲/▼ vs the previous period of the same length: visitors, new visitors, visits, page views, engaged time per visitor, engagement rate, pages per visitor.
+5. **Visitors per day** (last 28 days): a bar chart.
+6. **Top pages, last 7 days:** views, visitors, engaged time per visitor, engagement rate, quality score, and change in views.
+7. **Top pages, last 28 days** (same columns, without the change).
+8. **Pages that need attention**, busiest first: visitors stay under 15 s, engagement is under 35%, the page rating is under 75, or the text rating is under 6/10. Each one shows why, the main issue and the suggested fix.
+9. **Key pages:** Become Muslim, New Muslims, Contact, Free Quran, Quran 101 (local). Are visitors reaching them?
+10. **How visitors arrive:** landing pages and traffic sources.
+11. **Where visitors are:** the Sacramento-area share, plus countries and cities.
+12. **Devices**, and **downloads** (which files).
+13. **All tracked actions** (events).
 
 **Rules for the content:**
 - Plain, formal English, never Arabic humour.
@@ -52,13 +54,13 @@ The script does this automatically, and prints `visitors28: null` and `daysOfDat
 ## 3. Share it (Friday weekly report and /report)
 
 1. Send the **summary message** first. It follows `weekly-report`, written in the `telegram-voice` style, and includes:
-   - visitors last week and last 28 days, with ▲/▼
-   - page views
-   - average engaged time per visitor
-   - the top 3 pages, with views and engaged time
-   - one page that needs attention
-   - where visitors come from (top source and the local share)
-   - the week's one action
+   - **Visitors:** last week and last 28 days (once available), with ▲/▼, page views, and average engaged time per visitor
+   - **Improvements:** how many visitor-facing updates were published, and the top 2–3 grouped by page (e.g. "Jesus page (10 updates): new 'Jesus in Islam' section, videos, comparison table")
+   - **Quality:** average text and page ratings with ▲/▼ vs last week, and how many pages are rated 85+
+   - **Top 3 pages:** with views and engaged time
+   - **Needs attention:** the top 2–3 pages, each with its reason and the fix in a few words
+   - **Visitors come from:** the top source and the local share
+   - **The week's one action**
    - a final line: "📄 The full report is attached below."
 2. Then send the **PDF** as a reply to that message:
    - use `sendDocument` (multipart/form-data, `document=@/tmp/wisequest-report-<date>.pdf`, `reply_parameters` to the summary message)

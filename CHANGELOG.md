@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.23.00 — 2026-11-26 (minor)
+
+- Website report: improvements published, page quality ratings, richer 'needs attention'; Friday message summarises everything
+
 ## v01.22.01 — 2026-11-26 (patch)
 
 - Website report: show only the last 7 days until 28 days of data exist
