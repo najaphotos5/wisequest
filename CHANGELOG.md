@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.24.06 — 2026-11-26 (patch)
+
+- Jesus page: closing remarks rewritten as 'Finding Jesus through Islam' (Yusuf Estes, Sinéad O’Connor)
+
 ## v01.24.05 — 2026-11-26 (patch)
 
 - Bot: read Telegram only through scripts/telegram-updates.cjs (consistent, cross-checked, logged)
