@@ -56,6 +56,7 @@ The UX audit and site structure plan are in [docs/AUDIT.md](docs/AUDIT.md). The 
 | `npm run check-videos` | Find embedded videos that no longer exist |
 | `npm run check-external` | Find links to other websites whose page is gone (404/410) |
 | `node scripts/screenshot.cjs <url> <out.png> --text "<words>"` | Phone screenshot centred on (and highlighting) the changed part of a page, used for before/after replies |
+| `node scripts/telegram-updates.cjs fetch <offset>` / `ack <next>` | The only way the bot reads Telegram: same request every run, cross-checked with Telegram's pending count, logged |
 | `npm run report:pdf` | Detailed analytics report as a PDF (last 7 + 28 days) |
 | `npm run release -- <patch\|minor\|major> "summary"` | Sync, build, check links, bump version, commit, push (retries safely if someone else pushed) |
 | `npm run version:show` | Print the current version |

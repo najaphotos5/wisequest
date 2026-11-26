@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.24.05 — 2026-11-26 (patch)
+
+- Bot: read Telegram only through scripts/telegram-updates.cjs (consistent, cross-checked, logged)
+
 ## v01.24.04 — 2026-11-26 (patch)
 
 - Bot screenshots: highlight every changed block, big BEFORE/AFTER labels

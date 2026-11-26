@@ -17,6 +17,21 @@ All state lives in `state.json` on branch `claude/telegram-state`. It holds ids,
    - If the push is rejected because the branch moved, fetch again and go back to step 2. Another run may have just taken it.
 4. At the **end** of the run, write `state.lock = null` in the same final state commit. Also do this when the run stops early because of an error, if at all possible.
 
+## 1b. Reading Telegram: always through the script
+
+**Never write your own getUpdates call.** Every run reads Telegram the same way, so a missed message can always be traced:
+
+```bash
+node scripts/telegram-updates.cjs fetch <state.offset> > /tmp/updates.json   # does NOT confirm anything; safe to repeat
+# … process /tmp/updates.json → .updates (only chat -1004488348585) …
+node scripts/telegram-updates.cjs ack <nextOffset from the JSON>             # only after processing, and after saving state.offset
+```
+
+- `fetch` always asks for `message` and `message_reaction`.
+- It cross-checks with Telegram's pending count and retries up to 3 times when Telegram says messages are waiting but returns none.
+- It prints a summary line (number of updates, ids, age of the oldest). **Copy that line into the run summary.**
+- If a message turns out to be much older than the previous run, say so in the run summary ("arrived late from Telegram: sent HH:MM, first seen HH:MM"). That makes delivery delays visible.
+
 ## 2. Missed messages (start of every run, after taking the lock)
 
 Telegram keeps unread updates for only 24 hours.
