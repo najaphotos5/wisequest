@@ -1,8 +1,8 @@
 {
-  "offset": 109084501,
+  "offset": 109084502,
   "chat_id": -1004488348585,
   "owner_telegram_id": 5763295123,
-  "next_id": 14,
+  "next_id": 15,
   "requests": [
     {
       "id": 1,
@@ -186,6 +186,22 @@
       "merge_sha": "3a48e05f7f3e90a01baea999034beb2ccd44349a",
       "summary": "Verify Jesus chart Quran references; remove reference on row 14",
       "theme": "content"
+    },
+    {
+      "id": 14,
+      "message_id": 67,
+      "status": "done",
+      "bot_message_ids": [
+        69,
+        70,
+        71
+      ],
+      "branch": "claude/todo-14-1",
+      "pr": 12,
+      "merge_sha": "cd7a13c1414efe8676c8e05c80fe066ed99c5d77",
+      "summary": "Rephrase closing remarks about two converts on the Jesus page",
+      "theme": "clarity",
+      "version": "v01.24.01"
     }
   ],
   "awaiting": [
@@ -195,6 +211,13 @@
       "sent_at": 1795616006,
       "reminders": 0,
       "closed": true
+    },
+    {
+      "key": "d14.1",
+      "kind": "done",
+      "message_id": 69,
+      "request_id": 14,
+      "sent_at": 1795661671
     }
   ],
   "queue": [],
@@ -206,7 +229,10 @@
     "\u0623\u0628\u0634\u0631\u060c \u062c\u0627\u0647\u0632 \u0648\u0627\u0644\u062d\u0645\u062f \u0644\u0644\u0647",
     "\u062f\u0645\u062a\u0645 \u0641\u064a \u0631\u0639\u0627\u064a\u0629 \u0627\u0644\u0644\u0647 \u0648\u062d\u0641\u0638\u0647",
     "\u0623\u062d\u0633\u0646 \u0627\u0644\u0644\u0647 \u0625\u0644\u064a\u0643",
-    "\u0628\u0627\u0631\u0643 \u0627\u0644\u0644\u0647 \u0641\u064a\u0643"
+    "\u0628\u0627\u0631\u0643 \u0627\u0644\u0644\u0647 \u0641\u064a\u0643",
+    "\u0627\u0644\u062d\u0645\u062f \u0644\u0644\u0647 \u0639\u0644\u0649 \u0627\u0644\u062a\u0645\u0627\u0645",
+    "\u0645\u0627 \u0642\u0635\u0631\u062a",
+    "\u0628\u0627\u0631\u0643 \u0627\u0644\u0644\u0647 \u0641\u064a \u062c\u0647\u0648\u062f\u0643\u0645 \u0648\u0646\u0641\u0639 \u0628\u0647\u0627"
   ],
   "last_checkin_date": "2026-11-25",
   "checkins": [
@@ -217,13 +243,10 @@
   ],
   "activity": {
     "date": "2026-11-25",
-    "human_events": 2
+    "human_events": 3
   },
-  "lock": {
-    "started_at": 1795661329,
-    "run": "2026-11-26T02:48Z"
-  },
-  "last_run_at": 1795657740,
+  "lock": null,
+  "last_run_at": 1795661671,
   "health": {
     "failures": 0
   }
