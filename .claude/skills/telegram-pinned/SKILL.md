@@ -91,7 +91,7 @@ Owners only: /pause and /resume publishing · /priority 12 = move request 12 to 
 
 5️⃣ What the bot's reactions mean
 The bot checks the group every hour, day and night, and answers commands at the next check.
-👀 Seen · ✍ Working on it · 💯 Done and live · 🤔 More information needed (please reply) · 🙏 Cannot be done (with the reason)
+👀 Seen · ✍ Working on it · 💯 Done and live (the reply starts with ✅) · 🤔 More information needed (please reply) · 🙏 Cannot be done (with the reason)
 
 6️⃣ Reminders and check-ins
 If a question or idea receives no answer, the bot sends a gentle reminder after 3 hours, at most two per message, between 8 AM and 9 PM Pacific. After publishing your change, if you have not responded within 3 hours, the bot sends one friendly note asking you to have a look. On quiet days, the bot may post one friendly check-in in the afternoon. A 👎 on any bot message, or a reply of "stop", pauses reminders and check-ins for 7 days.

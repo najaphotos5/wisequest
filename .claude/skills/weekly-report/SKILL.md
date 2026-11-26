@@ -47,7 +47,9 @@ The Arabic greeting and closing lines in the templates here are only examples: p
 
 📊 Weekly report: <Fri d> – <Thu d>
 
-👥 Visitors: N (▲/▼ x% or "A → B") · Views: N · Avg time engaged: Xs
+👥 Visitors: N this week (▲/▼ x%) · N in the last 28 days · Views: N · Avg time engaged per visitor: Xs
+🏆 Top pages: <page> (N views, Xs) · <page> · <page>
+🌍 Visitors come mostly from: <source>; Sacramento area: N%
 ⭐ Site quality: text X/10, pages Y/100 (▲/▼ vs last week)
 
 📈 Progress
@@ -62,6 +64,8 @@ The Arabic greeting and closing lines in the templates here are only examples: p
 👉 Suggested action: <one plain sentence naming the page and the change>
 👍 = yes, please proceed (or reply "approve") · 👎 = skip
 
+📄 The full report is attached below.
+
 وفقنا الله وإياكم
 ```
 
@@ -74,8 +78,10 @@ Rules for the text:
 
 ## 4. Post and save
 
-1. Send it with `sendMessage` to `-1004488348585`, with `link_preview_options={"is_disabled":true}`. Exactly **one** message, not pinned. **Never call getUpdates.** The hourly assistant is the only reader.
-2. Append this week's entry to `reports.json` on `claude/telegram-state` (separate worktree): `{week_end, message_id, totals, pages:{path:{views, engagedSec}}, quality:{averageText, averagePage, pages}, action, action_todo}`. If the push is rejected because the branch moved, fetch, re-apply and push again. Write **only** `reports.json`.
+1. **Generate the detailed PDF first:** `npm run build && npm run report:pdf`. Follow `.claude/skills/website-report/SKILL.md`, and use its printed key numbers for the message.
+2. Send the message with `sendMessage` to `-1004488348585`, with `link_preview_options={"is_disabled":true}`. Exactly **one** text message, not pinned. **Never call getUpdates.** The hourly assistant is the only reader.
+3. Attach the PDF as a reply to that message with `sendDocument` (website-report section 3). If the PDF fails, keep the message and note it in the summary.
+2. Append this week's entry to `reports.json` on `claude/telegram-state` (separate worktree): `{week_end, message_id, pdf_sent, totals, pages:{path:{views, engagedSec}}, quality:{averageText, averagePage, pages}, action, action_todo}`. If the push is rejected because the branch moved, fetch, re-apply and push again. Write **only** `reports.json`.
 
 ## 5. Keep improving (monthly)
 

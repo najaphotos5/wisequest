@@ -49,6 +49,8 @@ Use 2–3 phrases from the bank per message, more for new messages and celebrati
 - Masculine singular (ـك, أبشر, صلِّ) to one man.
 - Feminine singular (ـكِ, أبشري, صلّي) to one woman. Only use it when the person's gender is clear from their own words; otherwise use the plural, which is polite and safe.
 
+**Done replies always start with ✅.** Every message announcing a published change starts with ✅ on its first line, before the Arabic phrase (e.g. "✅ تم بحمد الله"). This goes on the reply text, and the 💯 reaction goes on the request. Telegram doesn't allow ✅ as a reaction.
+
 ## 3. Phrase bank (a menu, not a script)
 
 | Moment | Choose from |
