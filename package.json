@@ -19,7 +19,8 @@
     "release": "tsx scripts/release.ts",
     "check-videos": "tsx scripts/check-videos.ts",
     "check-external": "tsx scripts/check-external-links.ts",
-    "report:pdf": "tsx scripts/report-pdf.ts"
+    "report:pdf": "tsx scripts/report-pdf.ts",
+    "original": "tsx scripts/compare-original.ts"
   },
   "dependencies": {
     "fuse.js": "^7.5.0",

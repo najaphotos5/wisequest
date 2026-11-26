@@ -45,6 +45,16 @@ npm run release -- patch "Updated Quran 101 time to 7:30 PM"  # bump version, co
 
 The UX audit and site structure plan are in [docs/AUDIT.md](docs/AUDIT.md). The current list of suggested improvements is in [docs/UX-IMPROVEMENTS.md](docs/UX-IMPROVEMENTS.md).
 
+## The original site
+
+The original WordPress site, https://wisequest.home.blog/, is preserved on the branch **`original-site`**. That branch holds every page as HTML, Markdown and a full-page screenshot, plus an index mapping each old URL to its new page. It shares no history with `main` and is never merged. To compare:
+
+```bash
+npm run original -- /learn/jesus/          # old URL(s) and what changed (words, paragraphs, new sections)
+npm run original -- /learn/jesus/ --full   # the full text diff
+npm run original -- --list                 # every old page and where it lives now
+```
+
 ## Commands
 
 | Command | What it does |
@@ -57,6 +67,7 @@ The UX audit and site structure plan are in [docs/AUDIT.md](docs/AUDIT.md). The 
 | `npm run check-external` | Find links to other websites whose page is gone (404/410) |
 | `node scripts/screenshot.cjs <url> <out.png> --text "<words>"` | Phone screenshot centred on (and highlighting) the changed part of a page, used for before/after replies |
 | `node scripts/telegram-updates.cjs fetch <offset>` / `ack <next>` | The only way the bot reads Telegram: same request every run, cross-checked with Telegram's pending count, logged |
+| `npm run original -- <path>` | Compare a page with the original WordPress site (branch `original-site`) |
 | `npm run report:pdf` | Detailed analytics report as a PDF (last 7 + 28 days) |
 | `npm run release -- <patch\|minor\|major> "summary"` | Sync, build, check links, bump version, commit, push (retries safely if someone else pushed) |
 | `npm run version:show` | Print the current version |

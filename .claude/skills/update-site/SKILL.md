@@ -15,6 +15,8 @@ Several people and agents update this site, sometimes at the same time. Follow t
 - Requests from the Telegram group follow [`task-queue`](../task-queue/SKILL.md).
 - Website text never uses the bot's Arabic phrases, humour or sarcasm. It stays clear, plain English.
 
+**The original site:** the old WordPress site (wisequest.home.blog) is on branch `original-site` (HTML, Markdown, screenshots, old → new URL index). When someone asks what changed since the old site, or wants something "back like it was", use `npm run original -- <path>` (add `--full` for the text diff), and `git show original-site:screenshots/<slug>.jpg` for how it looked. Never merge or edit that branch.
+
 ## Golden rules
 
 1. **Sync before you start.** Run `git pull --rebase --autostash` first, every time.

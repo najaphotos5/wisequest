@@ -81,6 +81,7 @@ Use this checklist when changing the script, `scripts/report-pdf.ts`:
 - After any change: generate it, screenshot the HTML, check it, then `npm run release`.
 
 Ideas that are not yet built (add them when they make sense):
+- per page, "changed since the original site" (words and sections added), using `npm run original`
 - a month-over-month view
 - a trend line per top page
 - Google Search Console queries (would need new access)
