@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { NextSteps } from "@/components/NextSteps";
+import { PageFeedback } from "@/components/PageFeedback";
 import { DevPageInfo } from "@/components/DevPageInfo";
 import { ArticleBody } from "@/components/ArticleBody";
 import { PageHeader } from "@/components/PageShell";
@@ -41,6 +42,7 @@ export default async function QaPage({ params }: Props) {
           </p>
         }
       />
+      <PageFeedback placement="inline" />
       <NextSteps />
       <DevPageInfo page={page} kind="qa" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />

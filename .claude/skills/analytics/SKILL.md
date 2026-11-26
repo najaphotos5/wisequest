@@ -17,7 +17,7 @@ npm run ga -- pages 7 --compare    # this week vs the previous week (any report)
 npm run ga -- realtime        # who is on the site right now
 ```
 
-Reports: `overview` (totals vs the previous period) · `downloads` (which files were downloaded) · `pages` (views, users, avg engagement time per user) · `sources` (Google, direct, social, referrals) · `geo` (country/city) · `devices` · `daily` (trend) · `landing` (first page seen) · `events` (file_download, click, scroll, video plays…) · `realtime`.
+Reports: `overview` (totals vs the previous period) · `downloads` (which files were downloaded) · `feedback` ("Was this page helpful?" answers per page: events `feedback_yes`, `feedback_no`, `feedback_no_<unclear|missing|wrong|other>`) · `pages` (views, users, avg engagement time per user) · `sources` (Google, direct, social, referrals) · `geo` (country/city) · `devices` · `daily` (trend) · `landing` (first page seen) · `events` (file_download, click, scroll, video plays…) · `realtime`.
 
 Credentials (service account with **Viewer** access on the property), first found wins: `GA_SA_KEY_B64` (one-line base64 of the JSON — used by cloud routines), `GA_SA_KEY` (JSON text), `GA_SA_KEY_FILE` (path), or the macOS Keychain item `ga-service-account` / account `wisequest` (base64 of the JSON). Never print, log, or commit the key. If credentials are missing, say so and stop.
 

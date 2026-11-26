@@ -4,6 +4,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Analytics } from "@/components/Analytics";
 import { DevMode } from "@/components/DevMode";
+import { PageFeedback } from "@/components/PageFeedback";
 import { readFileSync } from "node:fs";
 import { execSync } from "node:child_process";
 import { site } from "@/lib/site";
@@ -49,6 +50,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         </a>
         <Header />
         <main id="main">{children}</main>
+        <PageFeedback />
         <Footer />
         <Analytics />
         <DevMode />

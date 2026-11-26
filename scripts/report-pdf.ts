@@ -187,6 +187,7 @@ function table(head: string[], rows: string[][], cls = "") {
 // Filled in by build() for the JSON summary.
 const attention: { page: string; title: string; views: number; reasons: string[]; issue: string; fix: string }[] = [];
 const changesSummary: { count: number; groups: { topic: string; count: number; latest: string }[] } = { count: 0, groups: [] };
+const feedbackSummary: { yes: number; no: number; pages: string[] } = { yes: 0, no: 0, pages: [] };
 const qualitySummary: { averageText?: number; averagePage?: number; prevText?: number; prevPage?: number } = {};
 
 // ---------- build ----------
@@ -277,6 +278,27 @@ function build(week: GA, month: GA) {
   const landing = (month.landing?.rows ?? []).slice(0, 10).map((r) => [esc(T[norm(r.landingPage)] ?? r.landingPage), int(r.sessions), pct(r.engagementRate), secs(r.averageSessionDuration)]);
   const downloads = (month.downloads?.rows ?? []).slice(0, 10).map((r) => [esc(r.fileName || r.linkUrl), int(r.eventCount), int(r.totalUsers)]);
   const events = (month.events?.rows ?? []).slice(0, 12).map((r) => [esc(r.eventName), int(r.eventCount), int(r.totalUsers)]);
+  // "Was this page helpful?" per page.
+  const fb: Record<string, { yes: number; no: number; reasons: Record<string, number> }> = {};
+  for (const r of month.feedback?.rows ?? []) {
+    const p = norm(r.pagePath), e = String(r.eventName), c = n(r.eventCount);
+    const f = (fb[p] ??= { yes: 0, no: 0, reasons: {} });
+    if (e === "feedback_yes") f.yes += c;
+    else if (e === "feedback_no") f.no += c;
+    else if (e.startsWith("feedback_no_")) f.reasons[e.slice(12)] = (f.reasons[e.slice(12)] ?? 0) + c;
+  }
+  const REASON: Record<string, string> = { unclear: "Hard to understand", missing: "Missing information", wrong: "Something looks wrong", other: "Something else" };
+  const fbTotal = Object.values(fb).reduce((a, f) => ({ yes: a.yes + f.yes, no: a.no + f.no }), { yes: 0, no: 0 });
+  const fbRows = Object.entries(fb)
+    .sort((a, b) => b[1].yes + b[1].no - (a[1].yes + a[1].no))
+    .map(([p, f]) => {
+      const top = Object.entries(f.reasons).sort((a, b) => b[1] - a[1])[0];
+      return [`<b>${esc(T[p] ?? p)}</b><br><span class="muted small">${esc(p)}</span>`, int(f.yes), int(f.no), f.yes + f.no ? pct(f.yes / (f.yes + f.no)) : "–", top ? `${esc(REASON[top[0]] ?? top[0])} (${top[1]})` : "–"];
+    });
+  feedbackSummary.yes = fbTotal.yes;
+  feedbackSummary.no = fbTotal.no;
+  feedbackSummary.pages = Object.entries(fb).filter(([, f]) => f.no > f.yes).map(([p]) => p).slice(0, 5);
+
   const KEY = ["/become-muslim/", "/new-muslims/", "/contact/", "/resources/free-quran/", "/local/"];
   const keyRows = KEY.map((k) => {
     const r = (month.pages?.rows ?? []).find((x) => norm(x.pagePath) === k);
@@ -341,6 +363,10 @@ function build(week: GA, month: GA) {
   <p>Pages where visitors leave quickly (under 15 s), few visits are engaged (under 35%), the page rating is under 75, or the text is hard to read (under 6/10). Busiest pages first.</p>
   ${table(["Page", `Views (${L})`, "Why", "Main issue and suggested fix"], fix)}
 
+  ${sec(`Visitor feedback: "Was this page helpful?" (last ${L})`)}
+  ${fbTotal.yes + fbTotal.no ? `<p><b>${int(fbTotal.yes)}</b> said yes and <b>${int(fbTotal.no)}</b> said no (${pct(fbTotal.yes / (fbTotal.yes + fbTotal.no))} helpful).</p>` : ""}
+  ${table(["Page", "👍 Yes", "👎 No", "Helpful", "Most common reason for No"], fbRows)}
+
   ${sec("Key pages: are visitors reaching them?")}
   ${table(["Page", `Views (${L})`, "Visitors", "Engaged time / visitor"], keyRows)}
 
@@ -386,7 +412,7 @@ function main() {
   if (!HTML_OUT) fs.rmSync(tmpHtml, { force: true });
   const o = week.overview?.rows?.[0] ?? {};
   const top = (week.pages?.rows ?? []).slice(0, 3).map((r) => ({ page: norm(r.pagePath), views: n(r.screenPageViews), engagedSec: Math.round(n(r.avgEngagementSec)) }));
-  console.log(JSON.stringify({ pdf: OUT, bytes: fs.statSync(OUT).size, days: DAYS, visitors: n(o.activeUsers), pageViews: n(o.screenPageViews), engagedSecPerVisitor: n(o.activeUsers) ? Math.round(n(o.userEngagementDuration) / n(o.activeUsers)) : 0, engagementRate: Math.round(n(o.engagementRate) * 100), visitors28: HAS28 ? n(month.overview?.rows?.[0]?.activeUsers) : null, daysOfData: DAYS_OF_DATA, top, quality: qualitySummary, attention: attention.slice(0, 5).map((a) => ({ page: a.page, title: a.title, views: a.views, reasons: a.reasons, fix: a.fix })), improvements: changesSummary }, null, 2));
+  console.log(JSON.stringify({ pdf: OUT, bytes: fs.statSync(OUT).size, days: DAYS, visitors: n(o.activeUsers), pageViews: n(o.screenPageViews), engagedSecPerVisitor: n(o.activeUsers) ? Math.round(n(o.userEngagementDuration) / n(o.activeUsers)) : 0, engagementRate: Math.round(n(o.engagementRate) * 100), visitors28: HAS28 ? n(month.overview?.rows?.[0]?.activeUsers) : null, daysOfData: DAYS_OF_DATA, top, quality: qualitySummary, attention: attention.slice(0, 5).map((a) => ({ page: a.page, title: a.title, views: a.views, reasons: a.reasons, fix: a.fix })), improvements: changesSummary, feedback: feedbackSummary }, null, 2));
 }
 
 main();
