@@ -41,5 +41,14 @@
     "message_id": 60,
     "sent_at": "2026-11-25T14:13:26+00:00",
     "todo": "On https://wisequest.org/get-involved/ (content/pages/get-involved.mdx): (1) add a 2-sentence welcome right under the title, e.g. \"Every little bit helps share the message of the prophets. Pick whichever way suits you: your time, your support, or your voice.\" (2) right after it, add a short list of links that jump to the existing sections: Volunteer, Donate, Dawah toolkit (For volunteers). (3) at the bottom add the line \"Not sure where to start? Tell us a bit about yourself and we'll find something that fits.\" with a button \"Contact us\" linking to /contact. Do not change the existing Volunteer/Donate text or links."
+  },
+  {
+    "date": "2026-11-26",
+    "theme": "trust",
+    "page": "/about/",
+    "title": "Help visitors find Quran 101 from the About page",
+    "message_id": 77,
+    "sent_at": "2026-11-26T16:12:37Z",
+    "todo": "On https://wisequest.org/about/ (content/pages/about.mdx): (1) in the \"What we do\" list, make the words \"Quran 101\" in the bullet \"Host Quran 101, a relaxed weekly gathering…\" a link to /local/quran-101/. (2) Directly after that list add one sentence: \"Everyone is welcome, and no one will pressure you. Find the next session on our Visit Us page, or write to us first and we will gladly answer.\" with \"Visit Us page\" linking to /local/ and \"write to us\" linking to /contact/. (3) Next to the existing \"Get involved →\" button add a second button \"Visit us →\" linking to /local/. Leave all other wording unchanged; do not touch the Quran quotation."
   }
 ]
