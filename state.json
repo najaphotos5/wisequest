@@ -1,8 +1,8 @@
 {
-  "offset": 109084512,
+  "offset": 109084513,
   "chat_id": -1004488348585,
   "owner_telegram_id": 5763295123,
-  "next_id": 17,
+  "next_id": 18,
   "requests": [
     {
       "id": 1,
@@ -241,13 +241,18 @@
     {
       "id": 16,
       "message_id": 91,
-      "status": "queued",
+      "status": "done",
       "bot_message_ids": [
         92,
         93,
         94,
         95,
-        96
+        96,
+        98,
+        99,
+        100,
+        101,
+        102
       ],
       "branch": "claude/todo-16-1",
       "pr": 14,
@@ -265,9 +270,24 @@
         {
           "n": 2,
           "title": "Add the 7 old-homepage videos missing from the site (3 Quran, 4 stories)",
-          "status": "queued"
+          "status": "done",
+          "pr": 15,
+          "version": "01.26.00",
+          "merge_sha": "541123d7d4bdbb307c75983e72350a9df4e21767"
         }
       ]
+    },
+    {
+      "id": 17,
+      "message_id": 97,
+      "status": "needs-info",
+      "bot_message_ids": [
+        103
+      ],
+      "branch": null,
+      "pr": null,
+      "summary": "Add old-site Quran translation QR chart + PDF, downloadable",
+      "theme": "content"
     }
   ],
   "awaiting": [
@@ -333,11 +353,25 @@
       "request_id": 16,
       "sent_at": 1795766681,
       "closed": false
+    },
+    {
+      "key": "d16.2",
+      "kind": "done",
+      "message_id": 98,
+      "request_id": 16,
+      "sent_at": 1795770524,
+      "closed": false
+    },
+    {
+      "key": "r17",
+      "message_id": 103,
+      "sent_at": 1795770584,
+      "request_id": 17,
+      "reminders": 0,
+      "closed": false
     }
   ],
-  "queue": [
-    "16.2"
-  ],
+  "queue": [],
   "recent_phrases": [
     "\u062d\u064a\u0627\u0643 \u0627\u0644\u0644\u0647\u060c \u0623\u0628\u0634\u0631",
     "\u0628\u0627\u0631\u0643 \u0627\u0644\u0644\u0647 \u0641\u064a \u0648\u0642\u062a\u0643",
@@ -369,13 +403,10 @@
   ],
   "activity": {
     "date": "2026-11-27",
-    "human_events": 4
+    "human_events": 5
   },
-  "lock": {
-    "started_at": 1795770135,
-    "run": "2026-11-27T09:02Z"
-  },
-  "last_run_at": 1795766681,
+  "lock": null,
+  "last_run_at": 1795770584,
   "health": {
     "failures": 0
   },

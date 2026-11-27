@@ -102,6 +102,13 @@
       "theme": "content",
       "page": "/",
       "reverted": false
+    },
+    {
+      "request_id": 17,
+      "date": "2026-11-27",
+      "theme": "content",
+      "page": "/learn/quran",
+      "reverted": false
     }
   ]
 }
