@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.26.01 — 2026-11-27 (patch)
+
+- Quran page: preview of the Quran translations QR-code chart above its PDF download
+
 ## v01.26.00 — 2026-11-27 (minor)
 
 - Quran and Stories pages: 7 videos from the old homepage added
