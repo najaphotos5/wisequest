@@ -1,0 +1,33 @@
+[
+  {
+    "week_end": "2026-11-26",
+    "message_id": 111,
+    "pdf_sent": true,
+    "totals": {
+      "visitors": 42,
+      "pageViews": 195,
+      "engagedSecPerVisitor": 71
+    },
+    "pages": {
+      "/": {
+        "views": 77,
+        "engagedSec": 20
+      },
+      "/learn/jesus/": {
+        "views": 46,
+        "engagedSec": 119
+      },
+      "/learn/muhammad/": {
+        "views": 14,
+        "engagedSec": 13
+      }
+    },
+    "quality": {
+      "averageText": 8.6,
+      "averagePage": 89.2,
+      "pages": {}
+    },
+    "action": "Shorten long sentences on the Prophet Muhammad page",
+    "action_todo": "Page /learn/muhammad/: split each sentence over 35 words into two or three (text score 3.8/10, visitors leave after 13s)."
+  }
+]
