@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.26.00 — 2026-11-27 (minor)
+
+- Quran and Stories pages: 7 videos from the old homepage added
+
 ## v01.25.00 — 2026-11-27 (minor)
 
 - Homepage: new section featuring the 99 Beautiful Names illustrated guide
