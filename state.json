@@ -1,5 +1,5 @@
 {
-  "offset": 109084513,
+  "offset": 109084515,
   "chat_id": -1004488348585,
   "owner_telegram_id": 5763295123,
   "next_id": 18,
@@ -368,7 +368,7 @@
       "sent_at": 1795770584,
       "request_id": 17,
       "reminders": 0,
-      "closed": false
+      "closed": true
     }
   ],
   "queue": [],
@@ -403,13 +403,10 @@
   ],
   "activity": {
     "date": "2026-11-27",
-    "human_events": 5
+    "human_events": 7
   },
-  "lock": {
-    "started_at": 1795788127,
-    "run": "2026-11-27T14:02Z"
-  },
-  "last_run_at": 1795784574,
+  "lock": null,
+  "last_run_at": 1795788134,
   "health": {
     "failures": 0
   },
