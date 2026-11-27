@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.24.12 — 2026-11-27 (patch)
+
+- God page: 99 names section moved up with a button to the illustrated guide
+
 ## v01.24.11 — 2026-11-26 (patch)
 
 - Telegram voice: consistent humour frequency
