@@ -1,8 +1,8 @@
 {
-  "offset": 109084509,
+  "offset": 109084510,
   "chat_id": -1004488348585,
   "owner_telegram_id": 5763295123,
-  "next_id": 15,
+  "next_id": 16,
   "requests": [
     {
       "id": 1,
@@ -221,6 +221,22 @@
           "note": "published directly to main by the owner's session (no PR)"
         }
       ]
+    },
+    {
+      "id": 15,
+      "message_id": 85,
+      "status": "done",
+      "bot_message_ids": [
+        86,
+        87,
+        88,
+        89
+      ],
+      "branch": "claude/todo-15-1",
+      "pr": 13,
+      "merge_sha": "07e88dfe2a1a8a80f96fd6355f95aece7b1d09cd",
+      "summary": "God page: 99 names section moved up with button (v01.24.12)",
+      "theme": "navigation"
     }
   ],
   "awaiting": [
@@ -260,13 +276,19 @@
       "message_id": 86,
       "sent_at": 1795744958,
       "reminders": 0,
+      "closed": true
+    },
+    {
+      "key": "d15.1",
+      "kind": "done",
+      "message_id": 87,
+      "request_id": 15,
+      "sent_at": 1795748870,
       "closed": false
     }
   ],
   "queue": [],
   "recent_phrases": [
-    "\u062f\u0645\u062a\u0645 \u0641\u064a \u0631\u0639\u0627\u064a\u0629 \u0627\u0644\u0644\u0647 \u0648\u062d\u0641\u0638\u0647",
-    "\u0623\u062d\u0633\u0646 \u0627\u0644\u0644\u0647 \u0625\u0644\u064a\u0643",
     "\u0628\u0627\u0631\u0643 \u0627\u0644\u0644\u0647 \u0641\u064a\u0643",
     "\u0627\u0644\u062d\u0645\u062f \u0644\u0644\u0647 \u0639\u0644\u0649 \u0627\u0644\u062a\u0645\u0627\u0645",
     "\u0645\u0627 \u0642\u0635\u0631\u062a",
@@ -284,7 +306,9 @@
     "\u062d\u064a\u0627\u0643\u0645 \u0627\u0644\u0644\u0647\u060c \u062a\u0630\u0643\u064a\u0631 \u0644\u0637\u064a\u0641",
     "\u064a\u0633\u0631 \u0627\u0644\u0644\u0647 \u0623\u0645\u0631\u0643\u0645",
     "\u062d\u0627\u0636\u0631\u060c \u0645\u0644\u0627\u062d\u0638\u0629 \u0641\u064a \u0645\u062d\u0644\u0647\u0627",
-    "\u062f\u0645\u062a\u0645 \u0641\u064a \u062d\u0641\u0638 \u0627\u0644\u0644\u0647"
+    "\u062f\u0645\u062a\u0645 \u0641\u064a \u062d\u0641\u0638 \u0627\u0644\u0644\u0647",
+    "\u062c\u0632\u0627\u0643\u0645 \u0627\u0644\u0644\u0647 \u062e\u064a\u0631\u064b\u0627 \u0639\u0644\u0649 \u0635\u0628\u0631\u0643\u0645",
+    "\u0648\u0641\u0642\u0643\u0645 \u0627\u0644\u0644\u0647 \u0648\u0628\u0627\u0631\u0643 \u0641\u064a \u062e\u0637\u0627\u0643\u0645"
   ],
   "last_checkin_date": "2026-11-25",
   "checkins": [
@@ -295,22 +319,12 @@
   ],
   "activity": {
     "date": "2026-11-27",
-    "human_events": 1
+    "human_events": 2
   },
-  "lock": {
-    "started_at": 1795748521,
-    "run": "2026-11-27T03:02Z"
-  },
-  "last_run_at": 1795744958,
+  "lock": null,
+  "last_run_at": 1795748870,
   "health": {
     "failures": 0
   },
-  "offers": [
-    {
-      "message_id": 85,
-      "ask_message_id": 86,
-      "summary": "On /start/god/, make the \"99 beautiful names of God\" section easier to find in the learner journey: place it right after the introduction to God (before the video list), with a short intro and a prominent button to the illustrated guide; keep existing wording.",
-      "date": "2026-11-27"
-    }
-  ]
+  "offers": []
 }

@@ -2,7 +2,7 @@
   "reactions": {
     "58": {},
     "60": {
-      "👍": 1
+      "\ud83d\udc4d": 1
     }
   },
   "adoptions": [
@@ -87,6 +87,13 @@
       "date": "2026-11-25",
       "theme": "clarity",
       "page": "/learn/jesus/",
+      "reverted": false
+    },
+    {
+      "request_id": 15,
+      "date": "2026-11-27",
+      "theme": "navigation",
+      "page": "/start/god/",
       "reverted": false
     }
   ]
