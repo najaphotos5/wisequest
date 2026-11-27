@@ -152,6 +152,20 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* 99 names */}
+      <section aria-labelledby="names" className="bg-surface-2 py-20">
+        <div className="mx-auto max-w-3xl px-4 text-center">
+          <SectionTitle id="names">The 99 Beautiful Names of Allah</SectionTitle>
+          <p className="mt-6 text-lg text-muted">
+            A good way to begin knowing God is through His names. Read or download our free illustrated guide to His names and attributes.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <a href={asset("/wp/2024-08-beautiful-99-names-and-attributes-of-allah.pdf")} className="btn-primary px-7 py-3 text-base">Open the illustrated guide (PDF)</a>
+            <Link href="/start/god" className="btn-ghost px-7 py-3 text-base">Read more about God</Link>
+          </div>
+        </div>
+      </section>
+
       {/* Stories */}
       <section aria-labelledby="stories" className="bg-[#14181c] py-20 text-white">
         <SectionTitle id="stories" light>From doubt to faith</SectionTitle>
