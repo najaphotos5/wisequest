@@ -405,11 +405,8 @@
     "date": "2026-11-27",
     "human_events": 7
   },
-  "lock": {
-    "started_at": 1795791744,
-    "run": "2026-11-27 15:02Z"
-  },
-  "last_run_at": 1795788134,
+  "lock": null,
+  "last_run_at": 1795791755,
   "health": {
     "failures": 0
   },
