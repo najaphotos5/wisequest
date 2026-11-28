@@ -3,6 +3,9 @@
     "58": {},
     "60": {
       "\ud83d\udc4d": 1
+    },
+    "105": {
+      "\ud83d\udc4d": 1
     }
   },
   "adoptions": [
@@ -22,6 +25,12 @@
       "suggestion_message_id": 60,
       "request_id": 11,
       "date": "2026-11-25",
+      "via": "reaction"
+    },
+    {
+      "suggestion_message_id": 105,
+      "request_id": 18,
+      "date": "2026-11-27",
       "via": "reaction"
     }
   ],
@@ -108,6 +117,13 @@
       "date": "2026-11-27",
       "theme": "content",
       "page": "/learn/quran",
+      "reverted": false
+    },
+    {
+      "request_id": 18,
+      "date": "2026-11-27",
+      "theme": "navigation",
+      "page": "/stories/",
       "reverted": false
     }
   ]

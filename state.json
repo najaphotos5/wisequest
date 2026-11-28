@@ -1,8 +1,8 @@
 {
-  "offset": 109084516,
+  "offset": 109084517,
   "chat_id": -1004488348585,
   "owner_telegram_id": 5763295123,
-  "next_id": 18,
+  "next_id": 19,
   "requests": [
     {
       "id": 1,
@@ -297,6 +297,40 @@
       "answered_message_ids": [
         104
       ]
+    },
+    {
+      "id": 18,
+      "message_id": 105,
+      "status": "queued",
+      "bot_message_ids": [
+        116,
+        118,
+        119,
+        117
+      ],
+      "from_suggestion": 105,
+      "theme": "navigation",
+      "summary": "Stories page: intro, grouped videos with jump links, closing link",
+      "tasks": [
+        {
+          "n": 1,
+          "title": "Add warm introduction at top of Stories page",
+          "status": "done",
+          "pr": 17,
+          "merge_sha": "497211a9a0dea38e9d8274a35893e692b2abf6d2",
+          "version": "v01.26.02"
+        },
+        {
+          "n": 2,
+          "title": "Group videos under four headings with jump links",
+          "status": "queued"
+        },
+        {
+          "n": 3,
+          "title": "Replace closing heading with AllAmericanMuslim.com link, remove raw address",
+          "status": "queued"
+        }
+      ]
     }
   ],
   "awaiting": [
@@ -396,17 +430,23 @@
       "message_id": 105,
       "sent_at": 1795716716,
       "reminders": 2,
-      "reminded_at": 1795827719
+      "reminded_at": 1795827719,
+      "closed": true
+    },
+    {
+      "key": "d18.1",
+      "kind": "done",
+      "message_id": 117,
+      "request_id": 18,
+      "sent_at": 1795835306,
+      "closed": false
     }
   ],
-  "queue": [],
+  "queue": [
+    "18.2",
+    "18.3"
+  ],
   "recent_phrases": [
-    "\u062d\u064a\u0627\u0643\u0645 \u0627\u0644\u0644\u0647\u060c \u062a\u0630\u0643\u064a\u0631 \u0644\u0637\u064a\u0641",
-    "\u064a\u0633\u0631 \u0627\u0644\u0644\u0647 \u0623\u0645\u0631\u0643\u0645",
-    "\u062d\u0627\u0636\u0631\u060c \u0645\u0644\u0627\u062d\u0638\u0629 \u0641\u064a \u0645\u062d\u0644\u0647\u0627",
-    "\u062f\u0645\u062a\u0645 \u0641\u064a \u062d\u0641\u0638 \u0627\u0644\u0644\u0647",
-    "\u062c\u0632\u0627\u0643\u0645 \u0627\u0644\u0644\u0647 \u062e\u064a\u0631\u064b\u0627 \u0639\u0644\u0649 \u0635\u0628\u0631\u0643\u0645",
-    "\u0648\u0641\u0642\u0643\u0645 \u0627\u0644\u0644\u0647 \u0648\u0628\u0627\u0631\u0643 \u0641\u064a \u062e\u0637\u0627\u0643\u0645",
     "\u0631\u0639\u0627\u0643\u0645 \u0627\u0644\u0644\u0647\u060c \u0648\u0628\u0627\u0631\u0643 \u0627\u0644\u0644\u0647 \u0641\u064a \u0623\u0648\u0642\u0627\u062a\u0643\u0645",
     "\u0648\u0641\u0642\u0643\u0645 \u0627\u0644\u0644\u0647 \u0644\u0645\u0627 \u064a\u062d\u0628 \u0648\u064a\u0631\u0636\u0649",
     "\u062a\u0645 \u0628\u0641\u0636\u0644 \u0627\u0644\u0644\u0647 \u0648\u062a\u0648\u0641\u064a\u0642\u0647",
@@ -422,7 +462,11 @@
     "\u0645\u0633\u0627\u0643\u0645 \u0627\u0644\u0644\u0647 \u0628\u0627\u0644\u062e\u064a\u0631\u060c \u062a\u0630\u0643\u064a\u0631 \u0628\u0633\u064a\u0637",
     "\u0623\u0643\u0631\u0645\u0643\u0645 \u0627\u0644\u0644\u0647 \u0648\u0628\u0627\u0631\u0643 \u0641\u064a\u0643\u0645",
     "\u062c\u0632\u0627\u0643\u0645 \u0627\u0644\u0644\u0647 \u062e\u064a\u0631\u0627\u064b\u060c \u0622\u062e\u0631 \u062a\u0630\u0643\u064a\u0631 \u0644\u0637\u064a\u0641",
-    "\u0648\u0641\u0642\u0643\u0645 \u0627\u0644\u0644\u0647 \u0644\u0643\u0644 \u062e\u064a\u0631"
+    "\u0648\u0641\u0642\u0643\u0645 \u0627\u0644\u0644\u0647 \u0644\u0643\u0644 \u062e\u064a\u0631",
+    "\u062c\u0632\u0627\u0643\u0645 \u0627\u0644\u0644\u0647 \u062e\u064a\u0631\u064b\u0627 \u0639\u0644\u0649 \u0627\u0644\u062a\u0632\u0643\u064a\u0629",
+    "\u0641\u0643\u0631\u0629 \u0645\u0628\u0627\u0631\u0643\u0629",
+    "\u062a\u0645\u062a \u0627\u0644\u0623\u0648\u0644\u0649 \u0628\u062d\u0645\u062f \u0627\u0644\u0644\u0647",
+    "\u0623\u0633\u0623\u0644 \u0627\u0644\u0644\u0647 \u0623\u0646 \u064a\u0628\u0627\u0631\u0643 \u0641\u064a\u0643\u0645 \u0648\u0641\u064a \u0623\u0648\u0642\u0627\u062a\u0643\u0645"
   ],
   "last_checkin_date": "2026-11-25",
   "checkins": [
@@ -433,13 +477,10 @@
   ],
   "activity": {
     "date": "2026-11-27",
-    "human_events": 8
+    "human_events": 9
   },
-  "lock": {
-    "started_at": 1795834922,
-    "run": "2026-11-28T03:02Z"
-  },
-  "last_run_at": 1795831353,
+  "lock": null,
+  "last_run_at": 1795835306,
   "health": {
     "failures": 0
   },
