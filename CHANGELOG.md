@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.26.05 — 2026-11-28 (patch)
+
+- Stories page: removed the AllAmericanMuslim link and title from the bottom
+
 ## v01.26.04 — 2026-11-28 (patch)
 
 - Stories page: closing link now reads 'More stories at AllAmericanMuslim.com'
