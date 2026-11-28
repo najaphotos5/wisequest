@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.26.02 — 2026-11-28 (patch)
+
+- From Doubt to Faith: added a warm introduction at the top
+
 ## v01.26.01 — 2026-11-27 (patch)
 
 - Quran page: preview of the Quran translations QR-code chart above its PDF download
