@@ -8,6 +8,10 @@ Versions use **vXX.XX.XXX** (major.minor.patch):
 
 <!-- entries -->
 
+## v01.26.03 — 2026-11-28 (patch)
+
+- From Doubt to Faith: videos grouped under headings with jump links
+
 ## v01.26.02 — 2026-11-28 (patch)
 
 - From Doubt to Faith: added a warm introduction at the top
