@@ -125,6 +125,13 @@
       "theme": "navigation",
       "page": "/stories/",
       "reverted": false
+    },
+    {
+      "request_id": 19,
+      "date": "2026-11-28",
+      "theme": "content",
+      "page": "/stories",
+      "reverted": false
     }
   ]
 }
